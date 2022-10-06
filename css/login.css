@@ -1,0 +1,35 @@
+body{
+    background-color: #8861db;
+}
+
+form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height:74vh;
+}
+
+.login-box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color:white;
+    margin: 0 auto;
+    background: #3a088a;
+    box-shadow: 0 8px 32px 0 rgb(37, 2, 133);
+    border-radius: 5px;
+    width:30%;
+    height:50vh;
+}
+
+.login-box a{
+    color:white;
+}

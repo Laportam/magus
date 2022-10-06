@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    background-color: #8861db;
+    min-height:100vh;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-btn-container{
+    width:100%;
+    margin: 15px 0;
+    display:flex;
+    justify-content: space-between;
+}
+
+.home-btn-container button, .home-btn-container a{
+    background:none;
+    border:none;
+    text-decoration: none;
+    color:black;
+}
+
+.home-btn-container i{
+    font-size:30px
+}
+
+.home-btn{
+    margin-left:72px
+}
+
+.pdf-btn{
+    margin-right:72px;
+}
+
+.form-container{
+    margin: 0 30px;
+    background:white;
+    width:fit-content;
+    height:fit-content;
+    border:5px solid rgb(0, 0, 0);
+    border-radius:2px;
+    box-shadow: 10px 14px 0px -3px rgba(0, 0, 0, 0.397);
+}
+
+.form-wrapper{
+    margin:50px 75px;
+    box-sizing: border-box;
+    
+}
+
+.first-half{
+    display:flex;
+    flex-direction: column;
+}
+
+.top{
+    background-color:#a572db;
+    color:white;
+    display:flex;
+    flex-direction: column;
+}
+
+.top-top{
+    display:flex;
+    justify-content: space-between;
+}
+
+.top-middle{
+    display:flex;
+    justify-content: space-between;
+}
+
+.top-middle h3{
+    color: #f3c300;
+}
+
+.bottom{
+    display:flex;
+    justify-content: space-between;
+    margin:0 8px;
+}
+
+.top-left, .top-right, .bottom-left{
+    width:200px;
+    height:150px;
+}
+
+.bottom-right{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-left, .bottom-left{
+    margin-right:180px;
+}
+
+.bottom-right-box{
+    width:100%;
+    margin:20px 0;
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.input{
+    position:relative;
+}
+
+.label{
+    position:absolute;
+    left:8px;
+    top:5.5px;
+    font-weight: bold;
+    font-size:20px;
+    transition: all 0.3s;
+}
+
+.clicked{
+    position:absolute;
+    left:5px;
+    top:-9px;
+    z-index:1;
+    font-weight: bold;
+    font-size:16px;
+    background:white;
+    padding: 0 3px;
+    color:rgb(253, 231, 159);
+    border-top:1px solid rgba(0, 0, 0, 0.164);
+    border-bottom:1px solid rgba(0, 0, 0, 0.164);
+}
+
+.bottom-right-box input{
+    height:35px;
+    width:250px;
+    outline:none;
+}
+
+.product-info-content{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:15px
+}
+
+.titulos{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:20px;
+    position:relative;
+    left:-10px
+}
+
+.lil-box{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lil-box h4{
+    text-align: center;
+    width:20%;
+}
+
+.content-input-container{
+    width:20%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-input-container input{
+    text-align: center;
+}
+
+.content-input-container:nth-child(4){
+    display:flex;
+    flex-direction: column;
+}
+
+
+.content-input-container:nth-child(4) p{
+    font-size:10px;
+    position:relative;
+    top:-8px;
+}
+
+.content-input-container:nth-child(4) input{
+    position:relative;
+    top:-5.4px
+}
+
+
+.content-input-container:nth-child(5){
+    margin-right:11px;
+}
+
+select{
+    width:60%;
+    text-align: center;
+}
+
+.content-box{
+    background-color:rgb(241, 239, 239);
+    border-bottom:1px solid rgba(0, 0, 0, 0.205);
+}/**/
+
+.content-box input{
+    width:25%;
+    text-align: end;
+    border:none;
+    background-color:rgb(241, 239, 239);
+    outline:none;
+    border-left:1px solid rgba(0, 0, 0, 0.205);
+}
+
+.dotted{
+    border:1px dotted black;
+}
+
+.dotted p{
+    border-bottom:1px dotted black;
+    padding: 5px 0 5px 5px;
+}
+
+.dotted ul{
+    padding: 5px 0 5px 5px;
+    margin-left:35px;
+}
+
+.dotted p:last-child{
+    border-bottom:none;
+}
+
+.dotted p:last-child{
+    border-top:1px dotted black;
+}
+
+.comments-container label{
+    font-family: 'Andada Pro', serif;
+    font-size:14px
+}
+
+.comments textarea{
+    margin-top:7px
+}
+
+.titulo-principal{
+    background-color:#a572db;
+    color:white;
+    margin-bottom:15px
+}
+
+.no-product-container, .no-product, .no-product p{
+    width:100%;
+}
+
+.no-product-container{
+    background:rgb(218, 218, 218);
+}
+
+.no-product p{
+    text-align: center;
+}
+
+.text-danger{
+    color:red;
+    font-size:13px;
+    margin-top:3px
+}
+

@@ -1,0 +1,19 @@
+form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* register.ejs */
+.register-box{
+    margin: 0 auto;
+    background-color: blueviolet;
+    width:200px;
+}
+
+/* login.ejs */
+.login-box{
+    margin: 0 auto;
+    background-color: blueviolet;
+    width:200px;
+}
