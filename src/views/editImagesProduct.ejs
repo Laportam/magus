@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ("partials/head") %>
+<body>
+    <form action="/catalogo/edit/image/<%= id %>" method="POST" enctype="multipart/form-data">
+        <% for( let i = 0; i < images.length; i++ ) { %>
+            <hr>
+            <label for="images">Imagen <%= images[i].image_id %></label>
+            <input name="name" type="text" value="<%= images[i].image_id %>" hidden>
+            <input name="images" type="image" src="/images/product/<%= images[i].filename %>" width="150px" height="150px">
+            <input name="image" type="image" value="/images/product/1.jpg" hidden>
+            <input name="id" type="text" value="<%= images[i].id %>" hidden>
+            <input name="filename" type="text" value="<%= images[i].filename %>" hidden>
+            <select name="option" class="option" id="option">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <a href="/catalogo/edit/image/delete/<%= images[i].image_id %>">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <hr>
+        <% } %>
+        <br>
+        <div class="da">
+            <h5>No, papu</h5>
+        </div>
+        <br>
+        <button type="submit" class="pdf-btn">
+            Enviar
+        </button>
+    </form>
+
+    <script src="/js/editImage.js"></script>
+</body>
+</html>

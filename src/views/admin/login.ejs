@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../partials/head") %>
+<body>
+    <main>
+        <div class="login-container">
+            <h1>Ingresá a tu cuenta</h1>
+            <div class="login-box">
+                
+
+                <!-- Login Form | Beginning -->
+                <form action="/admin/login" method="POST" class="login-form" id="login-form">
+                    <div class="form-container">
+    
+                        <!-- Email | Beginning -->
+                        <div class="email" id="email">
+                            <label for="email" class="email-label">Correo electrónico</label>
+                            <div class="email-input">
+                                <input type="email" class="email-input" name="email" id="email-input">
+                            </div>
+                            <% if(locals.errors && errors.email) { %> 
+                                <div class="text-danger">
+                                    <%= errors.email.msg %> 
+                                </div>
+                            <% } %> 
+                        </div>
+                        <!-- Email | End -->
+    
+                        <!-- Password | Beginning -->
+                        <div class="password" id="grupo-password">
+                            <label for="password" class="formulario-label">Contraseña</label>
+                            <div class="password-input">
+                                <input type="password" class="formulario-input" name="password" id="password-input">
+                            </div>
+                            <% if(locals.errors && errors.password) { %> 
+                                <div class="text-danger">
+                                    <%= errors.password.msg %> 
+                                </div>
+                        <% } %> 
+                        </div>
+                        <!-- Password | End -->
+    
+                        <!-- Button | Beginning -->
+                        <div class="form form-btn-submit">
+                            <button type="submit" class="formulario-btn">Enviar</button>
+                        </div>
+                        <!-- Button | End -->
+
+                        <!-- Remember Me Checkbox | Beginning -->
+                        <div class="col-md-6 my-2">
+                            <div class="form-group form-check">
+                                <label for="checkbox" class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="remember_user">Recordar el usuario
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Remember Me Checkbox | End -->
+    
+                        <!-- Links | Beginning -->
+                        <div class="form-links">
+                            <a href="#">¿Olvidaste tu contraseña?</a>
+                            <br>
+                            <a href="/admin/login">¿Ya tenés una cuenta?</a>
+                            <br>
+                        </div>
+                        <!-- Links | End-->
+                    </div>
+                </form>
+                <!-- Login Form | End -->
+            </div>
+        </div>
+    </main>
+
+    
+
+</body>
+
+<script src="/js/login.js"></script>
+<script src="https://kit.fontawesome.com/d97ccaa3ff.js" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <main>
+        <div class="main-container">
+            <div class="form-container">
+                <form method="POST" action="/presupuestador/presupuesto/<%= datosDb.id %>">
+                    <div class="client-info">
+                        <div class="top-client-info">
+                            <div class="first-half-client-info">
+                                <div class="logo">
+                                    <figure>
+                                        <img src="/images/logo-magus.png" alt="">
+                                    </figure>
+                                </div>
+                                <div class="invoice-number">
+                                    <h1>PRESUPUESTO #<%= datosDb.id %></h1>
+                                </div>
+                            </div>
+                            <div class="second-half-client-info">
+                                <h4>www.magus.com.ar</h4>
+                                <h4>info@magus.com.ar</h4>
+                                <h4>011-4305-1294</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="bottom-client-info">
+                            <input name="presupuesto" type="hidden" value="<%= datosDb.id %>">
+                            <div class="info">
+                                <p><b><u>Cliente:</u></b> <i><%= datosDb.client %></i></p>
+                                <input name="cliente" type="hidden" value="<%= datosDb.client %>">
+                            </div>
+                            <div class="info">
+                                <p><b><u>Empresa:</u></b> <i><%= datosDb.company %></i></p>
+                                <input name="empresa" type="hidden" value="<%= datosDb.company%>">
+                            </div>
+                            <div class="info">
+                                <p><b><u>Email:</u></b> <i><%= datosDb.email %></i></p>
+                            </div>
+                            <div class="info">
+                                <p><b><u>Fecha de consulta:</u> <%= datosDb.received_at %></b></p>
+                                <input name="consulta" type="hidden" value="<%= datosDb.received_at %>">
+                            </div>
+                            <div class="info">
+                                <p><b><u>Fecha de respuesta:</u> <%= date %></b></p>
+                                <input name="fecha" type="hidden" value="<%= date %>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="products">
+                        <div class="titles">
+                            <h2>Código</h2>
+                            <h2>Producto</h2>
+                            <h2>Logo</h2>
+                            <h2>Cantidad</h2>
+                            <h2>Precio</h2>
+                        </div>
+                        <% for( let i = 0; i < productsDb.length; i++ ) { %>
+                            <div name="product" class="product">
+                                <% for( let a = 0; a < product.length; a++ ) { %>
+                                    <% if (product[a].id == productsDb[i].product_id) { %>
+                                        <p>Un código</p>
+                                        <p><%= product[a].name %> </p>
+                                        <input name="product_id" type="hidden" value="<%= product[a].id %>">
+                                        <input name="product_name" type="hidden" value="<%= product[a].name %>">
+                                        <p>Un logo</p>
+                                        <p><%= productsDb[i].quantity %></p>
+                                        <input name="product_quantity" type="hidden" value="<%= productsDb[i].quantity %>">
+                                        <input id="value" name="value" type="number">
+                                        <% if(locals.errors && errors.value) { %> 
+                                            <div class="text-danger">
+                                                <%= errors.value.msg %> 
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="totales">
+                        <div id="subtotal" class="subtotal">
+                            <div class="sub">
+                                <p>Subtotal:</p>
+                                <p></p>
+                            </div>
+                            <div class="gan">
+                                <p>Ganancia %</p>
+                                <input name="gan" type="number">
+                                <% if(locals.errors && errors.gan) { %> 
+                                    <div class="text-danger">
+                                        <%= errors.gan.msg %> 
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="tot">
+                                <p>Total:</p>
+                                <p></p>
+                                <input name="product_total" type="hidden" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="Submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/presupuesto.js"></script>
+</body>
+</html>

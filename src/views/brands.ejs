@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header') %>
+    <main>
+        <div class="main-container">
+            <% for( let i = 0; i < brands.length; i++ ) { %>
+                <h1><a href="/catalogo/brand/<%= brands[i].name %>"><%= brands[i].name %></a></h1>
+            <% } %>
+        </div>
+    </main>
+    <%- include('partials/footer')  %>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header')  %> 
+
+
+    <main>
+        <div class="main-container">
+            <h1><%= product.name %> </h1>
+            <figure>
+                <% for( let a = 0; a < images.length; a++ ) { %>
+                    <% if (images[a].id == product.id && a == 0) { %>
+                        <img class="image-A" src="/images/product/<%= images[a].filename %>" width="300px" height="300px" alt="">
+                    <% } else if (images[a].id == product.id && a > 0) { %>
+                        <img class="image-A" src="/images/product/<%= images[a].filename %>" width="150px" height="150px" alt="">
+                    <% } %>
+                <% } %>
+            </figure>
+            <figure>
+                <img src="/images/product/<%= product.image %>" alt="">
+            </figure>
+            <br>
+            <h4><%= product.name %> </h4>
+            <br>
+            <button class="cotizar-btn" data-id="<%= product.id %>">
+                <p>Cotizar</p>  
+                <i class="fa-solid fa-calculator"></i>
+            </button>
+            <br>
+            <p>
+                Categorías: <b>
+                    <% for( let i = 0; i < categories.length; i++ ) { %>
+                        <% if (product.category_id === categories[i].id) { %>
+                            <%= categories[i].title %> 
+                        <% } %>
+                    <% } %>
+                </b>
+            </p>
+            <p>
+                Marcas: <b>
+                    <% for( let b = 0; b < brands.length; b++ ) { %>
+                        <% if (product.brand === brands[b].id) { %>
+                            <%= brands[b].name %> 
+                        <% } %>
+                    <% } %>
+                </b>
+            </p>
+            <br>
+            <p><%= product.description %></p>
+            <br>
+            <% if (locals.isLogged) { %>
+                <button>
+                    <a href="/catalogo/edit/<%= product.id %> ">Editar</a>
+                </button>
+                <button>
+                    <a href="/catalogo/delete/<%= product.id %> ">Eliminar</a>
+                </button>
+            <% } %>
+            
+        </div>
+    </main>
+    <%- include('partials/footer')  %>
+</body>
+<script src="../views.js"></script>
+</html>

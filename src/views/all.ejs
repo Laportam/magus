@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header') %>
+    <main>
+        <div class="main-container">
+
+
+            <!-- Categorías -->
+            <div class="categorias-container">
+                <div class="categorias">
+                    <% for( let a = 0; a < categories.length; a++ ) { %>
+                        <a name="<%= categories[a].title %>" href="/catalogo/<%= categories[a].title %>/1">
+                            <p>
+                                <%= categories[a].title %>
+                            </p>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- Productos -->
+            <div class="products-container">
+                <div class="products">
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <div class="product">
+                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                <% for( let a = 0; a < images.length; a++ ) { %>
+                                    <% if (images[a].id == products[i].id && images[a].image_id == (images[a].id + '-1')) { %>
+                                        <img class="image-A" src="/images/product/<%= images[a].filename %>" alt="">
+                                    <% } %>
+                                <% } %>
+                                <div class="product-info">
+                                    <h4><%= products[i].name %></h4>
+                                    <h5>Marca: <a href="/catalogo/brand/Lorem"><%= products[i].brand %></a></h5>
+                                    <h6>MGS<%= products[i].SKU %></h6>
+                                </div>
+                                
+                                <div class="btns">
+                                    <button class="cotizar-button" data-id="<%= products[i].id %>">
+                                        <p>Cotizar</p>  
+                                        <i class="fa-solid fa-calculator"></i>
+                                    </button>
+                                    <% if (locals.isLogged == true) { %>
+                                    <a href="/catalogo/delete/<%= products[i].id %>" class="delete-btn">
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                    </a>
+                                    <% } %>
+                                </div>
+                                <br>
+                            </a>
+                        </div>
+                    <% } %>
+                </div>
+                <!-- Botones de las Páginas -->
+                <div class="pages-btns-container">
+                    <div class="pages-btns">
+                        <% for( let b = 0; b < pages.length; b++ ) { %>
+                            <% if (actualPage == pages[b]) { %>
+                                <div class="page-btn selected">
+                                    <a role="link" aria-disabled="true">
+                                        <%= pages[b] %>
+                                    </a>
+                                </div>
+                            <% } else { %>
+                                <div class="page-btn">
+                                    <a href="/catalogo/<%= pages[b] %>">
+                                        <%= pages[b] %>
+                                    </a>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>

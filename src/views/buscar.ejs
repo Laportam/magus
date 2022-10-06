@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header')  %> 
+
+
+    <main>
+        <% if (products == null) { %>
+            <h1>Lo lamentos, pero no se encontramos ningún producto.</h1>
+        <% } else { %>
+            <% for( let i = 0; i < products.length; i++ ) { %>
+                <img src="/images/product/<%= products[i].image %>" alt="">
+                <h1><%= products[i].name %></h1>
+                <p><%= products[i].description %></p>
+            <% } %>
+        <% } %> 
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>

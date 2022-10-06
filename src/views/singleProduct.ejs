@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header')  %> 
+
+
+    <main>
+        <div class="main-container">
+            <figure>
+                <% for(let i = 0; i < singleProduct.imagenes.length; i++) { %>
+                    <img src="/images/product/<%= singleProduct.imagenes[i] %>" alt="">
+                <% } %>
+            </figure>
+            <br>
+            <h4><%= singleProduct.titulo %> </h4>
+            <br>
+            <button class="cotizar-button">
+                <p>Cotizar</p>  
+                <i class="fa-solid fa-calculator"></i>
+            </button>
+            <br>
+            <p>
+                Categorías: <b><%= singleProduct.categorias.join(', ') %></b>
+            </p>
+            <br>
+            <p><%= singleProduct.descripcion %> </p>
+            <br>
+        </div>
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>

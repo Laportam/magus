@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %> 
+<body>
+    <%- include('partials/header') %> 
+    <main>
+        <div class="square-container">
+            <div class="square">
+                <% for( let i = 0; i < budgets.length; i++ ) { %>
+                    <div class="invoice">
+                        <a href="/presupuestador/presupuesto/<%= budgets[i].id %>">
+                            <input type="checkbox" name="checkbox" data-id="<%= budgets[i].id %>">
+                            <h4>Presupuesto #<%= budgets[i].id %></h4>
+                            <h4><%= budgets[i].client %></h4>
+                            <% if (!budgets[i].company) { %>
+                                <h4>No name</h4>
+                            <% }  else { %>
+                                <h4><%= budgets[i].company %></h4>
+                            <% } %>
+                            <% if (!budgets[i].received_at) { %>
+                                <h4>00 de Algoembre, 2022</h4>
+                            <% }  else { %>
+                                <h4><%= budgets[i].received_at %></h4>
+                            <% } %>
+                        </a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </main>
+    <%- include('partials/footer') %> 
+</body>
+</html>

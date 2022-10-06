@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <div id="invoice">
+        <div class="info">
+            <p id="id" hidden><%= clientData.id %></p>
+            <p><%= clientData.client %></p>  
+            <p><%= clientData.company %></p>  
+            <p><%= clientData.received_at %></p>
+            <p><%= clientData.answered_at %></p>
+        </div>
+        <div class="products">
+            <div class="products-box">
+                <div class="titles">
+                    <h4>ID</h4>
+                    <h4>Producto</h4>
+                    <h4>Cantidad</h4>
+                </div>
+                <% for( let i = 0; i < productData.product_id.length; i++ ) { %>
+                    <div class="product">
+                        <p><%= productData.product_id[i] %></p>
+                        <p><%= productData.product_name[i] %></p>
+                        <p><%= productData.product_quantity[i] %></p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="price">
+            <p>$<%= productData.product_total.toLocaleString('es-ES') %></p>  
+        </div>
+    </div>
+    <button id="download">Descargar</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/pdf.js"></script>
+</body>
+</html>

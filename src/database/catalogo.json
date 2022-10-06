@@ -1,0 +1,127 @@
+[
+    {
+        "id": 1,
+        "categoria": "Apparel",
+        "subcategoria": ["Accesorios", "Buzos", "Camisas", "Camperas", "Chalecos", "Chombas", "Pantalones", "Remeras"]
+    },
+    {
+        "id": 2,
+        "categoria": "Cuidado Personal",
+        "subcategoria": ["Personales", "Protección COVID-19"]
+    },
+    {
+        "id": 3,
+        "categoria": "Drinkware",
+        "subcategoria": ["Botellas", "Tazas", "Térmicos", "Termos"]
+    },
+    {
+        "id": 4,
+        "categoria": "Eco Friendly",
+        "subcategoria": [""]
+    },
+    {
+        "id": 5,
+        "categoria": "Escritura",
+        "subcategoria": ["Bolígrafos", "Lápices", "Marcadores", "Resaltadores"]
+    },
+    {
+        "id": 6,
+        "categoria": "Golf",
+        "subcategoria": [""]
+    },
+    {
+        "id": 7,
+        "categoria": "Gorras",
+        "subcategoria": [""]
+    },
+    {
+        "id": 8,
+        "categoria": "Herramientas",
+        "subcategoria": [""]
+    },
+    {
+        "id": 9,
+        "categoria": "Hogar",
+        "subcategoria": ["Accesorios", "Blanco", "Cocina", "Vinos"]
+    },
+    {
+        "id": 10,
+        "categoria": "Identificadores",
+        "subcategoria": ["Credenciales", "Pins", "Portacredenciales"]
+    },
+    {
+        "id": 11,
+        "categoria": "Juegos",
+        "subcategoria": ["De Mesa", "Deportivos"]
+    },
+    {
+        "id": 12,
+        "categoria": "Llaveros",
+        "subcategoria": ["Premium", "Promocionales"]
+    },
+    {
+        "id": 13,
+        "categoria": "Marcas",
+        "subcategoria": ["Bagsmart", "Benevento", "Cardon", "Contigo", "Cross", "Daily Book", "Dunlop", "Gato", "Kingtech", "La Baule", "Laguiole", "Lumilite", "Moleskine", "Narda Lepes", "Noma Walk", "Ogio", "Pampa Spirit", "Pampero", "Parker", "Reuseme", "Roupen", "Sharpie", "Slazenger", "Swiss Peak", "Swissbags", "Verbano", "Wagner", "Waterman"]
+    },
+    {
+        "id": 14,
+        "categoria": "Marroquinería",
+        "subcategoria": ["Accesorios", "Bolsos", "Maletines", "Mochilas", "Necessaire", "Riñoneras", "Valijas"]
+    },
+    {
+        "id": 15,
+        "categoria": "Mates y Accesorios",
+        "subcategoria": ["Materas", "Mates", "Sets de Mate"]
+    },
+    {
+        "id": 16,
+        "categoria": "Mix Stuff",
+        "subcategoria": [""]
+    },
+    {
+        "id": 17,
+        "categoria": "Novedades",
+        "subcategoria": [""]
+    },
+    {
+        "id": 18,
+        "categoria": "Oficina",
+        "subcategoria": ["Accesorios", "Calculadoras", "Carpetas - Portafolios", "Cuadernos", "Libretas - Anotadores", "Pad Mouse"]
+    },
+    {
+        "id": 19,
+        "categoria": "Outdoor",
+        "subcategoria": ["Accesorios", "Asado", "Coolers y Luncheras", "Lonas", "Sillas y Reposeras"]
+    },
+    {
+        "id": 20,
+        "categoria": "Paragüas",
+        "subcategoria": ["Calle", "Golf"]
+    },
+    {
+        "id": 21,
+        "categoria": "POP - Punto de Venta",
+        "subcategoria": [""]
+    },
+    {
+        "id": 22,
+        "categoria": "Productos Destacados",
+        "subcategoria": [""]
+    },
+    {
+        "id": 23,
+        "categoria": "Relojes",
+        "subcategoria": ["Escritorio", "Pared"]
+    },
+    {
+        "id": 24,
+        "categoria": "Sin Categoría",
+        "subcategoria": [""]
+    },
+    {
+        "id": 25,
+        "categoria": "Tecnología",
+        "subcategoria": ["Accesorios", "Auriculares", "Cargadores", "Parlantes", "Pen Drives"]
+    }
+]

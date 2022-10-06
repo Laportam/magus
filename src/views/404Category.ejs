@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header') %>
+    <main>
+        <div class="main-container">
+
+            <!-- Categorías -->
+            <div class="categorias-container">
+                <div class="categorias">
+                    <% for( let a = 0; a < categories.length; a++ ) { %>
+                        <a name="<%= categories[a].title %>" href="/catalogo/<%= categories[a].title %>/1">
+                            <p>
+                                <%= categories[a].title %>
+                            </p>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- 404 Not Found -->
+            <div class="notfound-container">
+                <div class="notfound">
+                    <h1>404</h1>
+                    <h2>Lo lamentamos, pero no encontramos ningún producto en la categoría <%= category %></h2>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("partials/head") %>
+<body>
+    <%- include ("partials/header") %>
+    <main>
+        <div class="login-container">
+            <h1>Vamo' a cambiar lo' dato</h1>
+            <p><%= admin.id %> </p>
+            <p><%= admin.name %> </p>
+            <p><%= admin.email %> </p>
+            <p><%= admin.password %> </p>
+        </div>
+
+        <div class="register-box">
+            <!-- Register Form | Beginning -->
+            <form action="/admin/edit/<%= admin.id %>" method="POST" class="register-form" id="register-form">
+                <div class="form-container">
+
+                    <!-- Name | Beginning -->
+                    <div class="name" id="name">
+                        <label for="name" class="name-label">Nombre</label>
+                        <div class="name-input">
+                            <input type="text" class="name-input" name="name" id="name-input">
+                        </div>
+                        <% if(locals.errors && errors.name) { %> 
+                            <div class="text-danger">
+                                <%= errors.name.msg %> 
+                            </div>
+                    <% } %> 
+                    </div>
+                    <!-- Name | End -->
+
+                    <!-- Email | Beginning -->
+                    <div class="email" id="email">
+                        <label for="email" class="email-label">Correo electrónico</label>
+                        <div class="email-input">
+                            <input type="email" class="email-input" name="email" id="email-input">
+                        </div>
+                        <% if(locals.errors && errors.email) { %> 
+                                <div class="text-danger">
+                                    <%= errors.email.msg %> 
+                                </div>
+                        <% } %> 
+                    </div>
+                    <!-- Email | End -->
+
+                    <!-- Password | Beginning -->
+                    <div class="password" id="grupo-password">
+                        <label for="password" class="formulario-label">Contraseña</label>
+                        <div class="password-input">
+                            <input type="password" class="formulario-input" name="password" id="password-input">
+                        </div>
+                        <% if(locals.errors && errors.password) { %> 
+                            <div class="text-danger">
+                                <%= errors.password.msg %> 
+                            </div>
+                    <% } %> 
+                    </div>
+                    <!-- Password | End -->
+
+                    <!-- Button | Beginning -->
+                    <div class="form form-btn-submit">
+                        <button type="submit" class="formulario-btn">Modificar admin</button>
+                    </div>
+                    <!-- Button | End -->
+                </div>
+            </form>
+            <!-- Register Form | End -->
+            <button><a href="/admin/delete/<%= admin.id %> ">Eliminar admin</a></button>
+        </div>
+    </main>
+
+    
+
+</body>
+
+<script src="/js/login.js"></script>
+<script src="https://kit.fontawesome.com/d97ccaa3ff.js" crossorigin="anonymous"></script>
+</html>

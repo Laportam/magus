@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header')  %> 
+
+
+    <main>
+        <div class="main-container">
+            <!-- Banner Principal -->
+            <div class="banner-principal">
+                <section class="banner-principal-section">
+                    <article class="banner-principal-article">
+                        <div class="banner">
+                            <input type="radio" name="xx">
+                            <input type="radio" name="xx" id="x1">
+                            <label for="x3"></label>
+                            <div class="banner-box">
+                                <img src="/images/pic1.jpg" alt="">
+                            </div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <!-- Categorías -->
+
+            <div>
+                <ul>
+                    <% for( let a = 0; a < catalogo.length; a++ ) { %>
+                        <b><li><a href=""><%= catalogo[a].categoria %> </a></li></b>
+                        <ul>
+                            <% for( let b = 0; b < catalogo[a].subcategoria.length; b++ ) { %>
+                                <li><a href=""><%= catalogo[a].subcategoria[b] %> </a></li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </ul>
+            </div>
+
+            <!-- Productos -->
+            <div>
+                <% for( let i = 0; i < db.length; i++ ) { %>
+                    <img src="/images/product/<%= db[i].imagenes %>" alt="">
+                    <h4>Producto: <%= db[i].titulo %></h4>
+                    <h4>Marca: <%= db[i].marca %></h4>
+                    <button class="cotizar-button">
+                        <p>Cotizar</p>  
+                        <i class="fa-solid fa-calculator"></i>
+                    </button>
+                    <br>
+                <% } %>
+            </div>
+        </div>
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>

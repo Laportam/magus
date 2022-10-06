@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "titulo": "Café para Dos | Set",
+        "marca": "Verbano",
+        "imagenes": ["1.jpg", "1a.jpg", "1b.jpg", "1c.jpg", "1d.jpg"],
+        "categorias": ["Drinkware", "Marcas", "Novedades", "Tazas", "Verbano"],
+        "descripcion": "Set de tazas de Porcelana inglesa recta con asa. Resiste altas temperaturas. Capacidad de cada taza: 75 ml. Medidas taza: 7 cm x Ø inferior 3,5 cm x Ø superior 6 cm. Medidas plato: Ø 11 cm. Presentado en estuche de regalo de dos unidades. Producto aprobado por el I.N.A.L. para el contacto con alimentos. Verbano."
+    },
+    {
+        "id": 2,
+        "titulo": "Botella ALU c/handle color",
+        "marca": "We Love Logos",
+        "imagenes": "2.jpg"
+    },
+    {
+        "id": 3,
+        "titulo": "Mochila Falco Bagsmart",
+        "marca": "Falco",
+        "imagenes": "3.jpg"
+    },
+    {
+        "id": 4,
+        "titulo": "Bolígrafo Cross Click",
+        "marca": "Cross",
+        "imagenes": "4.jpg"
+    },
+    {
+        "id": 5,
+        "titulo": "Humificador Sphere",
+        "marca": "Gato",
+        "imagenes": "5.jpg"
+    },
+    {
+        "id": 6,
+        "titulo": "Tabla de bamboo con set de cuchillos",
+        "marca": "Pampa Spirit",
+        "imagenes": "6.jpg"
+    },
+    {
+        "id": 7,
+        "titulo": "Campera Windbreaker Cardon",
+        "marca": "Cardon",
+        "imagenes": "7.jpg"
+    },
+    {
+        "id": 8,
+        "titulo": "Mochila Moose Leafcounty",
+        "marca": "Moose",
+        "imagenes": "8.jpg"
+    }
+]

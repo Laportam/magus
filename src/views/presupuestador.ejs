@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <main>
+        <div class="main-container">
+            <div class="cotizador-container">
+                <div class="btns-container">
+                    <div class="form-container">
+                        <form action="/presupuestador" method="POST" id="clientForm">
+                            <div class="form-wrapper">
+                                <div class="first-half">
+                                    <div class="top">
+                                        <div class="top-box">
+                                            <h1>Datos del Consultante</h1>
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="bottom-right">
+                                            <div class="bottom-right-box">
+                                                <div class="input client">
+                                                    <input class="form-info-input" type="text" name="client">
+                                                    <span class="label">Nombre</span>
+                                                    <% if(locals.errors && errors.client) { %> 
+                                                        <div class="text-danger">
+                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.client.msg %> 
+                                                        </div>
+                                                    <% } %> 
+                                                </div>
+                                                <div class="input company">
+                                                    <input class="form-info-input" type="text" name="company">
+                                                    <span class="label">Empresa</span>
+                                                </div>
+                                                <div class="input phone">
+                                                    <input class="form-info-input" type="phone" name="phone">
+                                                    <span class="label">Teléfono</span>
+                                                    <% if(locals.errors && errors.phone) { %> 
+                                                        <div class="text-danger">
+                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.phone.msg %> 
+                                                        </div>
+                                                    <% } %> 
+                                                </div>
+                                                <div class="input email">
+                                                    <input class="form-info-input" type="text" name="email">
+                                                    <span class="label">Email</span>
+                                                    <% if(locals.errors && errors.email) { %> 
+                                                        <div class="text-danger">
+                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.email.msg %> 
+                                                        </div>
+                                                    <% } %> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="second-half">
+                                    <div class="titulo-principal">
+                                        <h1>Productos</h1>
+                                    </div>
+                                    <div class="titulos">
+                                        <div class="lil-box titles-box">
+                                            <h4>Código</h4>
+                                            <h4>Producto(s)</h4>
+                                            <h4>Logo</h4>
+                                            <h4>Cantidad</h4>
+                                            <h4><i class="fa-solid fa-trash"></i></h4>
+                                        </div>
+                                    </div>
+                                    <div class="contenido">
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="comments-container">
+                                        <div class="comments">
+                                            <label for="comment">Escriba aquí su comentario (opcional):</label>
+                                            <textarea name="comment" id="clientForm" cols="140" rows="15"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="home-btn-container">
+                                <button type="button" class="btn home-btn">
+                                    <a href="/">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </button>
+                                <button type="submit" class="btn pdf-btn">
+                                    <i class="fa-solid fa-file-import"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/presupuestador.js"></script>
+    <script src="/js/carrito.js"></script>
+    <script src="/js/compra.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

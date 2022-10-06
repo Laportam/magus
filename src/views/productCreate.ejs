@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <form action="/catalogo/create/1" method="POST" enctype="multipart/form-data">
+        <label for="name">Nombre</label>
+        <br>
+        <input name="name" type="text" value="<%= locals.oldData ? oldData.name : null %>">
+        <% if (locals.errors && errors.name) { %>
+            <div class="text-danger">
+                <%= errors.name.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <label for="description">Descripción</label>
+        <br>
+        <input name="description" type="text" value="<%= locals.oldData ? oldData.description : null %>">
+        <% if (locals.errors && errors.description) { %>
+            <div class="text-danger">
+                <%= errors.description.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <label for="category">Categoría(s)</label>
+        <br>
+        <select name="category" id="category">
+            <% if (locals.oldData) { %>
+                <option value="<%= oldData.category %>"><%= oldData.category %></option>
+            <% } else { %>
+                <option disabled selected value=""></option>
+            <% } %>
+            <% for( let a = 0; a < categories.length; a++ ) { %>
+                <option value="<%= categories[a].id %>"><%= categories[a].title %></option>
+            <% } %>
+        </select>
+        <% if (locals.errors && errors.category) { %>
+            <div class="text-danger">
+                <%= errors.category.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <label for="brand">Marca</label>
+        <br>
+        <select name="brand" id="brand">
+            <% if (locals.oldData) { %>
+                <option value="<%= oldData.brand %>"><%= oldData.brand %></option>
+            <% } else { %>
+                <option disabled selected value=""></option>
+            <% } %>
+            <% for( let b = 0; b < brands.length; b++ ) { %>
+                <option value="<%= brands[b].id %>"><%= brands[b].name %></option>
+            <% } %>
+        </select>
+        <% if (locals.errors && errors.brand) { %>
+            <div class="text-danger">
+                <%= errors.brand.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <label for="SKU">SKU</label>
+        <br>
+        <input name="SKU" type="text" value="<%= locals.oldData ? oldData.SKU : null %>">
+        <% if (locals.errors && errors.SKU) { %>
+            <div class="text-danger">
+                <%= errors.SKU.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <label for="minimum_required">Mínimo requerido</label>
+        <br>
+        <input name="minimum_required" type="number" value="<%= locals.oldData ? oldData.minimum_required : null %>">
+        <% if (locals.errors && errors.minimum_required) { %>
+            <div class="text-danger">
+                <%= errors.minimum_required.msg %> 
+            </div>
+        <% } %>
+        <br>
+        <br>
+        <hr>
+        <button type="submit">¡Crear producto!</button>
+    </form>
+</body>
+</html>

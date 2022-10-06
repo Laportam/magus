@@ -1,0 +1,65 @@
+<header>
+    <div class="header-container">
+        <div class="navbar-container">
+            <div class="navbar">
+                <div class="nav-center">
+                    <form action="/search" method="POST" autocomplete="off">
+                        <div class="search">
+                            <div class="icon">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                            <div class="input">
+                                <input name="searched" type="text" placeholder="Search..." id="mySearch">
+                            </div>
+                            <span class="clear">
+                                <i class="fa-solid fa-xmark"></i>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="nav-left">
+                    <figure>
+                        <a href="/">
+                            <img src="/images/logo-magus.png" alt="">
+                        </a>
+                    </figure>
+                    <% if (locals.isLogged == true) { %>
+                        <h1>Hi, <a href="/admin/profile"><%= locals.userLogged.name %></a></h1>
+                        <h1><a href="/admin/logout">x</a></h1>
+                    <% } else if(locals.isLogged == false) { %>
+                        <h1><a href="/admin/login">Login</a></h1>
+                        <h1><a href="/admin/register">Register</a></h1>
+                        
+                        
+                    <% } %>
+                </div>
+                <div class="nav-right">
+                    <ul>
+                        <% if (locals.isLogged == true) { %>
+                            <li><a href="/catalogo/1">Catálogo</a></li>
+                            <li><a href="/presupuestador/all">
+                                Presupuestador
+                                <i class="fa-solid fa-calculator"></i>
+                            </a></li>
+                        <% } else if (locals.isLogged == false) { %>
+                            <li>
+                                <a href="/catalogo/1">Catálogo</a>
+                                <ul>
+                                    <li><a href="/catalogo/1">Categorías</a></li>
+                                    <li><a href="/catalogo/brands">Marcas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/contact">Contacto</a></li>
+                            <li><a href="/presupuestador">
+                                Presupuestador
+                                <i class="fa-solid fa-calculator"></i>
+                            </a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<hr>
+<script src="/js/headerSearchBar.js"></script>

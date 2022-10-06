@@ -1,0 +1,38 @@
+<div class="main-container">
+    <!-- Banner Principal -->
+    <div class="banner-principal">
+        <section class="banner-principal-section">
+            <article class="banner-principal-article">
+                <div class="banner">
+                    <input type="radio" name="xx">
+                    <input type="radio" name="xx" id="x1">
+                    <label for="x3"></label>
+                    <div class="banner-box">
+                        <img src="/images/pic1.jpg" alt="">
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+
+    <!-- Categorías -->
+
+   
+
+    <!-- Productos -->
+    <div>
+        <% for( let i = 0; i < products.length; i++ ) { %>
+            <img src="/images/product/<%= products[i].image %>" alt="">
+            <h4>Producto: <%= products[i].name %></h4>
+            <h4>Marca: <%= products[i].marca %></h4>
+            <p><b>Descripción: </b><%= products[i].description %></p>
+            
+            <button class="cotizar-button">
+                <p>Cotizar</p>  
+                <i class="fa-solid fa-calculator"></i>
+            </button>
+            <br>
+        <% } %>
+    </div>
+   
+</div>

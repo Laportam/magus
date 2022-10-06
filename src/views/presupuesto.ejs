@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <main>
+        <div class="main-container">
+            <p>Presupuesto #<%= datosDb.id %></p>
+            <p>Cliente: <%= datosDb.client %></p>
+            <p>Company: <%= datosDb.company %></p>
+            <p>Email: <%= datosDb.email %></p>
+            <p>Teléfono: <%= datosDb.phone %></p>
+            <p>Comments: <%= datosDb.comments %></p>
+            <p>Recibido el <u><b><%= datosDb.received_at %></b></u></p>
+            <ul>
+                <% for( let i = 0; i < productsDb.length; i++ ) { %>
+                    <div class="producto">
+                        <h4>Producto:</h4>
+                        <% for( let a = 0; a < product.length; a++ ) { %>
+                            <% if (product[a].id == productsDb[i].product_id) { %>
+                                <h1><%= product[a].id %> </h1>
+                                <h3><%= product[a].name %> </h3>
+                                <% for( let b = 0; b < images.length; b++ ) { %>
+                                    <% if (product[a].id == images[b].id) { %>
+                                        <img src="/images/product/<%= images[b].filename %>" alt="">
+                                    <% } %>
+                                <% } %>
+                                
+                                <p><b>Cantidad: </b><%= productsDb[i].quantity%></p>
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </ul>
+            <a href="/presupuestador/presupuesto/send/<%= datosDb.id %>">Presupuestar</a>
+        </div>
+    </main>
+
+</body>
+</html>

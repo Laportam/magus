@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %> 
+<body>
+    <%- include('partials/header') %>
+    <main>
+        <div class="main-container">
+
+            <h1><%= brand.name %></h1>
+            <% if (category != null) { %>
+                <h1>. | .<%= category.title %> </h1>
+            <% } %>
+            <!-- Productos -->
+            <div class="products-container">
+                <div class="products">
+                    <% for( let i = 0; i < products.length; i++ ) { %>
+                        <div class="product">
+                            <img src="/images/product/<%= products[i].image %>" alt="">
+                            <div class="product-info">
+                                <h4><%= products[i].name %></h4>
+                                <h5>Marca: <%= products[i].brand %></h5>
+                                <h6>MGS<%= products[i].SKU %></h6>
+                            </div>
+
+                            
+                            
+                            <button class="cotizar-button">
+                                <p>Cotizar</p>  
+                                <i class="fa-solid fa-calculator"></i>
+                            </button>
+                            <br>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    
+    <%- include('partials/footer')  %>
+</body>
+</html>
