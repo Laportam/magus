@@ -1,6 +1,7 @@
 class Carrito{
     // Añadir el producto al carrito
     comprarProducto(e){
+        console.log(e.target)
         if(e.target.parentElement.classList.contains('cotizar-button')){
             e.preventDefault();
             let producto = e.target.parentElement.parentElement.parentElement;
@@ -16,15 +17,18 @@ class Carrito{
             let producto = e.target.parentElement.parentElement;
             console.log(producto);
             this.leerDatosProducto(producto);
-        } 
+        } else if(e.target.classList.contains('detail-budget-btn')){
+            let producto = e.target.parentElement.parentElement.parentElement.parentElement;
+            this.leerDatosProducto(producto)
+        }
     }
     // Leer los datos del producto
     leerDatosProducto(producto){
         let infoProducto = {
-            titulo: producto.querySelector('.product-info h5').textContent,
-            id: producto.querySelector('.cotizar-button').getAttribute('data-id'),
-            cantidad: producto.querySelector('.product-info .minimum-required').value,
-            SKU: producto.querySelector('.product-info .SKU').value
+            titulo: producto.querySelector('.title').textContent,
+            id: producto.querySelector('.budget-btn').getAttribute('data-id'),
+            cantidad: producto.querySelector('.minimum-required').value,
+            SKU: producto.querySelector('.SKU').value
         }
         let productsLocalStorage;
         productsLocalStorage = this.obtenerProductosLocalStorage();

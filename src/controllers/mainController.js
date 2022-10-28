@@ -68,15 +68,15 @@ const mainController = {
                 }
             })
             .then( products => {
-                if(products.length == 0){
-                    res.render('buscar', {
-                        style: ['header.css', 'footer.css', 'everyPage.css'],
+                if(products.length == 0 || products == null){
+                    res.render('404Product', {
+                        style: ['header.css', 'footer.css', 'everyPage.css', '404.css'],
                         title: 'Buscar',
-                        products: null,
                         links: 'happy.png'
                     })
                 } else {
                     res.render('buscar', {
+                        
                         style: ['header.css', 'footer.css', 'everyPage.css'],
                         title: 'Buscar',
                         products: products,
@@ -95,10 +95,9 @@ const mainController = {
             })
             .then( products => {
                 if(products.length == 0){
-                    res.render('buscar', {
-                        style: ['header.css', 'footer.css', 'everyPage.css'],
+                    res.render('404Product', {
+                        style: ['header.css', 'footer.css', 'everyPage.css', '404.css'],
                         title: 'Buscar',
-                        products: null,
                         links: 'happy.png'
                     })
                 } else {

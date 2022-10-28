@@ -35,7 +35,7 @@
                     </div>
                     <div class="top-second-half">
                         <div class="title-container">
-                            <h2><%= product.name %> </h2>
+                            <h2 class="title"><%= product.name %> </h2>
                         </div>
                         <div class="line"></div>
                         <div class="brand-container">
@@ -53,6 +53,7 @@
                         <div class="description-container">
                             <h3>Descripción</h3>
                             <p><%= product.description %></p>
+                            <input class="minimum-required" type="number" value="<%= product.minimum_required %>" hidden>
                         </div>
                         <div class="ok-container">
                             <div class="ok">
@@ -65,12 +66,19 @@
                             </div>
                             <div class="ok">
                                 <i class="fa-solid fa-circle-check"></i>
+                                <p>Cantidad mínima: <%= product.minimum_required %> unidades</p>
+                            </div>
+                            <div class="ok">
+                                <i class="fa-solid fa-circle-check"></i>
                                 <p>Categorías: </p>
                                 <% for( let i = 0; i < categories.length; i++ ) { %>
                                     <% if (product.category_id === categories[i].id) { %>
                                         <a href="/catalogo/<%= categories[i].title %>/1"><%= categories[i].title %></a>
                                     <% } %>
                                 <% } %>
+                            </div>
+                            <div class="mgs">
+                                <p><b>MGS:</b><%= product.SKU %></p>
                             </div>
                         </div>
                         <% if (locals.isLogged) { %>
@@ -84,8 +92,8 @@
                             </div>
                         <% } else { %>
                             <div class="btn-container">
-                                <button class="cotizar-btn" data-id="<%= product.id %>">
-                                    <p>Cotizar</p>
+                                <button class="detail-budget-btn budget-btn" data-id="<%= product.id %>">
+                                    Cotizar
                                 </button>
                             </div>
                         <% } %>
@@ -95,7 +103,6 @@
                     <div class="bottom-container">
                         
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -103,6 +110,6 @@
     <%- include('partials/footer')  %>
 </body>
 <script src="/js/carrito.js"></script>
-<script src="/js/pedido.js"></script>
+<script src="/js/pedidoDetail.js"></script>
 <script src="/js/photo.js"></script>
 </html>

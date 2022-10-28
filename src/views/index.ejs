@@ -103,7 +103,7 @@
                                             </figure>
                                             
                                             <div class="product-info">
-                                                <h5><%= products[i].name %></h5>
+                                                <h5 ><%= products[i].name %></h5>
                                                 <h6>Marca: <%= products[i].marca %></h6>
                                                 <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
                                                 <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
@@ -113,7 +113,7 @@
                                            <!-- Absolutamente nada -->
                                         <% } else { %>
                                             <div class="btns">
-                                                    <button class="cotizar-button" data-id="<%= products[i].id %>">
+                                                    <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
                                                         <p>Cotizar</p>  
                                                         <i class="fa-solid fa-calculator"></i>
                                                     </button>

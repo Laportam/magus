@@ -7,17 +7,23 @@
 .notfound{
     height:50%;
     width:80%;
-    background-color:#ececec;
     display:flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.notfound h1{
-    font-size:140px;
     background: url('/images/icons/wink.png')top;
     -webkit-background-clip:text;
             background-clip:text;
     -webkit-text-fill-color:transparent;
+}
+
+.notfound img{
+    background-color:transparent;
+    backface-visibility:visible;
+    background-image: url('/public/images/icons/happy.png');
+}
+
+.notfound h1{
+    font-size:140px;
+    
 }
