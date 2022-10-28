@@ -5,8 +5,7 @@
     <%- include('partials/header') %>
     <main>
         <div class="main-container">
-
-
+            
             <!-- Categorías -->
             <div class="categorias-container">
                 <div class="categorias">
@@ -19,9 +18,13 @@
                     <% } %>
                 </div>
             </div>
-
             <!-- Productos -->
             <div class="products-container">
+                <% if (locals.isLogged == true) { %>
+                    <a href="/catalogo/create">
+                        Crear producto
+                    </a>
+                <% } %>
                 <div class="products">
                     <% for( let i = 0; i < products.length; i++ ) { %>
                         <div class="product">
@@ -33,7 +36,15 @@
                                 <% } %>
                                 <div class="product-info">
                                     <h4><%= products[i].name %></h4>
-                                    <h5>Marca: <a href="/catalogo/brand/Lorem"><%= products[i].brand %></a></h5>
+                                    <h5>Categoría: 
+                                        <% for( let b = 0; b < categories.length; b++ ) { %>
+                                            <% if (categories[b].id == products[i].brand) { %>
+                                                <a href="/catalogo/brand/Lorem">
+                                                    <%= categories[b].title %>
+                                                </a>
+                                            <% } %>
+                                        <% } %>
+                                    </h5>
                                     <h6>MGS<%= products[i].SKU %></h6>
                                 </div>
                                 
@@ -76,8 +87,6 @@
             </div>
         </div>
     </main>
-    
-    
     <%- include('partials/footer')  %>
 </body>
 </html>

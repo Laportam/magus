@@ -1,0 +1,144 @@
+main{
+    font-family: 'Anton';    
+    letter-spacing: 0.7px;
+}
+
+.product-container{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.top{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    margin-top:30px
+}
+
+
+
+.top-first-half{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:60%;
+}
+
+.product-imgs{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    display:block;
+}
+
+.img-display{
+    overflow:hidden;
+    width:550px;
+    height:550px
+}
+
+.img-showcase{
+    display:flex;
+    width:100%;
+    transition: all 0.5s ease;
+}
+
+.img-showcase img{
+    min-width:100%;
+}
+
+.img-select{
+    display:flex;
+    width:550px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.img-item{
+    margin-top:0.3rem;
+    margin-right:0.3rem;
+    opacity: 0.6;
+    overflow:hidden;
+}
+
+.img-item img{
+    width:100px;
+    height:100px;
+    transform: scale(1);
+    transition: 0.4s all
+}
+
+.img-item:hover{
+    opacity: 1;
+}
+
+.img-item img:hover{
+    transform: scale(1.26);
+}
+
+.top-second-half{
+    font-family: 'Dosis', sans-serif;
+    text-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;;
+    width:40%;
+}
+
+.top-second-half h2{
+    font-size:32px;
+}
+
+.top-second-half > *{
+    margin: 5px 0;
+}
+
+.top-second-half button{
+    cursor:pointer;
+    font-size:20px;
+    border: none;
+    border-radius: 3px;
+    padding:10px;
+    background: #8861db;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.bottom{
+    margin: 70px 558px 100px 0px
+}
+
+.brand-container{
+    background-color:rgb(255, 212, 103);
+    padding:1px 3px;
+    width:fit-content;
+}
+
+.line{
+    width: 14.5%;
+    border-bottom:4px solid black
+}
+
+.ok-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ok{
+    width:fit-content;
+    display:flex;
+    align-items: center;
+}
+
+.ok i{
+    font-size:18px;
+    margin-right:7px;
+    color:rgb(55, 216, 55)
+}

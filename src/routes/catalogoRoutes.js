@@ -6,6 +6,12 @@ const multer = require('multer');
 
 const formValidations = require('../middlewares/productValidationsMiddleware.js');
 const imageValidations = require('../middlewares/productImageValidationsMiddleware');
+const auth = function guestMiddleware(req, res, next){
+  if(!req.session.userLogged){
+      return res.redirect('/catalogo/1')
+  }
+  next();
+}
 
 // Storage
 let storage = multer.diskStorage({
@@ -38,13 +44,13 @@ router.get('/brands', productController.brands);
 router.get('/brand/:name', productController.brand);
 
 //--Ruta para crear un producto GET
-router.get('/create', productController.createGet);
+router.get('/create', auth, productController.createGet);
 
 //--Ruta para crear un producto POST
 router.post('/create', formValidations, productController.createPost);
 
 //--Ruta para crear un producto 2 GET
-router.get('/create/:id', productController.createTwoGet);
+router.get('/create/:id', auth, productController.createTwoGet);
 
 //--Ruta para crear un producto 2 POST
 router.post('/create/:id',  upload.array('image'), productController.createTwoPost);
@@ -56,20 +62,20 @@ router.get('/:id', productController.all);
 router.get('/detail/:id', productController.detail);
 
 //--Ruta para ver el editado del producto
-router.get('/edit/:id', productController.editGet);
+router.get('/edit/:id', auth, productController.editGet);
 
 //-- Ruta que envía el producto editado
 router.post('/edit/:id', upload.array('image'), productController.editPost);
 
-router.get('/edit/image/:id', productController.editImageGet);
+router.get('/edit/image/:id', auth, productController.editImageGet);
 
 router.post('/edit/image/:id', upload.array('image'), productController.editImagePost);
 
 //--Delete image
-router.get('/edit/image/delete/:id', productController.deleteImage);
+router.get('/edit/image/delete/:id', auth, productController.deleteImage);
 
 //--Ruta para eliminar un producto en particular
-router.get("/delete/:id", productController.delete);
+router.get("/delete/:id", auth, productController.delete);
 
 //--Ruta para ver todos los productos de una categoría en particular.
 router.get('/:name/:id', productController.category);

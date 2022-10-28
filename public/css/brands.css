@@ -1,0 +1,36 @@
+
+
+.brands-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-container{
+    margin:30px 20px;
+}
+
+.brand{
+    position:relative;
+    border:1px solid rgba(0, 0, 0, 0.082);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.568) 0px 5px 15px;
+}
+
+.brand-background{
+    
+    background:rgb(226, 226, 226);
+    
+    
+    -webkit-filter: blur(2px);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width:350px;
+    height:180px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+

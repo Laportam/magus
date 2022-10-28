@@ -1,0 +1,45 @@
+.main-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+    font-family: 'Anton';    
+    letter-spacing: 0.7px;
+    font-weight: 200;
+}
+
+.products-container{
+    width:80%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.products{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product{
+    width:284px;
+    height:480px;
+    margin: 10px 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:1px solid rgba(0, 0, 0, 0.07);
+    border-radius:1.2%;
+    background-color: #ececec9f;
+    transition: 1s;
+}
+
+.product:hover{
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transform: scale(1.03);
+}

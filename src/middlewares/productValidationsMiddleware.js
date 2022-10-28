@@ -3,7 +3,7 @@ const path = require('path');
 const { body, checkSchema } = require('express-validator');
 
 const formValidations = [
-    body('name').notEmpty().withMessage("Debes un nombre para este producto."),
+    body('name').notEmpty().withMessage("Debes escribir un nombre para este producto."),
     body('description').notEmpty().withMessage("Debes escribir una descripción para este producto."),
     body('category').exists().withMessage("Debes elegir, al menos, una categoría a la que pertenezca este producto."),
     body('brand').exists().withMessage("Debes elegir una marca a la que pertenezca este producto."),

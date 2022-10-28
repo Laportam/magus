@@ -1,0 +1,175 @@
+.main-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    
+}
+
+.form-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+    border-radius:5px;
+    background: #8861db;
+    padding:20px 35px;
+}
+
+.info-container{
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.info{
+    margin: 7px 0;
+    display:flex;
+    flex-direction: column;
+}
+
+.info input{
+    font-family: 'Andada Pro', serif;
+    height:30px;
+    width:500px;
+    background: #cbbfe4;
+    border:none;
+    border-bottom:3px solid #5218cf;
+    outline:none;
+}
+
+.info select{
+    background: #cbbfe4;
+    outline:none;
+    font-family: 'Andada Pro', serif;
+}
+
+.category, .brand{
+    display:flex;
+    flex-direction: row;
+}
+
+.category label, .brand label{
+    margin-right:10px
+}
+
+.image-container{
+    display:flex;
+    align-items: center;
+}
+
+.image-area{
+    display:flex;
+    margin: 30px 0;
+    padding:20px 10px 20px 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    background: #4f12d1;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    cursor:pointer
+}
+
+.image-area i{
+    font-size: 40px;
+    color:rgb(194, 194, 194)
+}
+
+.image-area p{
+    font-size:12px;
+    color:#fff;
+    font-family: 'Andada Pro', serif;
+}
+
+.uploaded-area{
+    margin-left:10px;
+    height:100px;
+    border-radius:5px;
+    display:flex;
+    align-items: center;
+    max-width:370px;
+    overflow-x:scroll;
+}
+
+.uploaded-area::-webkit-scrollbar{
+    height:12px
+}
+
+.uploaded-area::-webkit-scrollbar-thumb{
+    border-radius:2px;
+    background: #ab90e6;
+}
+
+.uploaded-area .row{
+    background: #cbbfe4;
+    height:40px;
+    width:145px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin-right:5px
+}
+
+
+
+.uploaded-area .content{
+    display:flex;
+    align-items: center;
+
+}
+
+.uploaded-area .content i{
+    margin:0 5px;
+}
+
+.uploaded-area .content i:last-child{
+    padding-right:5px;
+}
+
+.uploaded-area .content .details{
+    display:flex;
+    flex-direction: column;
+}
+
+.uploaded-area .content .details .name{
+    width:100px
+}
+
+.size{
+    font-size:10px
+}
+
+label{
+    font-family: 'Andada Pro', serif;
+}
+
+.SKU label, .minimum_required label{
+    margin-bottom:5px
+}
+
+.SKU input, .minimum_required input{
+    width:80px
+}
+
+.description label{
+    margin-bottom:5px;
+}
+
+textarea{
+    width:500px;
+    background: #cbbfe4;
+    font-family: 'Andada Pro', serif;
+}
+
+.btn-container button{
+    font-family: 'Andada Pro', serif;
+    border:none;
+    border-radius:5px;
+    color:#fff;
+    font-size:15px;
+    background:#5511e9;
+    padding:10px 5px;
+}

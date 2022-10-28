@@ -1,0 +1,93 @@
+.main-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+.form-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+    border-radius:5px;
+    background: #8861db;
+    padding:35px 0;
+    max-width:850px;
+}
+
+.images-container{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image-container{
+    width:250px;
+    height:250px;
+    border:1px solid rgba(0, 0, 0, 0.301);
+    border-radius:7px;
+    background:#fff;
+    margin:15px 15px 25px 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.image{
+    border-radius:7px;
+    cursor:default
+}
+
+.info-container{
+    position:relative;
+}
+
+.info{
+    position:absolute;
+}
+
+.label{
+    left:23%
+}
+
+.label label{
+    font-size:25px;
+    font-weight: bold
+}
+
+.select{
+    top:-25px;
+    right:0px
+}
+
+select{
+    cursor:pointer;
+    background: #cbbfe4;
+    outline:none;
+}
+
+.delet{
+    right:5px;
+    top:30px
+}
+
+.text-danger{
+    font-size: 20px;
+    font-weight:lighter;
+    color:rgb(255, 0, 0)
+}
+
+.text-danger i{
+    color:rgb(255, 0, 0)
+}
+
+.pdf-btn{
+    cursor: pointer;
+    font-family: 'Andada Pro', serif;
+    border:none;
+    border-radius:5px;
+    color:#fff;
+    font-size:15px;
+    background:#5511e9;
+    padding:10px 5px;
+}

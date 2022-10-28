@@ -1,0 +1,16 @@
+.producto{
+    border:1px solid black;
+    width:50%;
+    padding: 0 20px;
+    margin-bottom:10px;
+}
+
+li{
+    list-style: none;
+    
+}
+
+img{
+    width:100px;
+    height:100px;
+}

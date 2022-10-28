@@ -5,30 +5,43 @@
     <%- include('partials/header') %>
     <main>
         <div class="main-container">
-
-            <h1><%= brand.name %></h1>
-            <% if (category != null) { %>
-                <h1>. | .<%= category.title %> </h1>
-            <% } %>
+            <div class="title-container">
+                <div class="title">
+                    <h1><%= brand.name %></h1>
+                </div>
+            </div>
+            
             <!-- Productos -->
             <div class="products-container">
                 <div class="products">
                     <% for( let i = 0; i < products.length; i++ ) { %>
                         <div class="product">
-                            <img src="/images/product/<%= products[i].image %>" alt="">
-                            <div class="product-info">
-                                <h4><%= products[i].name %></h4>
-                                <h5>Marca: <%= products[i].brand %></h5>
-                                <h6>MGS<%= products[i].SKU %></h6>
-                            </div>
-
+                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                <figure>
+                                    <% for( let a = 0; a < images.length; a++ ) { %>
+                                        <% if (images[a].id == products[i].id) { %>
+                                            <img src="/images/product/<%= images[a].filename %>" alt="">
+                                        <% } %>
+                                    <% } %>  
+                                </figure>
+                                
+                                <div class="product-info">
+                                    <h5><%= products[i].name %></h5>
+                                    <h6>Marca: <%= products[i].marca %></h6>
+                                    <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden disabled>
+                                    <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden disabled>
+                                </div>
                             
-                            
-                            <button class="cotizar-button">
-                                <p>Cotizar</p>  
-                                <i class="fa-solid fa-calculator"></i>
-                            </button>
-                            <br>
+                            <% if (locals.isLogged) { %>
+                               <!-- Absolutamente nada -->
+                            <% } else { %>
+                                <div class="btns">
+                                        <button class="cotizar-button" data-id="<%= products[i].id %>">
+                                            <p>Cotizar</p>  
+                                            <i class="fa-solid fa-calculator"></i>
+                                        </button>
+                                    </div>
+                                <% } %>
                         </div>
                     <% } %>
                 </div>

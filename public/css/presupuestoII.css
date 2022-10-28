@@ -1,0 +1,103 @@
+
+
+.main-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height:84vh;
+}
+
+.form-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.client-info, .products, .totales{
+    border: 1px solid black;
+    
+}
+
+.client-info{
+    display:flex;
+    flex-direction: column;
+}
+
+.top-client-info{
+    background-color: #8861db;
+}
+
+.first-half-client-info{
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.6px;
+    display:flex;
+    color:white;
+    font-size:22px;
+}
+
+.first-half-client-info > * {
+    margin-top:20px;
+    margin-right:20px;
+    margin-left:20px;
+    margin-bottom:10px;
+}
+
+.second-half-client-info{
+    display:flex;
+    color:rgb(236, 207, 38)
+}
+
+.second-half-client-info > * {
+    margin: 5px 7px;
+}
+
+.bottom-client-info{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.info{
+    width:30%;
+    margin:5px 10px;
+}
+
+.products{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.titles{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.product{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub, .gan, .tot{
+    display:flex;
+}
+
+button{
+    width:fit-content;
+    padding:5px 7px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2.8px;
+    font-weight: 900;
+    border:none;
+    background-color: rgb(235, 187, 32)
+}

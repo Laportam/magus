@@ -2,40 +2,79 @@
 <html lang="en">
 <%- include ("partials/head") %>
 <body>
-    <%- include('partials/header')  %> 
-
-    <h1>Edit del producto <u><%= product.name %></u></h1>
-
-    <form action="/catalogo/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
-        <label for="id">ID</label>
-        <input name="id" type="text" value="<%= product.id %>" disabled>
-        <br>
-        <label for="name">Nombre</label>
-        <input name="name" type="text" value="<%= product.name %>">
-        <br>
-        <label for="description">Descripción</label>
-        <input name="description" type="text" value="<%= product.description %>">
-        <br>
-        <label for="image">Imagen</label>
-        <input name="image" type="file" multiple>
-        <br>
-        <label for="category_id">Categoría</label>
-        <input name="category_id" type="text" value="<%= product.category_id %>">
-        <br>
-        <label for="brand">Marca</label>
-        <input name="brand" type="text" value="<%= product.brand %>">
-        <br>
-        <label for="SKU">MGS</label>
-        <input name="SKU" type="text" value="<%= product.SKU %>">
-        <br>
-        <label for="minimum_required">Cantidad mínima requerida</label>
-        <input name="minimum_required" type="text" value="<%= product.minimum_required %>">
-        <br>
-        <button type="Submit" class="pdf-btn">
-            Enviar
-        </button>
-    </form>
-
+    <%- include('partials/header')  %>
+    <div class="main-container">
+        <main>
+            <div class="up-container">
+                <h1><%= product.name %></h1>
+                <a href="/catalogo/edit/image/<%= product.id %>">Editar orden de las imágenes</a>
+            </div>
+            <div class="form-container">
+                <form action="/catalogo/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
+                    <div class="info-container">
+                        <div class="info name">
+                            <label for="name">Nombre</label>
+                            <input name="name" type="text" value="<%= product.name %>">
+                        </div>
+                        <div class="info description">
+                            <label for="description">Descripción</label>
+                            <textarea name="description" id="" rows="8"><%= product.description %></textarea>
+                        </div>
+                        <div class="info image">
+                            <label for="image">Imagen</label>
+                            <div class="image-container">
+                                <div class="image-area">
+                                    
+                                    <input name="image" type="file" class="file-input" multiple hidden>
+                                    <i class="fa-solid fa-camera"></i>
+                                    <p>Cargá tus imágenes</p>
+                                </div>
+                                <section class="uploaded-area">
+                                            
+                                </section>
+                            </div>
+                        </div>
+                        <div class="info category">
+                            <label for="category_id">Categoría</label>
+                            <select name="category" id="category">
+                            <% for( let i = 0; i < categories.length; i++ ) { %>
+                                <% if (categories[i].id == product.category_id) { %>
+                                    <option selected name="category_id" value="<%= categories[i].id %>"><%= categories[i].title %></option>
+                                <% } else { %>
+                                    <option name="category_id" value="<%= categories[i].id %>"><%= categories[i].title %></option>
+                                <% } %> 
+                            <% } %>
+                            </select>
+                        </div>
+                        <div class="info brand">
+                            <label for="brand">Marca</label>
+                            <select name="brand" id="brand">
+                                <% for( let b = 0; b < brands.length; b++ ) { %>
+                                    <% if (brands[b].id == product.brand) { %>
+                                        <option selected name="brand" value="<%= brands[b].id %>"><%= brands[b].name %></option>
+                                    <% } else { %>
+                                        <option name="brand" value="<%= brands[b].id %>"><%= brands[b].name %></option>
+                                    <% } %> 
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="info SKU">
+                            <label for="SKU">MGS</label>
+                            <input name="SKU" type="text" value="<%= product.SKU %>">
+                        </div>
+                        <div class="info minimum_required">
+                            <label for="minimum_required">Cantidad mínima requerida</label>
+                            <input name="minimum_required" type="text" value="<%= product.minimum_required %>">
+                        </div>
+                        <div class="btn-container">
+                            <button type="Submit" class="pdf-btn">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
     <%- include('partials/footer') %> 
+    <script src="/js/imageUploadEdit.js"></script>
 </body>
 </html>

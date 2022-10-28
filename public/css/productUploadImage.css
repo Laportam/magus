@@ -1,0 +1,119 @@
+body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height:98vh;
+    background:#8861db;
+}
+
+.main-container{
+    background: #fff;
+    padding:30px;
+    border-radius: 5px;;
+}
+
+.main-container .title-container{
+    color:#5511e9;
+    text-align:center;
+}
+
+.title-container u{
+    color:black
+}
+
+.image-container{
+    display:flex;
+    margin: 30px 0;
+    padding:20px 0 10px 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px dashed #5511e9;
+    cursor:pointer
+}
+
+form i, form p{
+    color:#5511e9;
+}
+
+form i{
+    font-size: 60px;
+}
+
+form p{
+    font-size:20px
+}
+
+form button{
+    border:none;
+    border-radius:5px;
+    color:#fff;
+    font-size:15px;
+    background:#5511e9;
+    padding:10px 5px;
+}
+
+section .row{
+    background:#e9f0ff;
+    margin-bottom:19px;
+    list-style: none;
+    padding:15px 20px;
+    border-radius:5px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .row i{
+    margin-right:10px;
+    font-size:30px;
+    color:#5511e9;
+}
+
+section .row i:last-child{
+    margin-right:10px;
+    font-size:30px;
+    color:green
+}
+
+.progress-area .row .content{
+    display:flex;
+    align-items: center;
+}
+
+.progress-area .row .details{
+    display:flex;
+    margin-left:15px;
+    flex-direction: column;
+}
+
+.uploaded-area{
+    max-height:150px;
+    overflow-y:scroll;
+}
+
+.uploaded-area::-webkit-scrollbar{
+    width:12px
+}
+
+.uploaded-area::-webkit-scrollbar-thumb{
+    border-radius:2px;
+    background: #5511e93d;
+}
+
+.uploaded-area .row .content{
+    display:flex;
+    align-items: center;
+}
+
+.uploaded-area .row .details{
+    display:flex;
+    margin-left:15px;
+    flex-direction: column;
+}
+
+.uploaded-area .row .details .size{
+    font-size:12px;
+    color:rgba(0, 0, 0, 0.67);
+}

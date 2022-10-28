@@ -23,39 +23,53 @@
                             <img src="/images/logo-magus.png" alt="">
                         </a>
                     </figure>
-                    <% if (locals.isLogged == true) { %>
-                        <h1>Hi, <a href="/admin/profile"><%= locals.userLogged.name %></a></h1>
-                        <h1><a href="/admin/logout">x</a></h1>
-                    <% } else if(locals.isLogged == false) { %>
-                        <h1><a href="/admin/login">Login</a></h1>
-                        <h1><a href="/admin/register">Register</a></h1>
-                        
-                        
-                    <% } %>
                 </div>
                 <div class="nav-right">
-                    <ul>
-                        <% if (locals.isLogged == true) { %>
+                    <% if (locals.isLogged == true) { %>
+                        <ul>
                             <li><a href="/catalogo/1">Catálogo</a></li>
-                            <li><a href="/presupuestador/all">
-                                Presupuestador
-                                <i class="fa-solid fa-calculator"></i>
-                            </a></li>
-                        <% } else if (locals.isLogged == false) { %>
+                            <li><a href="/presupuestador/all">Presupuestos</a></li>
                             <li>
-                                <a href="/catalogo/1">Catálogo</a>
-                                <ul>
-                                    <li><a href="/catalogo/1">Categorías</a></li>
-                                    <li><a href="/catalogo/brands">Marcas</a></li>
-                                </ul>
+                                <div class="dropdown-container">
+                                    <span><i class="fa-solid fa-circle-user"> </i><%= locals.userLogged.name %></span>
+                                    <ul class="dropdown">
+                                        <li><a href="/admin/profile">Mi perfil</a></li>
+                                        <li><a href="/admin/logout">Cerrar sesión</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    <% } else if (locals.isLogged == false) { %>
+                        <ul>
+                            <li>
+                                <div class="dropdown-container">
+                                    <span>Catálogo</span>
+                                    <ul class="dropdown">
+                                        <li><a href="/catalogo/1">Categorías</a></li>
+                                        <li><a href="/catalogo/brands">Marcas</a></li>
+                                    </ul>
+                                </div>
                             </li>
                             <li><a href="/contact">Contacto</a></li>
                             <li><a href="/presupuestador">
                                 Presupuestador
-                                <i class="fa-solid fa-calculator"></i>
                             </a></li>
-                        <% } %>
-                    </ul>
+                            <li>
+                                <div class="dropdown-containe">
+                                    <span><i class="fa-solid fa-circle-user"></i></span>
+                                    <ul class="dropdown">
+                                        <li><a href="/admin/login">Login</a></li>
+                                        <li><a href="/admin/register">Register</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    <% } %>
+                    <% if (locals.isLogged == true) { %>
+                        
+                    <% } else if(locals.isLogged == false) { %>
+                        
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head')  %> 
+<%- include('partials/head') %> 
 <body>
-    <%- include('partials/header')  %> 
-
-
+    <%- include('partials/header') %>
     <main>
         <div class="main-container">
             <!-- Banner Principal -->
@@ -12,11 +10,30 @@
                 <section class="banner-principal-section">
                     <article class="banner-principal-article">
                         <div class="banner">
-                            <input type="radio" name="xx">
-                            <input type="radio" name="xx" id="x1">
-                            <label for="x3"></label>
-                            <div class="banner-box">
-                                <img src="/images/pic1.jpg" alt="">
+                            <div class="banner-btns-box">
+                                <div class="banner-btn-box first-btn">
+                                    <button>
+                                        <i class="fa-solid fa-square-caret-left"></i>
+                                    </button>
+                                </div>
+                                <div class="banner-btn-box second-btn">
+                                    <button>
+                                        <i class="fa-solid fa-square-caret-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="banner-box-container">
+                                <div class="banner-box">
+                                    <figure>
+                                        <img src="/images/pic1.jpg" alt="">
+                                    </figure>
+                                    <figure>
+                                        <img src="/images/pic2.jpg" alt="">
+                                    </figure>
+                                    <figure>
+                                        <img src="/images/pic3.jpg" alt="">
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -44,23 +61,22 @@
                             <% if (i <= 4) { %>
                                 <div class="product-wrapper-first">
                                     <div class="product first">
-                                        <figure>
-                                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                        <a href="/catalogo/detail/<%= products[i].id %>">
+                                            <figure>
                                                 <% for( let a = 0; a < images.length; a++ ) { %>
                                                     <% if (images[a].id == products[i].id) { %>
                                                         <img src="/images/product/<%= images[a].filename %>" alt="">
                                                     <% } %>
-                                                <% } %>
-                                            </a>
-                                        </figure>
-                                        <div class="product-info">
-                                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                                <% } %>  
+                                            </figure>
+                                            
+                                            <div class="product-info">
                                                 <h5><%= products[i].name %></h5>
-                                            </a>
-                                            <h6>Marca: <%= products[i].marca %></h6>
-                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden disabled>
-                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden disabled>
-                                        </div>
+                                                <h6>Marca: <%= products[i].marca %></h6>
+                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
+                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                            </div>
+                                        
                                         <% if (locals.isLogged) { %>
                                            <!-- Absolutamente nada -->
                                         <% } else { %>
@@ -71,28 +87,28 @@
                                                     </button>
                                                 </div>
                                             <% } %>
-                                        <br>
+                                        </a>
                                     </div>
                                 </div>
                             <% } else { %>
                                 <div class="product-wrapper-second">
                                     <div class="product second">
-                                        <figure>
-                                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                        <a href="/catalogo/detail/<%= products[i].id %>">
+                                            <figure>
                                                 <% for( let a = 0; a < images.length; a++ ) { %>
                                                     <% if (images[a].id == products[i].id) { %>
                                                         <img src="/images/product/<%= images[a].filename %>" alt="">
                                                     <% } %>
-                                                <% } %>
-                                            </a>
-                                        </figure>
-                                        <div class="product-info">
-                                            <a href="/catalogo/detail/<%= products[i].id %>">
+                                                <% } %>  
+                                            </figure>
+                                            
+                                            <div class="product-info">
                                                 <h5><%= products[i].name %></h5>
-                                            </a>
-                                            <h6>Marca: <%= products[i].marca %></h6>
-                                            <input type="number" value="<%= products[i].minimum_required %>" hidden disabled>
-                                        </div>
+                                                <h6>Marca: <%= products[i].marca %></h6>
+                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
+                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                            </div>
+                                        
                                         <% if (locals.isLogged) { %>
                                            <!-- Absolutamente nada -->
                                         <% } else { %>
@@ -103,7 +119,7 @@
                                                     </button>
                                                 </div>
                                             <% } %>
-                                        <br>
+                                        </a>
                                     </div>
                                 </div>
                             <% } %>
@@ -152,5 +168,6 @@
     <script src="/js/pedido.js"></script>
     <script src="/js/novedades.js"></script>
     <script src="/js/cardFlip.js"></script>
+    <script src="/js/banners.js"></script>
 </body>
 </html>

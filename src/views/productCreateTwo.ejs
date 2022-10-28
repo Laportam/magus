@@ -2,27 +2,40 @@
 <html lang="en">
 <%- include('partials/head')  %> 
 <body>
-    <h1>Ya creaste tu producto <u><%= product.name %></u></h1>
-    <h2>Ahora solo falta subir sus respectivas imágenes:</h2>
-    <form action="/catalogo/create/<%= product.id %>" method="POST" enctype="multipart/form-data">
-        <label for="image">Imágenes</label>
-        <br>
-        <input name="image" type="file" value="<%= locals.oldData ? oldData.name : null %>" multiple>
-        <% if (locals.errors && locals.success) { %>
-            <div class="text-danger">
-                <%= success.msg %>
-                <br>
-                <%= errors.msg %> 
+
+    <main>
+        <div class="main-container">
+            <div class="title-container">
+                <h1>Ya creaste tu producto <u><%= product.name %></u></h1>
+                <h3>Ahora solo falta subir sus respectivas imágenes:</h3>
             </div>
-        <% } else if (locals.errors) { %> 
-            <div class="text-danger">
-                <%= errors.msg %> 
+            <div class="form-container">
+                <form action="/catalogo/create/<%= product.id %>" method="POST" enctype="multipart/form-data">
+                    <div class="image-container">
+                        <input name="image" type="file" class="file-input" multiple hidden>
+                        <i class="fa-solid fa-camera"></i>
+                        <p>Cargá tus imágenes</p>
+                    </div>
+                    <section class="uploaded-area">
+                        
+                    </section>
+                    <div class="btn-container">
+                        <button type="submit">Subir imágenes</button>
+                    </div>
+                </form>
+                <% if (locals.errors && locals.success) { %>
+                <div class="text-danger">
+                    <%= success.msg %>
+                    <%= errors.msg %> 
+                </div>
+                <% } else if (locals.errors) { %> 
+                <div class="text-danger">
+                    <%= errors.msg %> 
+                </div>
+                <% } %>
             </div>
-        <% } %> 
-        <br>
-        <br>
-        <hr>
-        <button type="submit">¡Crear producto!</button>
-    </form>
-</body>
+        </div>
+    </main>
+
+    <script src="/js/imageUpload.js"></script>
 </html>

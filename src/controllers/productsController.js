@@ -61,6 +61,14 @@ let productsController = {
         })
     },
     category: async (req, res) => {
+        let pedidoCategorias = await db.Productscategories.findAll();
+        let pedidoCategoria = await db.Productscategories.findOne({
+            where: {
+                title: req.params.name
+            }
+        });
+        let pedidoImagenes = await db.Images.findAll();
+
         let limit = 6;
 
         let pageOptions = {
@@ -68,7 +76,11 @@ let productsController = {
             limit: limit
         };
 
-        let { count } = await db.Products.findAndCountAll();
+        let { count } = await db.Products.findAndCountAll({
+            where: {
+                brand: pedidoCategoria.id
+            }
+        });
         let divide = count / limit;
         let pageQuantity = Math.ceil(divide);
         let pageArray = [];
@@ -80,13 +92,6 @@ let productsController = {
                 pageArray.push(a)
             }
         }
-
-        let pedidoCategorias = await db.Productscategories.findAll();
-        let pedidoCategoria = await db.Productscategories.findOne({
-            where: {
-                title: req.params.name
-            }
-        });
         
         await db.Products
         .findAll({
@@ -118,6 +123,8 @@ let productsController = {
                     title: 'Catálogo',
                     products: products,
                     categories: pedidoCategorias,
+                    category: pedidoCategoria,
+                    images: pedidoImagenes,
                     pages: pageArray,
                     actualPage: actualPage,
                     links: 'Magus-logo.png'
@@ -133,6 +140,9 @@ let productsController = {
         let pedidoCategorias = await db.Productscategories.findAll();
         let pedidoMarcas = await db.Brands.findAll();
         let pedidoImagenes = await db.Images.findAll({
+            order: [
+                ['image_id', 'ASC']
+            ],
             where: {
                 id: req.params.id
             }
@@ -151,10 +161,10 @@ let productsController = {
                         demanded: 1
                     });
                     res.render("detailProduct", {
-                        style: ['everyPage.css', 'header.css', 'footer.css'],
+                        style: ['everyPage.css', 'header.css', 'footer.css', 'productDetail.css'],
                         title: "Product | Detail",
-                        product:product,
-                        categories:categories,
+                        product: product,
+                        categories: categories,
                         brands: brands,
                         images: images,
                         links: 'Magus-logo.png'
@@ -167,7 +177,7 @@ let productsController = {
         .then( brands => {
             return res.render('brands', {
                 title: 'Title',
-                style: ['everyPage.css', 'header.css', 'footer.css'],
+                style: ['everyPage.css', 'header.css', 'footer.css', 'brands.css'],
                 links: 'happy.png',
                 brands: brands
             })
@@ -183,6 +193,8 @@ let productsController = {
             }
         });
 
+        let pedidoImagenes = await db.Images.findAll();
+
         if(pedidoMarca == null) {
             return res.send('Pete')
         } else {
@@ -193,9 +205,10 @@ let productsController = {
             })
             .then( products => {
                 res.render('brand', {
-                    style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
+                    style: ['everyPage.css', 'header.css', 'footer.css', 'brand.css'],
                     title: req.params.name,
                     products: products,
+                    images: pedidoImagenes,
                     brand: pedidoMarca,
                     category: null,
                     links: 'happy.png'
@@ -209,6 +222,8 @@ let productsController = {
         
     },
     editGet: async (req, res) => {
+        let pedidoCategorias = await db.Productscategories.findAll();
+        let pedidoMarcas = await db.Brands.findAll();
         let productoPedido = await db.Products.findOne({
             where: {
                 id: req.params.id
@@ -220,14 +235,15 @@ let productsController = {
         } else {
             return res.render('editProduct', {
                 title: `${productoPedido.name} | Editar`,
-                style: ['editProduct.css', 'everyPage.css', 'header.css', 'footer.css'],
+                style: ['everyPage.css', 'header.css', 'footer.css', 'editProduct.css'],
                 links:'happy.png',
-                product: productoPedido
+                product: productoPedido,
+                categories: pedidoCategorias,
+                brands: pedidoMarcas
             })
         }
     },
     editPost: async (req, res) => {
-
         // Producto editado (objeto)
         let productToEdit = await db.Products.findByPk(req.params.id);
         console.log(req.params.id);
@@ -248,7 +264,7 @@ let productsController = {
             id: editedProducted.id,
             name: editedProducted.name,
             description: editedProducted.description,
-            category_id: editedProducted.category,
+            category_id: editedProducted.category_id,
             brand: editedProducted.brand,
             SKU: editedProducted.SKU,
             minimum_required: editedProducted.minimum_required,
@@ -268,12 +284,12 @@ let productsController = {
                     }
                 });
                 let lastIndex = productImageId.length - 1;
-                let lastImageId = parseInt(productImageId[lastIndex].image_id.split('-')[1]);
+                let lastImageId = (parseInt(productImageId[lastIndex].image_id.split('-')[1]) + 1);
                 //--MySQL
                 await db.Images.create({
                     id: editedProducted.id,
                     filename: editedProducted.image[c],
-                    image_id: `${editedProducted.id}-${lastImageId + 1}`
+                    image_id: `${editedProducted.id}-${lastImageId}`
                 });
             }
         }
@@ -293,7 +309,7 @@ let productsController = {
 
         return res.render('editImagesProduct', {
             title: 'Edit Images',
-            style: ['everyPage.css'],
+            style: ['everyPage.css', 'header.css', 'footer.css', 'editImagesProduct.css'],
             links: 'happy.png',
             images: images,
             id: paramId
@@ -321,7 +337,7 @@ let productsController = {
                 id: id
             }
         }).then( images => {
-            return res.send(images)
+            return res.redirect('/catalogo/detail/' + id)
         })
     },
     delete: async (req, res) => {
@@ -330,7 +346,7 @@ let productsController = {
                 id: req.params.id
             }
         });
-        res.redirect("/")
+        res.redirect("/catalogo/1")
     },
     deleteImage: async (req, res) => {
         let id = req.params.id.split('-')[0]
@@ -348,7 +364,7 @@ let productsController = {
 
         res.render('productCreate', {
             title: 'Create New Product',
-            style: ['everyPage.css'],
+            style: ['everyPage.css', 'create.css'],
             links: 'happy.png',
             categories: callCategories,
             brands: callBrands
@@ -401,7 +417,7 @@ let productsController = {
         });
         return res.render('productCreateTwo', {
             title: 'Create New Product II',
-            style: ['everPage.css'],
+            style: ['everPage.css', 'productUploadImage.css'],
             links: 'happy.png',
             product: product
         })
@@ -469,10 +485,7 @@ let productsController = {
 
         
 
-        return res.send(images)
-
         
-
         return res.redirect('/catalogo/detail/' + product.id);
     }
 }

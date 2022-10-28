@@ -3,64 +3,106 @@
 <%- include('partials/head')  %> 
 <body>
     <%- include('partials/header')  %> 
-
-
     <main>
         <div class="main-container">
-            <h1><%= product.name %> </h1>
-            <figure>
-                <% for( let a = 0; a < images.length; a++ ) { %>
-                    <% if (images[a].id == product.id && a == 0) { %>
-                        <img class="image-A" src="/images/product/<%= images[a].filename %>" width="300px" height="300px" alt="">
-                    <% } else if (images[a].id == product.id && a > 0) { %>
-                        <img class="image-A" src="/images/product/<%= images[a].filename %>" width="150px" height="150px" alt="">
-                    <% } %>
-                <% } %>
-            </figure>
-            <figure>
-                <img src="/images/product/<%= product.image %>" alt="">
-            </figure>
-            <br>
-            <h4><%= product.name %> </h4>
-            <br>
-            <button class="cotizar-btn" data-id="<%= product.id %>">
-                <p>Cotizar</p>  
-                <i class="fa-solid fa-calculator"></i>
-            </button>
-            <br>
-            <p>
-                Categorías: <b>
-                    <% for( let i = 0; i < categories.length; i++ ) { %>
-                        <% if (product.category_id === categories[i].id) { %>
-                            <%= categories[i].title %> 
+            <div class="product-container">
+                <div class="top">
+                    <div class="top-first-half">
+                        <div class="product-imgs">
+                            <div class="img-display">
+                                <div class="img-showcase">
+                                    <% for( let a = 0; a < images.length; a++ ) { %>
+                                        <% if (images[a].id == product.id) { %>
+                                            <figure>
+                                                <img src="/images/product/<%= images[a].filename %>" width="550px" height="550px" alt="">
+                                            </figure>
+                                        <% } %> 
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="img-select">
+                                <% for( let a = 0; a < images.length; a++ ) { %>
+                                    <% if (images[a].id == product.id) { %>
+                                        <div class="img-item">
+                                            <a href="" data-id="<%= a+1 %>">
+                                                <img class="image-b" src="/images/product/<%= images[a].filename %>" alt="">
+                                            </a>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-second-half">
+                        <div class="title-container">
+                            <h2><%= product.name %> </h2>
+                        </div>
+                        <div class="line"></div>
+                        <div class="brand-container">
+                            <p>
+                                <b>
+                                    <% for( let b = 0; b < brands.length; b++ ) { %>
+                                        <% if (product.brand === brands[b].id) { %>
+                                            <a href="/catalogo/brand/<%= brands[b].name %>">Productos <%= brands[b].name %></a>
+                                        <% } %>
+                                    <% } %>
+                                </b>
+                            </p>
+                        </div>
+                        <input class="SKU" type="number" value="<%= product.SKU %>" hidden>
+                        <div class="description-container">
+                            <h3>Descripción</h3>
+                            <p><%= product.description %></p>
+                        </div>
+                        <div class="ok-container">
+                            <div class="ok">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <p>Color/es: Negro, Blanco, Azul, y Rojo</p>
+                            </div>
+                            <div class="ok">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <p>Disponibilidad: En Stock</p>
+                            </div>
+                            <div class="ok">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <p>Categorías: </p>
+                                <% for( let i = 0; i < categories.length; i++ ) { %>
+                                    <% if (product.category_id === categories[i].id) { %>
+                                        <a href="/catalogo/<%= categories[i].title %>/1"><%= categories[i].title %></a>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <% if (locals.isLogged) { %>
+                            <div class="btn-container">
+                                <button>
+                                    <a href="/catalogo/edit/<%= product.id %> ">Editar</a>
+                                </button>
+                                <button>
+                                    <a href="/catalogo/delete/<%= product.id %> ">Eliminar</a>
+                                </button>
+                            </div>
+                        <% } else { %>
+                            <div class="btn-container">
+                                <button class="cotizar-btn" data-id="<%= product.id %>">
+                                    <p>Cotizar</p>
+                                </button>
+                            </div>
                         <% } %>
-                    <% } %>
-                </b>
-            </p>
-            <p>
-                Marcas: <b>
-                    <% for( let b = 0; b < brands.length; b++ ) { %>
-                        <% if (product.brand === brands[b].id) { %>
-                            <%= brands[b].name %> 
-                        <% } %>
-                    <% } %>
-                </b>
-            </p>
-            <br>
-            <p><%= product.description %></p>
-            <br>
-            <% if (locals.isLogged) { %>
-                <button>
-                    <a href="/catalogo/edit/<%= product.id %> ">Editar</a>
-                </button>
-                <button>
-                    <a href="/catalogo/delete/<%= product.id %> ">Eliminar</a>
-                </button>
-            <% } %>
-            
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="bottom-container">
+                        
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </main>
     <%- include('partials/footer')  %>
 </body>
-<script src="../views.js"></script>
+<script src="/js/carrito.js"></script>
+<script src="/js/pedido.js"></script>
+<script src="/js/photo.js"></script>
 </html>
