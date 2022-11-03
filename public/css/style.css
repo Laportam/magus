@@ -41,22 +41,32 @@ a{
 
 .banner-btn-box button{
     position:absolute;
-    bottom:-180px;
+    bottom:-25rem;
     cursor: pointer;
     font-size:40px;
-    background-color: transparent;
-    border:none;
-    color:rgb(197, 197, 197)
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.2);
+    border:3px solid rgba(255, 255, 255, 0);
+    width:50px;
+    height:50px;
+    transition: border 1s ease, color 1s ease, background-color 1s ease;
+}
+
+.banner-btn-box button:hover{
+    border:3px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
+    border-radius:2px;
 }
 
 .first-btn{
     left:1190px;
-    z-index:99
+    z-index:1
 }
 
 .second-btn{
     left: 35px;
-    z-index:99
+    z-index:1
 }
 
 .banner-box-container{
@@ -93,35 +103,7 @@ a{
     justify-content: flex-start;
 }
 
-main .descripcion-section{
-    background-color:#6b4594;
-    text-align: center;
-}
 
-.descripcion-section > *{
-    padding: 10px 0;
-}
-
-.top-text p{
-    font-size:25px;
-}
-
-.descripcion-section .center-text{
-    display:flex;
-    text-align: justify;
-    letter-spacing:1px;
-    font-size:20px;
-}
-
-.center-text p{
-    padding: 0 25px;
-}
-
-.descripcion-section h1,
-.top-text p,
-.bottom-text p{
-    color: #f3c300;
-}
 
 .product-wrapper-first{
     position:relative;
@@ -151,14 +133,13 @@ main .descripcion-section{
     width:200px;
     height:300px;
     margin: 20px 10px;
-    
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border:1px solid rgba(0, 0, 0, 0.07);
     border-radius:1.2%;
-    background-color: #ececec9f;
+    background-color: #ececec2d;
     transition: 1s ;
 }
 
@@ -222,26 +203,24 @@ main .descripcion-section{
     z-index: 1;
 }
 
-.novedades-btns button{
-    cursor:pointer;
-}
-
 .novedades-btns figure button{
     height:40px;
     width:40px;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    border:1px solid rgba(0, 0, 0, 0.233);
+    border:1px solid rgba(255, 255, 255, 0);
     display:flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     transition:1s ease;
+    cursor: pointer;
+    transition: border 1s ease, color 1s ease, background-color 1s ease, box-shadow 1s ease;
 }
 
 .novedades-btns figure button:hover{
-    border:1px solid rgba(0, 0, 0, 0.5);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    transform:scale(1.05);
+    border:1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(100, 100, 111, 0.45) 0px 0px 7px 0px;
     filter:brightness(90%)
 }
 
@@ -296,4 +275,116 @@ main .descripcion-section{
     justify-content: center;
     align-items: center;
     background-color:gold;
+}
+
+.description-section{
+    margin: 10
+    0px 0;
+}
+
+.description-container{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    margin-top:200px;
+}
+
+.square-container{
+    width:60%;
+    height:250px;
+    border:2px solid rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:100px;
+    box-shadow: rgba(100, 100, 111, 0.45) 0px 0px 7px 0px;
+    transition:all 1s ease;
+}
+
+.square-container:hover{
+    transform: scale(1.1);
+    background:#5116d3;
+    color:rgb(231, 157, 67);
+    box-shadow: rgba(100, 100, 111, 0.7) 0px 0px 30px 2px;
+}
+
+.square{
+    width:80%;
+    display:flex;
+    flex-direction: column;
+}
+
+.square div{
+    margin:5px;
+}
+
+.square div:first-child{
+    margin-bottom:30px;
+    width:100%;
+}
+
+.square div:last-child{
+    width:100%;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.square .icon-container{
+    position: relative;
+}
+
+.square .bright{
+    position: absolute;
+    right:50px;
+    top:-200px;
+    height:10px;
+    width:10px;
+    
+}
+
+.square .icon-container img{
+    position:absolute;
+    height:150px;
+    width:150px;
+    right:50px;
+    top:-200px;
+    filter:brightness(100%) contrast(130%);
+}
+
+.square p{
+    width:40%;
+}
+
+.texts-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-container{
+    height:100px;
+    max-width:80%;
+    border:1px solid rgba(0, 0, 0, 0.178);
+    border-left:5px solid #5116d3;
+    box-shadow: rgba(100, 100, 111, 0.45) 0px 0px 7px 0px;
+    margin: 25px 0;
+    display:flex;
+    align-items: center;
+    transition: all 1s ease;
+}
+
+.text-container:hover{
+    transform: scale(1.1);
+    border-left:5px solid rgb(231, 157, 67);
+    background:#5116d3;
+    color:rgb(231, 157, 67)
+}
+
+.text{
+    margin-left:10px
 }

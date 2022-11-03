@@ -17,12 +17,6 @@
     -webkit-text-fill-color:transparent;
 }
 
-.notfound img{
-    background-color:transparent;
-    backface-visibility:visible;
-    background-image: url('/public/images/icons/happy.png');
-}
-
 .notfound h1{
     font-size:140px;
     
