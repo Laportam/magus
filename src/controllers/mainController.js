@@ -46,7 +46,7 @@ const mainController = {
                 
                 return res.render('index',{
                     title: 'Home Page | Welcome',
-                    style: ['style.css', 'header.css', 'footer.css'],
+                    style: ['mobile.css'],
                     links: 'happy.png',
                     products: all[0],
                     categories: all[1],

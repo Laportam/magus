@@ -278,8 +278,7 @@ a{
 }
 
 .description-section{
-    margin: 10
-    0px 0;
+    margin: 200px 0;
 }
 
 .description-container{
@@ -289,7 +288,7 @@ a{
     justify-content: center;
     align-items: center;
     font-family: 'Oswald', sans-serif;
-    margin-top:200px;
+    
 }
 
 .square-container{
@@ -300,13 +299,13 @@ a{
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-bottom:100px;
     box-shadow: rgba(100, 100, 111, 0.45) 0px 0px 7px 0px;
     transition:all 1s ease;
+    margin:70px 10px;
 }
 
 .square-container:hover{
-    transform: scale(1.1);
+    transform: scale(1.01);
     background:#5116d3;
     color:rgb(231, 157, 67);
     box-shadow: rgba(100, 100, 111, 0.7) 0px 0px 30px 2px;
@@ -372,14 +371,14 @@ a{
     border:1px solid rgba(0, 0, 0, 0.178);
     border-left:5px solid #5116d3;
     box-shadow: rgba(100, 100, 111, 0.45) 0px 0px 7px 0px;
-    margin: 25px 0;
+    margin:15px 0;
     display:flex;
     align-items: center;
     transition: all 1s ease;
 }
 
 .text-container:hover{
-    transform: scale(1.1);
+    transform: scale(1.03);
     border-left:5px solid rgb(231, 157, 67);
     background:#5116d3;
     color:rgb(231, 157, 67)
@@ -388,3 +387,4 @@ a{
 .text{
     margin-left:10px
 }
+

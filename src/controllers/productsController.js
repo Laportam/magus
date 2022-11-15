@@ -39,7 +39,7 @@ let productsController = {
         })
         .then( products => {
             if(products.length == 0) {
-                return res.send('No hay un pingo')
+                return res.send('Lo lamentos, pero no hay ningún producto')
             } else {
                 console.log(pageQuantity);
                 console.log(pageArray);

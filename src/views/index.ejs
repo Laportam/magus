@@ -39,8 +39,10 @@
                     </article>
                 </section>
             </div>
+            <hr>
             <section class="novedades-section">
                 <h3>Novedades</h3>
+                <div class="line"></div>
                 <!-- Botones de la lista | Inicio -->
                 <div class="novedades-btns">
                     <figure class="f-i">
@@ -72,7 +74,7 @@
                                             
                                             <div class="product-info">
                                                 <h5><%= products[i].name %></h5>
-                                                <h6>Marca: <%= products[i].marca %></h6>
+                                                <h6>Marca: <%= products[i].brand %></h6>
                                                 <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
                                                 <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
                                             </div>
@@ -103,7 +105,7 @@
                                             
                                             <div class="product-info">
                                                 <h5 ><%= products[i].name %></h5>
-                                                <h6>Marca: <%= products[i].marca %></h6>
+                                                <h6>Marca: <%= products[i].brand %></h6>
                                                 <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
                                                 <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
                                             </div>
@@ -126,6 +128,7 @@
                     </div>
                 </div>
             </section>
+            <hr>
             <section class="description-section">
                 <div class="description-container">
                     <div class="square-container">
@@ -161,21 +164,16 @@
                     </div>
                 </div>
             </section>
-            <section class="marcas-section">
-                <h3>Nuestras Marcas</h3>
-                <article class="marcas-article">
-                    
-                </article>
-            </section>
+            <hr>
             <section class="clientes-section">
                 <h3>Nuestros Clientes</h3>
                 <article class="clientes-article">
                     
                 </article>
             </section>
+            <hr>
         </div>
     </main>
-    
     
     <%- include('partials/footer')  %>
     <script src="/js/carrito.js"></script>
