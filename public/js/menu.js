@@ -14,4 +14,5 @@ menuIcon.addEventListener('click', () => {
 catalogo.addEventListener('click', () => {
     subCatalogo.classList.toggle('droplet');
     subMenuIcon.classList.toggle('down-up');
+
 })

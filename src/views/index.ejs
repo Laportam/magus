@@ -10,6 +10,19 @@
                 <section class="banner-principal-section">
                     <article class="banner-principal-article">
                         <div class="banner">
+                            <div class="banner-box-container">
+                                <div class="banner-box">
+                                    <figure class="figure figure-one">
+                                        <img src="/images/banner/Magus-Banner-1.png" alt="">
+                                    </figure>
+                                    <figure class="figure figure-two">
+                                        <img src="/images/banner/Magus-Banner-2.png" alt="">
+                                    </figure>
+                                    <figure class="figure figure-three">
+                                        <img src="/images/banner/Magus-Banner-3.png" alt="">
+                                    </figure>
+                                </div>
+                            </div>
                             <div class="banner-btns-box">
                                 <div class="banner-btn-box first-btn">
                                     <button>
@@ -22,28 +35,15 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="banner-box-container">
-                                <div class="banner-box">
-                                    <figure>
-                                        <img src="/images/pic1.jpg" alt="">
-                                    </figure>
-                                    <figure>
-                                        <img src="/images/pic2.jpg" alt="">
-                                    </figure>
-                                    <figure>
-                                        <img src="/images/pic3.jpg" alt="">
-                                    </figure>
-                                </div>
-                            </div>
                         </div>
                     </article>
                 </section>
             </div>
-            <hr>
             <section class="novedades-section">
                 <h3>Novedades</h3>
                 <div class="line"></div>
                 <!-- Botones de la lista | Inicio -->
+                <!--
                 <div class="novedades-btns">
                     <figure class="f-i">
                         <button type="button">
@@ -56,6 +56,7 @@
                         </button>
                     </figure>
                 </div>
+                -->
                 <!-- Botones de la lista | Fin -->
                 <div class="novedades-section-wrapper">
                     <div class="articles-container">
@@ -63,63 +64,105 @@
                             <% if (i <= 4) { %>
                                 <div class="product-wrapper-first">
                                     <div class="product first">
-                                        <a href="/catalogo/detail/<%= products[i].id %>">
-                                            <figure>
-                                                <% for( let a = 0; a < images.length; a++ ) { %>
-                                                    <% if (images[a].id == products[i].id) { %>
-                                                        <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                    <% } %>
-                                                <% } %>  
-                                            </figure>
-                                            
-                                            <div class="product-info">
-                                                <h5><%= products[i].name %></h5>
-                                                <h6>Marca: <%= products[i].brand %></h6>
-                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                        <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
+                                            <!-- PRODUCT INSIDE PART 1 -->
+                                            <div class="product-top-wrapper">
+                                                <div class="product-image-wrapper">
+                                                    <div class="product-image">
+                                                        <figure>
+                                                            <% for( let a = 0; a < images.length; a++ ) { %>
+                                                                <% if (images[a].id == products[i].id) { %>
+                                                                    <img src="/images/product/<%= images[a].filename %>" alt="">
+                                                                <% } %>
+                                                            <% } %>  
+                                                        </figure>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        
-                                        <% if (locals.isLogged) { %>
-                                           <!-- Absolutamente nada -->
-                                        <% } else { %>
-                                            <div class="btns">
-                                                    <button class="cotizar-button" data-id="<%= products[i].id %>">
-                                                        <p>Cotizar</p>
+                                            <div class="product-line-break"></div>
+                                            <!-- PRODUCT INSIDE PART 2 -->
+                                            <div class="product-bottom-wrapper">
+                                                <div class="product-info-wrapper">
+                                                    <div class="product-info">
+                                                        <div class="info name">
+                                                            <p><%= products[i].name %></p>
+                                                        </div>
+                                                        <div class="info brand">
+                                                        <% for( let e = 0; e < brands.length; e++ ) { %>
+                                                        <% if (products[i].brand == brands[e].id) { %>
+                                                            <p><%= brands[e].name %></p>
+                                                        <% } %>
+                                                        <% } %>
+                                                        </div>
+                                                        <div class="hidden-info">
+                                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
+                                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% if (locals.isLogged) { %>
+                                                <!-- Absolutamente nada -->
+                                                <% } else { %>
+                                                <div class="product-budget-btn">
+                                                    <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
+                                                        <i class="fa-solid fa-dolly"></i>
                                                     </button>
                                                 </div>
-                                            <% } %>
+                                                <% } %>
+                                            </div>
+                                            
                                         </a>
                                     </div>
                                 </div>
                             <% } else { %>
                                 <div class="product-wrapper-second">
                                     <div class="product second">
-                                        <a href="/catalogo/detail/<%= products[i].id %>">
-                                            <figure>
-                                                <% for( let a = 0; a < images.length; a++ ) { %>
-                                                    <% if (images[a].id == products[i].id) { %>
-                                                        <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                    <% } %>
-                                                <% } %>  
-                                            </figure>
-                                            
-                                            <div class="product-info">
-                                                <h5 ><%= products[i].name %></h5>
-                                                <h6>Marca: <%= products[i].brand %></h6>
-                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                        <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
+                                            <!-- PRODUCT INSIDE PART 1 -->
+                                            <div class="product-top-wrapper">
+                                                <div class="product-image-wrapper">
+                                                    <div class="product-image">
+                                                        <figure>
+                                                            <% for( let a = 0; a < images.length; a++ ) { %>
+                                                                <% if (images[a].id == products[i].id) { %>
+                                                                    <img src="/images/product/<%= images[a].filename %>" alt="">
+                                                                <% } %>
+                                                            <% } %>  
+                                                        </figure>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        
-                                        <% if (locals.isLogged) { %>
-                                           <!-- Absolutamente nada -->
-                                        <% } else { %>
-                                            <div class="btns">
+                                            <div class="product-line-break"></div>
+                                            <!-- PRODUCT INSIDE PART 2 -->
+                                            <div class="product-bottom-wrapper">
+                                                <div class="product-info-wrapper">
+                                                    <div class="product-info">
+                                                        <div class="info name">
+                                                            <p><%= products[i].name %></p>
+                                                        </div>
+                                                        <div class="info brand">
+                                                        <% for( let e = 0; e < brands.length; e++ ) { %>
+                                                        <% if (products[i].brand == brands[e].id) { %>
+                                                            <p><%= brands[e].name %></p>
+                                                        <% } %>
+                                                        <% } %>
+                                                        </div>
+                                                        <div class="hidden-info">
+                                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
+                                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% if (locals.isLogged) { %>
+                                                <!-- Absolutamente nada -->
+                                                <% } else { %>
+                                                <div class="product-budget-btn">
                                                     <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
-                                                        <p>Cotizar</p>  
-                                                        <i class="fa-solid fa-calculator"></i>
+                                                        <i class="fa-solid fa-dolly"></i>
                                                     </button>
                                                 </div>
-                                            <% } %>
+                                                <% } %>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
@@ -128,8 +171,12 @@
                     </div>
                 </div>
             </section>
-            <hr>
             <section class="description-section">
+                <div class="custom-shape-divider-top-1669828692">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
                 <div class="description-container">
                     <div class="square-container">
                         <div class="square">
@@ -146,39 +193,95 @@
                         </div>
                     </div>
                     <div class="texts-container">
-                        <div class="text-container">
-                            <div class="text">
-                                <p>Nuestros productos son concebidos, desarrollados y producidos tomando como estándar la excelencia, representada en sus diseños novedosos, exitosa funcionalidad y sólida artesanía.</p>
+                        <div class="text-wrapper">
+                            <div class="text-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div class="text-container">
+                                <div class="text">
+                                    <p>Nuestros productos son concebidos, desarrollados y producidos tomando como estándar la excelencia, representada en sus diseños novedosos, exitosa funcionalidad y sólida artesanía.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="text-container">
-                            <div class="text">
-                                <p>Utilizamos las más modernas y eficientes técnicas de aplicación, para que las marcas comuniquen, se destaquen y perduren en el tiempo en los mismos, como se merecen.</p>
+                        <div class="text-wrapper">
+                            <div class="text-container">
+                                <div class="text">
+                                    <p>Utilizamos las más modernas y eficientes técnicas de aplicación, para que las marcas comuniquen, se destaquen y perduren en el tiempo en los mismos, como se merecen.</p>
+                                </div>
+                            </div>
+                            <div class="text-icon">
+                                <i class="fa-solid fa-chart-simple"></i>
                             </div>
                         </div>
-                        <div class="text-container">
-                            <div class="text">
-                                <p>Nuestra premisa es simple: somos socios de nuestros clientes y los acompañamos en sus acciones promocionales, hasta que alcancen el éxito en la implementación de su campaña.</p>
+                        <div class="text-wrapper">
+                            <div class="text-icon">
+                                <i class="fa-solid fa-people-group"></i>
+                            </div>
+                            <div class="text-container">
+                                <div class="text">
+                                    <p>Nuestra premisa es simple: somos socios de nuestros clientes y los acompañamos en sus acciones promocionales, hasta que alcancen el éxito en la implementación de su campaña.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="custom-shape-divider-bottom-1669828692">
+                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                    </svg>
+                </div>
             </section>
-            <hr>
             <section class="clientes-section">
                 <h3>Nuestros Clientes</h3>
-                <article class="clientes-article">
-                    
-                </article>
+                <div class="clientes-wrapper">
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                    <article class="cliente-article">
+                        <figure>
+                            <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                        </figure>
+                    </article>
+                </div>
             </section>
-            <hr>
         </div>
     </main>
-    
     <%- include('partials/footer')  %>
     <script src="/js/carrito.js"></script>
     <script src="/js/pedido.js"></script>
-    <script src="/js/novedades.js"></script>
+    <!-- <script src="/js/novedades.js"></script> -->
     <script src="/js/cardFlip.js"></script>
     <script src="/js/banners.js"></script>
 </body>

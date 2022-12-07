@@ -26,8 +26,9 @@ const mainController = {
         });
         let pedidoCategorias = await db.Productscategories.findAll();
         let pedidoImagenes = await db.Images.findAll();
+        let pedidoMarcas = await db.Brands.findAll();
         
-        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes])
+        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas])
             .then( (all) => {
                 // Elimina objetos duplicados en el array. ESTUDIAR BIEN
                 let uniqueIds = [];
@@ -50,7 +51,8 @@ const mainController = {
                     links: 'happy.png',
                     products: all[0],
                     categories: all[1],
-                    images: unique
+                    images: unique,
+                    brands: all[3],
                 })
             })
     },

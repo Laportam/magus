@@ -1,41 +1,57 @@
 const bannerBtns = [...document.querySelectorAll('.banner-btn-box button i')];
 let imgId = 1;
+let n = 1;
 
 bannerBtns.forEach( btn => {
     btn.addEventListener('click', (e) => {
-        if(e.target.classList.contains('fa-square-caret-right')){
-            console.log('Yes');
-            imgId += 1;
-            slideRight()
-        } else if(e.target.classList.contains('fa-square-caret-left')) {
-            console.log('Yes, yet again');
-            imgId -= 1;
-            slideRight()
+        let banners = [...document.querySelectorAll('.figure')];
+        if(btn.classList.contains('fa-caret-right')){
+            if(n < 3){
+                n += 1;
+            }
+        } else if(btn.classList.contains('fa-caret-left')){
+            if(n > 1){
+                n -= 1
+            }
         }
-        // if(bannerBtns.includes(e.target)){
-        //     console.log(e.target)
-        // }
+
+        console.log(n)        
     })
 })
 
-function slideRight(){
+// bannerBtns.forEach( btn => {
+//     btn.addEventListener('click', (e) => {
+//         console.log(e.target.classList);
+//         if(e.target.classList.contains('fa-caret-right')){
+//             console.log('Yes');
+                
+//                 slideRight(e);
+//         } else if (e.target.classList.contains('fa-caret-left')) {
+//             console.log('Yes, yet again');
+                
+//                 slideRight(e);
+//         }
+//     })
+// })
+/*
+function slideRight(e){
     const displayWidth = document.querySelector('.banner-box img:first-child').clientWidth;
     let result = - (imgId - 1) * displayWidth;
-
-   
+    console.log(result);
     if(result < -2526 || result > 0){
         console.log('No, papi');
+        imgId -= 1;
+        e.target.style.disabled = 'true'
     } else {
+        imgId += 1;
         document.querySelector('.banner-box').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
     }
-    
-    
 }
 
 function slideLeft(){
 
 }
-
+*/
 /*
 const imgs = document.querySelectorAll('.img-select a');
 const imgBtns = [...imgs];
