@@ -5,7 +5,14 @@
 }
 
 main{
-    min-height:100vh
+    margin-top:90px;
+    padding:20px;
+    min-height:100vh;
+    min-width:360px;
+    width:100%;
+    max-width:100%;
+    background: rgb(181,139,236);
+    background: linear-gradient(0deg, rgba(181,139,236,1) 80%, rgba(255,187,90,1) 100%);
 }
 
 a{

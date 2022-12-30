@@ -26,8 +26,51 @@ let productsController = {
             }
         }
 
+        let pedidoProducto = await db.Products.findAll({
+            limit: limit,
+            offset: (pageOptions.page - 1) * pageOptions.limit,
+            order: [
+                ['demanded', 'DESC']
+            ]
+        });
         let pedidoCategorias = await db.Productscategories.findAll();
         let pedidoImagenes = await db.Images.findAll();
+        let pedidoMarcas = await db.Brands.findAll();
+        
+        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas])
+            .then( (all) => {
+                // Elimina objetos duplicados en el array. ESTUDIAR BIEN
+                let uniqueIds = [];
+                let unique = all[2].filter( element => {
+                    let isDuplicate = uniqueIds.includes(element.id);
+
+                    if(!isDuplicate){
+                        uniqueIds.push(element.id);
+
+                        return true;
+                    }
+
+                    return false;
+                })
+                //----------------------------------------------------------
+                
+                return res.render('all',{
+                    style: ['all.css', 'everyPage.css'],
+                    // style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
+                    pages: pageArray,
+                    actualPage: actualPage,
+                    title: 'All',
+                    products: all[0],
+                    categories: all[1],
+                    images: unique,
+                    brands: all[3],
+                    links: 'Magus-logo.png'
+                })
+            })
+        /*
+        let pedidoCategorias = await db.Productscategories.findAll();
+        let pedidoImagenes = await db.Images.findAll();
+        let pedidoMarcas = await db.Brands.findAll();
 
         await db.Products
         .findAll({
@@ -45,10 +88,12 @@ let productsController = {
                 console.log(pageArray);
                 console.log(actualPage);
                 res.render('all', {
-                    style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
+                    style: ['all.css', 'everyPage.css'],
+                    // style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
                     title: 'Catálogo',
                     products: products,
                     categories: pedidoCategorias,
+                    brands: pedidoMarcas,
                     pages: pageArray,
                     actualPage: actualPage,
                     images: pedidoImagenes,
@@ -59,6 +104,7 @@ let productsController = {
         .catch( (error) => {
             return res.send(`Internal error: ${error}`);
         })
+        */
     },
     category: async (req, res) => {
         let pedidoCategorias = await db.Productscategories.findAll();
