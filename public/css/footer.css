@@ -1,3 +1,121 @@
+/* FOOTER */
+
+footer{
+    height:fit-content;
+    min-width:360px;
+    background-color: #ececec;
+    text-align: center;
+}
+
+.footer-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:10px 20px;
+}
+
+.redes{
+    max-width:250px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:7px 5px;
+    font-size:27px;
+}
+
+.copy{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:7px 5px;
+}
+
+.copy p{
+    color:#a09e9e;
+    margin:7px 5px;
+}
+
+.redes figure{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.redes i{
+    color: #8861db;
+    transition: 0.5s color;
+}
+
+.redes i:hover{
+    color: #8861db;
+}
+
+.redes a{
+    margin:0 5vw
+}
+
+.redes a:nth-child(2){
+    margin:5px 30px;
+}
+
+@media (min-width:768px){
+    /* FOOTER */
+
+    .footer-container{
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .redes a{
+        margin:0 38.35px
+    }
+
+    /* --------------------------------- */
+
+
+}
+
+/* ------ */
+/* --------------------------------- */
+
+/* DESKTOP */
+/* ------ */
+
+@media (min-width:1080px){
+    /* FOOTER */
+
+    footer{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-container{
+        max-width:1280px;
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width:90%;
+    }
+
+    .redes a{
+        margin:0 38.35px
+    }
+
+    /* --------------------------------- */
+
+
+}
+
+/* ------ */
+/* --------------------------------- */
+
+/* --------------------------------- */
+
+/*
 footer{
     background-color: #ececec;
     text-align: center;
@@ -66,3 +184,4 @@ footer{
     flex-direction: column;
     align-items: flex-start;
 }
+*/

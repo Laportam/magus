@@ -55,7 +55,7 @@ let productsController = {
                 //----------------------------------------------------------
                 
                 return res.render('all',{
-                    style: ['all.css', 'everyPage.css'],
+                    style: ['all.css', 'everyPage.css', 'header.css', 'footer.css'],
                     // style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
                     pages: pageArray,
                     actualPage: actualPage,
@@ -113,6 +113,7 @@ let productsController = {
                 title: req.params.name
             }
         });
+        let pedidoMarcas = await db.Brands.findAll();
         let pedidoImagenes = await db.Images.findAll();
 
         let limit = 6;

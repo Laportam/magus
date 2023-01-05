@@ -4,15 +4,59 @@
 
 /* MOBILE */
 
-.categories-container{
+.main-container{
     display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:90%;
+}
+
+.top{
+    width:100%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.pages-title{
+    width:86%;
+    max-width: 370px;
+    color:#ffffff;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pages-title h1{
+    font-size:9vw;
+}
+
+.pages-title h3{
+    font-size:3.5vw;
+}
+
+.middle{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 .categories-wrapper{
     border:1px solid rgba(0, 0, 0, 0.5);
-    width:80vw;
+    width:87vw;
+    max-width:375px;
     padding:10px;
     background-color: #ffffff;
     border-radius:5px;
@@ -24,11 +68,27 @@
 }
 /* PRODUCTOS */
 
+.catalogue-section-wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.articles-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width:90%;
+    max-width:635px;
+}
+
 .product-wrapper{
     display:flex;
     justify-content: center;
     align-items: center;
     margin:15px 5px;
+    font-family: Open Sans !important;
 }
 
 .products{
@@ -113,6 +173,11 @@
     font-size:18px;
 }
 
+.bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .pages-btns-container{
     display:flex;
@@ -290,3 +355,213 @@ body{
     background-color: #fae99fce
 }
 */
+
+@media (min-width:634px){
+    .top{
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pages-title{
+        margin-left:0px;
+        width:100%;
+        max-width: 370px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pages-title h1{
+        font-size:5vw;
+    }
+
+    .pages-title h3{
+        font-size:2vw;
+    }
+
+    .categories-wrapper{
+        width:87vw;
+        max-width:565px;
+    }
+}
+
+@media (min-width: 768px){
+    .main-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .pages-btns-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1280px){
+    .pages-title{
+        margin-left:0px;
+        width:100%;
+        max-width: 370px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pages-title h1{
+        font-size:4vw;
+    }
+
+    .pages-title h3{
+        font-size:1.5vw;
+    }
+
+    .middle{
+        width:100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .categories-container{
+        display:flex;
+        order:1;
+        justify-content: center;
+        align-items: flex-start;
+        font-family: 'Josefin Sans', sans-serif;
+        height:950px;
+        width:30%;
+        margin-top:15px
+    }
+
+    .other-container{
+        width:100%;
+        display: flex;
+        justify-content: center;
+        border:1px solid black;
+    }
+
+    .categories-wrapper{
+        height:fit-content;
+        width:90%;
+    }
+
+    .categories{
+        margin-right:50px;
+    }
+
+    .products-container{
+        display:flex;
+        order:2;
+        justify-content: center;
+        align-items: flex-start;
+        width:70%;
+        min-height:950px;
+        border:1px solid black
+    }
+
+    .articles-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width:100%;
+        max-width:none;
+        border:1px solid green
+    }
+    
+    .product-wrapper{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        margin:15px 5px;
+        font-family: Open Sans !important;
+    }
+    
+    .products{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .product{
+        min-width:none;
+        max-width:300px;
+        width:20vw;
+        height:auto;
+        border:1px solid rgba(0, 0, 0, 0.1);
+        border-radius:5px;
+        background-color: #fff;
+        transition: 1s ;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 15px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+    }
+    
+    .product figure, .product img{
+        height:auto;
+        width:100%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .product img{
+        border-bottom:1px solid rgba(80, 80, 80, 0.3)
+    }
+    
+    .product-bottom-wrapper{
+        width:93%;
+        display:flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding:1rem 0;
+        margin: 0 0.3rem;
+    }
+    
+    .name{
+        font-size:18px;
+        font-weight:900;
+        margin-bottom:0.5rem;
+        padding: 0.23rem 0.2rem ;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        background-color: var(--fourth-color);
+        color:var(--main-product-variant);
+    }
+    
+    .name p{
+        min-width:4rem;
+        width:fit-content;
+        max-width:10rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .brand{
+        width:fit-content;
+        padding: 0.15rem 0.2rem ;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        font-size:15px;
+        color:#faa835;
+        background-color: var(--main-product-variant);
+    }
+    
+    .product-budget-btn button{
+        cursor: pointer;
+        border:1px solid rgba(0, 0, 0, 0.1);
+        color:var(--fourth-color);
+        background:var(--main-color);
+        padding:0.4rem;
+        border-radius:3px;
+    }
+    
+    .product-budget-btn button i{
+        font-size:22px;
+    }
+}

@@ -2,76 +2,111 @@
 <html lang="en">
 <%- include('partials/head')  %> 
 <body>
-    
+    <%- include('partials/header') %>
     <main>
         <div class="main-container">
-            
-            <!-- Productos -->
-            <div class="products-container">
-                <% if (locals.isLogged == true) { %>
-                    <a href="/catalogo/create">
-                        Crear producto
-                    </a>
-                <% } %>
-                <div class="catalogue-section-wrapper">
-                    <div class="articles-container">
-                        <% for( let i = 0; i < products.length; i++ ) { %>
-                            
-                                <div class="product-wrapper">
-                                    <div class="product">
-                                        <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
-                                            <!-- PRODUCT INSIDE PART 1 -->
-                                            <div class="product-top-wrapper">
-                                                <div class="product-image-wrapper">
-                                                    <div class="product-image">
-                                                        <figure>
-                                                            <% for( let a = 0; a < images.length; a++ ) { %>
-                                                                <% if (images[a].id == products[i].id) { %>
-                                                                    <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                                <% } %>
-                                                            <% } %> 
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUCT INSIDE PART 2 -->
-                                            <div class="product-bottom-wrapper">
-                                                <div class="product-info-wrapper">
-                                                    <div class="product-info">
-                                                        <div class="info name">
-                                                            <p><%= products[i].name %></p>
-                                                        </div>
-                                                        <div class="info brand">
-                                                        <% for( let e = 0; e < brands.length; e++ ) { %>
-                                                        <% if (products[i].brand == brands[e].id) { %>
-                                                            <p><%= brands[e].name %></p>
-                                                        <% } %>
-                                                        <% } %>
-                                                        </div>
-                                                        <div class="hidden-info">
-                                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% if (locals.isLogged) { %>
-                                                <!-- Absolutamente nada -->
-                                                <% } else { %>
-                                                <div class="product-budget-btn">
-                                                    <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
-                                                        <i class="fa-solid fa-dolly"></i>
-                                                    </button>
-                                                </div>
-                                                <% } %>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            
+
+            <div class="top">
+
+                <!-- Cantidad de Páginas -->
+                <div class="pages-title">
+                    <h1>CATÁLOGO</h1>
+                    <% for( let b = 0; b < pages.length; b++ ) { %>
+                        <% if (actualPage == pages[b]) { %>
+                            <h3>Página <%= actualPage %> de <%= pages.length %></h2>
                         <% } %>
+                    <% } %>
+                </div>
+
+                <div class="create-product">
+                    <% if (locals.isLogged == true) { %>
+                        <a href="/catalogo/create">
+                            Crear producto
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="products-container">
+
+                    <!-- Catálogo -->
+                    <div class="catalogue-section-wrapper">
+                        <div class="articles-container">
+                            <% for( let i = 0; i < products.length; i++ ) { %>
+                                    <div class="product-wrapper">
+                                        <div class="product">
+                                            <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
+                                                <!-- PRODUCT INSIDE PART 1 -->
+                                                <div class="product-top-wrapper">
+                                                    <div class="product-image-wrapper">
+                                                        <div class="product-image">
+                                                            <figure>
+                                                                <% for( let a = 0; a < images.length; a++ ) { %>
+                                                                    <% if (images[a].id == products[i].id) { %>
+                                                                        <img src="/images/product/<%= images[a].filename %>" alt="">
+                                                                    <% } %>
+                                                                <% } %> 
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- PRODUCT INSIDE PART 2 -->
+                                                <div class="product-bottom-wrapper">
+                                                    <div class="product-info-wrapper">
+                                                        <div class="product-info">
+                                                            <div class="info name">
+                                                                <p><%= products[i].name %></p>
+                                                            </div>
+                                                            <div class="info brand">
+                                                            <% for( let e = 0; e < brands.length; e++ ) { %>
+                                                            <% if (products[i].brand == brands[e].id) { %>
+                                                                <p><%= brands[e].name %></p>
+                                                            <% } %>
+                                                            <% } %>
+                                                            </div>
+                                                            <div class="hidden-info">
+                                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
+                                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% if (locals.isLogged) { %>
+                                                    <!-- Absolutamente nada -->
+                                                    <% } else { %>
+                                                    <div class="product-budget-btn">
+                                                        <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
+                                                            <i class="fa-solid fa-dolly"></i>
+                                                        </button>
+                                                    </div>
+                                                    <% } %>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Categorías -->
+                <div class="categories-container">
+                    <div class="other-container">
+                        <div class="categories-wrapper">
+                            <div class="categories">
+                                <% for( let a = 0; a < categories.length; a++ ) { %>
+                                    <a class="category" name="<%= categories[a].title %>" href="/catalogo/<%= categories[a].title %>/1">
+                                        <p>
+                                            <%= categories[a].title %>
+                                        </p>
+                                    </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
                 <!-- Botones de las Páginas -->
                 <div class="pages-btns-container">
                     <div class="pages-btns">
@@ -93,20 +128,12 @@
                     </div>
                 </div>
             </div>
-            <!-- Categorías -->
-            <div class="categories-container">
-                <div class="categories-wrapper">
-                    <div class="categories">
-                        <% for( let a = 0; a < categories.length; a++ ) { %>
-                            <a class="category" name="<%= categories[a].title %>" href="/catalogo/<%= categories[a].title %>/1">
-                                <p>
-                                    <%= categories[a].title %>
-                                </p>
-                            </a>
-                        <% } %>
-                    </div>
-                </div>
+
+            <div class="second-half">
+                
             </div>
+            
+            
         </div>
     </main>
     <%- include('partials/footer')  %>
