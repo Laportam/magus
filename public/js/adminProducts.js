@@ -42,7 +42,9 @@ options.forEach( option => {
 });
 
 function filterBy(filter){
-    console.log(filter)
+    if (filter == "Categorías") {
+        console.log('Do this')
+    }
 }
 
 function checkAll(myChecbox){
