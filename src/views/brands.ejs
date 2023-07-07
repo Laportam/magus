@@ -8,12 +8,13 @@
             <div class="brands-container">
                 <% for( let i = 0; i < brands.length; i++ ) { %>
                     <div class="brand-container">
-                        <a href="/catalogo/brand/<%= brands[i].name %>">
-                            <div class="brand">
-                                <div class="brand-background" style="background-image: url('/images/brands/Adidas.png')">
-                                
-                                </div>
-                            </div>
+                        <div class="brand-name odd">
+                            <h3><%= brands[i].name %></h3>
+                        </div>
+                        <a href="/catalogo/brands/<%= brands[i].name %>" class="brand-image">
+                            <figure>
+                                <img src="/images/brands/Brand-<%= brands[i].name %>.jpg" alt="">
+                            </figure>
                         </a>
                     </div>
                 <% } %>

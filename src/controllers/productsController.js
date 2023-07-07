@@ -1,6 +1,6 @@
 let db = require('../database/models');
 const { Op } = require('sequelize');
-const { sequelize } = require('../database/models');
+const { sequelize, Sequelize } = require('../database/models');
 const { validationResult } = require("express-validator");
 const path = require('path');
 
@@ -36,8 +36,12 @@ let productsController = {
         let pedidoCategorias = await db.Productscategories.findAll();
         let pedidoImagenes = await db.Images.findAll();
         let pedidoMarcas = await db.Brands.findAll();
+        let pedidoSubcategorias = await db.Productssubcategories.findAll();
+
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
         
-        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas])
+        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas, pedidoSubcategorias, pedidoColores, pedidoColoresProducto])
             .then( (all) => {
                 // Elimina objetos duplicados en el array. ESTUDIAR BIEN
                 let uniqueIds = [];
@@ -55,136 +59,232 @@ let productsController = {
                 //----------------------------------------------------------
                 
                 return res.render('all',{
-                    style: ['all.css', 'everyPage.css', 'header.css', 'footer.css'],
+                    style: ['new.css', 'header.css', 'footer.css'],
                     // style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
                     pages: pageArray,
                     actualPage: actualPage,
-                    title: 'All',
+                    title: 'Catálogo',
                     products: all[0],
+                    totalProducts: count,
+                    catalogTitle: 'Catálogo',
                     categories: all[1],
+                    
                     images: unique,
                     brands: all[3],
+                    subcategories: all[4],
+                    allColors: all[5],
+                    productColors: all[6],
                     links: 'Magus-logo.png'
                 })
             })
-        /*
-        let pedidoCategorias = await db.Productscategories.findAll();
-        let pedidoImagenes = await db.Images.findAll();
-        let pedidoMarcas = await db.Brands.findAll();
-
-        await db.Products
-        .findAll({
-            limit: limit,
-            offset: (pageOptions.page - 1) * pageOptions.limit,
-            order: [
-                ['demanded', 'DESC']
-            ]
-        })
-        .then( products => {
-            if(products.length == 0) {
-                return res.send('Lo lamentos, pero no hay ningún producto')
-            } else {
-                console.log(pageQuantity);
-                console.log(pageArray);
-                console.log(actualPage);
-                res.render('all', {
-                    style: ['all.css', 'everyPage.css'],
-                    // style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
-                    title: 'Catálogo',
-                    products: products,
-                    categories: pedidoCategorias,
-                    brands: pedidoMarcas,
-                    pages: pageArray,
-                    actualPage: actualPage,
-                    images: pedidoImagenes,
-                    links: 'Magus-logo.png'
-                })
-            }
-        })
-        .catch( (error) => {
-            return res.send(`Internal error: ${error}`);
-        })
-        */
     },
     category: async (req, res) => {
-        let pedidoCategorias = await db.Productscategories.findAll();
-        let pedidoCategoria = await db.Productscategories.findOne({
-            where: {
-                title: req.params.name
-            }
-        });
-        let pedidoMarcas = await db.Brands.findAll();
-        let pedidoImagenes = await db.Images.findAll();
-
-        let limit = 6;
-
+        let limit = 12;
         let pageOptions = {
             page: req.params.id,
             limit: limit
         };
 
-        let { count } = await db.Products.findAndCountAll({
+        let pedidoCategoria = await db.Productscategories.findAll({
             where: {
-                brand: pedidoCategoria.id
+                title: req.params.name
             }
         });
-        let divide = count / limit;
+        let pedidoCategorias = await db.Productscategories.findAll();
+
+        let cantidadTotalDeProductosPedidos = await db.Products.findAndCountAll({
+            where: {
+                category_id: pedidoCategoria[0].id
+            }
+        });
+
+        let divide = cantidadTotalDeProductosPedidos.count / limit;
         let pageQuantity = Math.ceil(divide);
         let pageArray = [];
-
         let actualPage = parseInt(req.params.id);
-
         for (let a = 0; a <= pageQuantity; a++) {
             if(!a <= 0){
                 pageArray.push(a)
             }
         }
-        
-        await db.Products
-        .findAll({
+
+        let pedidoProductos = await db.Products.findAll({
+            where: {
+                category_id: pedidoCategoria[0].id
+            },
             limit: limit,
             offset: (pageOptions.page - 1) * pageOptions.limit,
             order: [
                 ['demanded', 'DESC']
-            ],
+            ]
+        });
+        let pedidoMarcas = await db.Brands.findAll();
+        let pedidoImagenes = await db.Images.findAll();
+        let pedidoSubcategorias = await db.Productssubcategories.findAll();
+
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
+
+        Promise.all([pedidoProductos, cantidadTotalDeProductosPedidos.count, pedidoCategoria[0], pedidoCategorias, pedidoMarcas, pedidoImagenes, pedidoSubcategorias, pedidoColores, pedidoColoresProducto])
+            .then(function([products, totalProducts, category, categories, brands, images, subcategories, allColors, productColors]){
+                if(products == null) {
+                    return res.render('404Product', {
+                                style: ['404.css', 'header.css', 'footer.css'],
+                                title: '404 | Product Not Found',
+                                links: 'Magus-logo.png'
+                        })
+                } else {
+                    // Elimina objetos duplicados en el array. ESTUDIAR BIEN
+                    let uniqueIds = [];
+                    let unique = images.filter( element => {
+                        let isDuplicate = uniqueIds.includes(element.id);
+
+                        if(!isDuplicate){
+                            uniqueIds.push(element.id);
+
+                            return true;
+                        }
+
+                        return false;
+                    })
+                    //----------------------------------------------------------
+                    res.render("all", {
+                        style: ['new.css', 'header.css', 'footer.css'],
+                        title: category.title,
+                        products: products,
+                        totalProducts: totalProducts,
+                        images: unique,
+                        catalogTitle: category.title,
+                        category: category,
+                        categories: categories,
+                        subcategories: subcategories,
+                        brands: brands,
+                        actualPage: actualPage,
+                        pages: pageArray,
+                        allColors: allColors,
+                        productColors: productColors,
+                        links: 'Magus-logo.png'
+                    })
+                }
+            }
+        )
+        
+    },
+    subcategory: async (req, res) => {
+        let limit = 12;
+        let pageOptions = {
+            page: req.params.id,
+            limit: limit
+        };
+
+        let pedidoCategorias = await db.Productscategories.findAll();
+        let actualCategoryTitle = req.params.name;
+        let actualCategory = await db.Productscategories.findAll({
             where: {
-                category_id: pedidoCategoria.id
+                title: actualCategoryTitle
             }
-        })
-        .then( products => {
-            if(products.length == 0) {
-                return res.render('404Category', {
-                    style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
-                    title: '404 Page Not Found',
-                    categories: pedidoCategorias,
-                    category: req.params.name,
-                    links: 'Magus-logo.png'
-                })
-            } else {
-                console.log(pageQuantity);
-                console.log(pageArray);
-                console.log(actualPage);
-                console.log(req.params.name);
-                res.render('all', {
-                    style: ['all.css', 'header.css', 'footer.css', 'everyPage.css'],
-                    title: 'Catálogo',
-                    products: products,
-                    categories: pedidoCategorias,
-                    category: pedidoCategoria,
-                    images: pedidoImagenes,
-                    pages: pageArray,
-                    actualPage: actualPage,
-                    links: 'Magus-logo.png'
-                })
+        });
+        let actualCategoryId = actualCategory[0].id;
+
+        let pedidoSubcategorias = await db.Productssubcategories.findAll();
+        let actualSubcategoryTitle = req.params.subname;
+        let actualSubcategories = await db.Productssubcategories.findAll({
+            where: {
+                subtitle: actualSubcategoryTitle,
+                product_category: actualCategoryId
             }
-        })
-        .catch( (error) => {
-            return res.send(`Internal error: ${error}`);
-        })
+        });
+        let actualSubcategoryId = actualSubcategories[0].id;
+        
+        let pedidoProductos = await db.Products.findAll({
+            where: {
+                category_id: actualCategoryId,
+                subcategory_id: actualSubcategoryId
+            },
+            limit: limit,
+            offset: (pageOptions.page - 1) * pageOptions.limit,
+            order: [
+                ['demanded', 'DESC']
+            ]
+        });
+        let totalProducts = await db.Products.findAndCountAll({
+            where: {
+                subcategory_id: actualSubcategoryId
+            }
+        });
+
+        let pedidoMarcas = await db.Brands.findAll();
+        let pedidoImagenes = await db.Images.findAll();
+
+        let divide = totalProducts.count / limit;
+        let pageQuantity = Math.ceil(divide);
+        let pageArray = [];
+        let actualPage = parseInt(req.params.id);
+        for (let a = 0; a <= pageQuantity; a++) {
+            if(!a <= 0){
+                pageArray.push(a)
+            }
+        }
+
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
+
+        Promise.all([pedidoProductos, totalProducts.count, actualCategory[0], pedidoCategorias, pedidoMarcas, pedidoImagenes, actualSubcategories, pedidoSubcategorias, pedidoColores, pedidoColoresProducto])
+            .then(function([products, totalProducts, category, categories, brands, images, subcategory, subcategories, allColors, productColors]){
+                if(products == null) {
+                    return res.render('404Product', {
+                                style: ['404.css', 'header.css', 'footer.css'],
+                                title: '404 | Product Not Found',
+                                links: 'Magus-logo.png'
+                        })
+                } else {
+                    // Elimina objetos duplicados en el array. ESTUDIAR BIEN
+                    let uniqueIds = [];
+                    let unique = images.filter( element => {
+                        let isDuplicate = uniqueIds.includes(element.id);
+
+                        if(!isDuplicate){
+                            uniqueIds.push(element.id);
+
+                            return true;
+                        }
+
+                        return false;
+                    })
+                    //----------------------------------------------------------
+                    res.render("all", {
+                        style: ['new.css', 'header.css', 'footer.css'],
+                        title: `${actualCategoryTitle} | ${actualSubcategoryTitle}`,
+                        products: products,
+                        totalProducts: totalProducts,
+                        images: unique,
+                        catalogTitle: `${actualCategoryTitle} - ${actualSubcategoryTitle}`,
+                        category: category,
+                        categories: categories,
+                        subcategory: subcategory,
+                        subcategories: subcategories,
+                        brands: brands,
+                        actualPage: actualPage,
+                        pages: pageArray,
+                        links: 'Magus-logo.png',
+                        allColors: allColors,
+                        productColors: productColors
+                    })
+                }
+            }
+        )
     },
     detail: async (req, res) => {
         let pedidoProducto = await db.Products.findByPk(req.params.id);
+        let pedidoProductosRelacionados = await db.Products.findAll({
+            limit: 12,
+            where: {
+                category_id: 1
+            },
+            order: Sequelize.literal('rand()')
+        });
         let pedidoCategorias = await db.Productscategories.findAll();
+        let pedidoSubcategorias = await db.Productssubcategories.findAll();
         let pedidoMarcas = await db.Brands.findAll();
         let pedidoImagenes = await db.Images.findAll({
             order: [
@@ -194,9 +294,19 @@ let productsController = {
                 id: req.params.id
             }
         });
+        let pedidoImagesProductosRelacionados = await db.Images.findAll({
+            where: {
+                image_id: {
+                    [Op.endsWith]: '%-1'
+                }
+            }
+        });
+
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
         
-        Promise.all([pedidoProducto, pedidoCategorias, pedidoMarcas, pedidoImagenes])
-            .then(function([product, categories, brands, images]){
+        Promise.all([pedidoProducto, pedidoCategorias, pedidoMarcas, pedidoImagenes, pedidoProductosRelacionados, pedidoImagesProductosRelacionados, pedidoSubcategorias, pedidoColores, pedidoColoresProducto])
+            .then(function([product, categories, brands, images, relatedProducts, allImages, subcategories, allColors, productColors]){
                 if(product == null) {
                     return res.render('404Product', {
                                 style: ['header.css', 'footer.css', 'everyPage.css', '404.css'],
@@ -211,9 +321,14 @@ let productsController = {
                         style: ['everyPage.css', 'header.css', 'footer.css', 'productDetail.css'],
                         title: "Product | Detail",
                         product: product,
+                        productImages: images,
+                        products: relatedProducts,
+                        images: allImages,
                         categories: categories,
+                        subcategories: subcategories,
                         brands: brands,
-                        images: images,
+                        allColors: allColors,
+                        productColors: productColors,
                         links: 'Magus-logo.png'
                     })
                 }
@@ -224,7 +339,7 @@ let productsController = {
         .then( brands => {
             return res.render('brands', {
                 title: 'Title',
-                style: ['everyPage.css', 'header.css', 'footer.css', 'brands.css'],
+                style: ['brands.css', 'header.css', 'footer.css'],
                 links: 'happy.png',
                 brands: brands
             })
@@ -234,39 +349,89 @@ let productsController = {
         })
     },
     brand: async (req, res) => {
+        let limit = 12;
+        let pageOptions = {
+            page: req.params.id,
+            limit: limit
+        };
+
         let pedidoMarca = await db.Brands.findOne({
             where: {
                 name: req.params.name
             }
         });
 
-        let pedidoImagenes = await db.Images.findAll();
+        let pedidoProductosMarca = await db.Products.findAll({
+            where: {
+                brand: pedidoMarca.id
+            }
+        });
+        
+        let cantidadTotalDeProductosPedidos = await db.Products.findAndCountAll({
+            where: {
+                brand: pedidoMarca.id
+            }
+        });
 
-        if(pedidoMarca == null) {
-            return res.send('Pete')
-        } else {
-            let pedidoProductos = await db.Products.findAll({
-                where: {
-                    brand: pedidoMarca.id
-                }
-            })
-            .then( products => {
-                res.render('brand', {
-                    style: ['everyPage.css', 'header.css', 'footer.css', 'brand.css'],
-                    title: req.params.name,
-                    products: products,
-                    images: pedidoImagenes,
-                    brand: pedidoMarca,
-                    category: null,
-                    links: 'happy.png'
-                })
-            })
-            .catch( (error) => {
-                return res.send(`Internal error: ${error}`);
-            })
+        let divide = cantidadTotalDeProductosPedidos.count / limit;
+        let pageQuantity = Math.ceil(divide);
+        let pageArray = [];
+        let actualPage = parseInt(req.params.id);
+        for (let a = 0; a <= pageQuantity; a++) {
+            if(!a <= 0){
+                pageArray.push(a)
+            }
         }
         
-        
+        let pedidoMarcas = await db.Brands.findAll();
+        let pedidoImagenes = await db.Images.findAll();
+        let pedidoCategorias = await db.Productscategories.findAll();
+        let pedidoSubcategorias = await db.Productssubcategories.findAll();
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
+
+        Promise.all([pedidoProductosMarca, cantidadTotalDeProductosPedidos.count, pedidoMarca, pedidoImagenes, pedidoCategorias, pedidoSubcategorias, pedidoMarcas, pedidoColores, pedidoColoresProducto])
+            .then(function([products, totalProducts, brand, images, categories, subcategories, brands, allColors, productColors]){
+                if(products == null) {
+                    return res.render('404Product', {
+                                style: ['404.css', 'header.css', 'footer.css'],
+                                title: '404 | Product Not Found',
+                                links: 'Magus-logo.png'
+                        })
+                } else {
+                    // Elimina objetos duplicados en el array. ESTUDIAR BIEN
+                    let uniqueIds = [];
+                    let unique = images.filter( element => {
+                        let isDuplicate = uniqueIds.includes(element.id);
+
+                        if(!isDuplicate){
+                            uniqueIds.push(element.id);
+
+                            return true;
+                        }
+
+                        return false;
+                    })
+                    //----------------------------------------------------------
+                    res.render("all", {
+                        style: ['new.css', 'header.css', 'footer.css'],
+                        title: brand.name,
+                        products: products,
+                        totalProducts: totalProducts,
+                        images: unique,
+                        catalogTitle: brand.name,
+                        categories: categories,
+                        subcategories: subcategories,
+                        brands: brands,
+                        actualPage: actualPage,
+                        pages: pageArray,
+                        allColors: allColors,
+                        productColors: productColors,
+                        links: 'Magus-logo.png'
+                    })
+                }
+            }
+        )
     },
     editGet: async (req, res) => {
         let pedidoCategorias = await db.Productscategories.findAll();

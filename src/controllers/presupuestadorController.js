@@ -3,12 +3,11 @@ let db = require("../database/models");
 const { Op } = require('sequelize');
 
 const presupuestadorController = {
-    
     presupuestadorAdminGet: (req, res) => {
         return res.render('presupuestador', {
             title: 'Presupuestador',
-            style: ['cotizador.css'],
-            links: 'happy.png'
+            style: ['cotizador.css', 'header.css', 'footer.css'],
+            links: 'Magus-logo.png'
         });
     },
     presupuestadorAdminPost: async (req, res) => {
@@ -20,10 +19,10 @@ const presupuestadorController = {
         if(resultValidation.errors.length > 0) {
             return res.render('presupuestador', {
                 title: 'Consulta de Presupuesto',
-                style: ['cotizador.css'],
+                style: ['cotizador.css', 'header.css', 'footer.css'],
                 errors: resultValidation.mapped(),
                 oldData: req.body,
-                links: 'happy.png'
+                links: 'Magus-logo.png'
             });
         }
 
@@ -57,15 +56,14 @@ const presupuestadorController = {
         };
 
         let presupuestoId = 0;
-
+        
         await db.Budget.create(datosDelPresupuesto)
         .then( result => presupuestoId += result.id);
-        
+       
         let ids = req.body.product_id;
-        let title = req.body.title;
         let quantity = req.body.quantity;
         let logoOptions = req.body.option;
-
+        
         for (let a = 0; a < ids.length; a++) {
             await db.BudgetProduct.create({
                 id: presupuestoId,
@@ -74,18 +72,16 @@ const presupuestadorController = {
                 logo: logoOptions[a]
             })
         };
-        
         req.session.bought = true;
         console.log(req.session);
 
         return res.redirect('/presupuestador/redirect');
     },
-
     datosGet: (req, res) => {
         return res.render('presupuestadorForm', {
             title: 'Formulario Previo al Presupuestador',
             style: ['cotizador3.css'],
-            links: 'happy.png'
+            links: 'Magus-logo.png'
         })
     },
     datosPost: (req, res) => {
@@ -99,7 +95,7 @@ const presupuestadorController = {
                 style: ['cotizador3.css'],
                 errors: resultValidation.mapped(),
                 oldData: req.body,
-                links: 'happy.png'
+                links: 'Magus-logo.png'
             });
         }
 
@@ -134,7 +130,6 @@ const presupuestadorController = {
 
         return res.redirect('/presupuestador/presupuestador');
     },
-
     presupuestoGet: async (req, res) => {
         let presupuestoNumero = 0;
         await db.BudgetProduct.findByPk(req.params.id)
@@ -163,12 +158,13 @@ const presupuestadorController = {
             productsDb: budgetProduct,
             product: product,
             images: pedidoImagenes,
-            links: 'happy.png'
+            links: 'Magus-logo.png'
         })
     },
     presupuestoIIGet: async (req, res) => {
         let presupuestoNumero = 0;
-        await db.BudgetProduct.findByPk(req.params.id)
+        return res.send(await db.BudgetProduct.findByPk(req.params.id))
+        /*
         .then( result => presupuestoNumero += result.id);
 
         let budget = await db.Budget.findByPk(req.params.id);
@@ -208,10 +204,10 @@ const presupuestadorController = {
             productsDb: budgetProduct,
             product: product,
             date: exactDate,
-            links: 'happy.png'
+            links: 'Magus-logo.png'
         })
+        */
     },
-
     presupuestoIIPost: async (req, res) => {
         // Variable donde se encuentran (o no) los errores.
         const resultValidation = validationResult(req);
@@ -261,7 +257,7 @@ const presupuestadorController = {
                 productsDb: budgetProduct,
                 product: product,
                 date: exactDate,
-                links: 'happy.png'
+                links: 'Magus-logo.png'
             });
         }
 
@@ -286,35 +282,88 @@ const presupuestadorController = {
             style: ['prueba.css'],
             clientData: clientData,
             productData: productData,
-            links: 'happy.png'
+            links: 'Magus-logo.png'
         })
     },
     successConsultation: (req, res) => {
         return res.render('budgetSuccess', {
             title: '¡Gracias!',
-            links: 'happy.png',
-            style: ['everyPage.css', 'budgetSuccess.css', 'header.css', 'footer.css']
+            links: 'Magus-logo.png',
+            style: ['budgetSuccess.css', 'header.css', 'footer.css']
         })
     },
     // GET 
     allBudgets: async (req, res) => {
         let budgets = await db.Budget.findAll({
-            limit: 20,
+            limit: 30,
             order: [
                 ['id', 'DESC']
             ]
         });
 
-        return res.render('budgetAll', {
-            title: 'Budget All',
-            style: ['header.css', 'footer.css', 'everyPage.css', 'budgetAll.css'],
-            links: 'happy.png',
-            budgets: budgets
-        })
+        if (budgets.length == 0) {
+            return res.render('budgetAll', {
+                title: 'Budget All',
+                style: ['budgetAll.css','menu.css'],
+                links: 'Magus-logo.png',
+                budgets: null,
+                date: null
+            })
+        } else {
+            const months = {
+                0: 'Enero',
+                1: 'Febrero',
+                2: 'Marzo',
+                3: 'Abril',
+                4: 'Mayo',
+                5: 'Junio',
+                6: 'Julio',
+                7: 'Agosto',
+                8: 'Septiembre',
+                9: 'Octubre',
+                10: 'Noviembre',
+                11: 'Diciembre'
+            };
+    
+            // let commaLess = budgets[0].received_at.replace(',','').split(' ');
+            // commaLess.splice(1, 1);
+            // let month = commaLess[1];
+            // let realMonth;
+            // for (let i = 0; i < Object.keys(months).length ; i++) {
+            //     if (month == months[i]) {
+            //         realMonth = i+1
+            //     }
+            // }
+            // let year = commaLess[2].slice(2);
+            // let fullDate = {
+            //     day: commaLess[0],
+            //     month: realMonth,
+            //     year: year
+            // }
+    
+            return res.render('budgetAll', {
+                title: 'Budget All',
+                style: ['budgetAll.css','menu.css'],
+                links: 'Magus-logo.png',
+                budgets: budgets,
+                // date: fullDate
+            })
+        }
     },
     // ELIMINAR PRESUPUESTO
     deleteBudgets: async (req, res) => {
-        return res.send(req.body.checbox)
+        
+        let idsArray = req.body.budgetsId.split(',');
+
+        for (let i = 0; i < idsArray.length; i++) {
+            db.Budget.destroy({
+                where: {
+                    id: idsArray[i]
+                }
+            });
+        };
+
+        return res.redirect('/presupuestador/all')
     }
 }
 

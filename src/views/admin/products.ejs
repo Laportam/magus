@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ("../partials/head") %>
+<body>
+    <div class="main-container">
+        <main>
+            <%- include('./partials/menu.ejs') %>
+            <form action="/dashboard/products" method="POST">
+                <div class="centre-container">
+                    <div class="top-options-container">
+                        <div class="top-options">
+                            <div class="top-option-wrapper">
+                                <div class="top-option">
+                                    <p>Activar/Desactivar</p>
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </div>
+                            </div>
+                            <div class="top-option-wrapper">
+                                <div class="top-option">
+                                    <p>Destacado/No Destacado</p>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="top-option-wrapper">
+                                <div class="top-option delete-option">
+                                    <button type="submit">
+                                        <p>Borrar Producto</p>
+                                        <i class="fa-solid fa-trash-can borrar-producto" onclick="eliminarProducto()"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="top-option-wrapper filters-container">
+                                <div class="filters-title">
+                                    <i class="fa-solid fa-filter"></i>
+                                    <p>Filtros</p>
+                                </div>
+                                <div class="filters">
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Nombre</p>
+                                            <input type="text" placeholder="Nombre">
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>SKU</p>
+                                            <input type="text" placeholder="SKU">
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <div class="select-menu">
+                                                <div class="select-btn">
+                                                    <p>Marcas</p>
+                                                </div>
+                                                <ul class="options">
+                                                    <li class="option">
+                                                        <p></p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Agfa</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Benevento</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Cardon</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Contigo</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Cross</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Dunlop</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Gato</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Glencore</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Hitachi</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Kingtech</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>La Baule</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Laguiole</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Louis Dreyfus</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Lumilite</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Moleskine</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Narda Lépez</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Ogio</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Pampa Spirit</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Pampero</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Parker</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Radio Victoria</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Reuseme</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Roupen</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Slazenger</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Swissbags</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Swiss Peak</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>The Daily Book</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Tubos</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Unicef</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Universidad Austral</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Wagner</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Waterman</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <div class="select-menu">
+                                                <div class="select-btn" onclick="filterBy(this)">
+                                                    <p>Categorías</p>
+                                                </div>
+                                                <ul class="options">
+                                                    <li class="option">
+                                                        <p></p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Apparel</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Cuidado Personal</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Drinkware</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Eco Friendly</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Escritura</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Golf</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Gorras</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Herramientas</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Hogar</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Identificadores</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Juegos</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Llaveros</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Marcas</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Marroquinería</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Mates y Accesorios</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Mix Stuff</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Novedades</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Oficina</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Outdoor</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Paraguas</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>POP</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Productos Destacados</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Relojes</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Sin Categoría</p>
+                                                    </li>
+                                                    <li class="option">
+                                                        <img src="/images/Magus-logo.png" alt="">
+                                                        <p>Tecnología</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Marca</p>
+                                            <select name="" id="">
+                                                <option selected value=""></option>
+                                                <option value="">Opción 1</option>
+                                                <option value="">Opción 2</option>
+                                                <option value="">Opción 3</option>
+                                                <option value="">Opción 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Categoría</p>
+                                            <select name="" id="">
+                                                <option selected value=""></option>
+                                                <option value="">Opción 1</option>
+                                                <option value="">Opción 2</option>
+                                                <option value="">Opción 3</option>
+                                                <option value="">Opción 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Filtro por Subcategoría</p>
+                                            <select name="" id="">
+                                                <option selected disabled value=""></option>
+                                                <option value="">Opción 1</option>
+                                                <option value="">Opción 2</option>
+                                                <option value="">Opción 3</option>
+                                                <option value="">Opción 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Destacados</p>
+                                            <select name="" id="">
+                                                <option selected disabled value=""></option>
+                                                <option value="">Destacado</option>
+                                                <option value="">No Destacado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="filter">
+                                            <p>Actividad</p>
+                                            <select name="" id="">
+                                                <option selected disabled value=""></option>
+                                                <option value="">En Actividad</option>
+                                                <option value="">Fuera de Actividad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <div class="table">
+                            <div class="table-top-container">
+                                <div class="table-top">
+                                    <div class="title-wrapper checkbox-wrapper">
+                                        <div class="title checkbox">
+                                            <input type="checkbox" id="option-all" onchange="checkAll(this)">
+                                            <input type="hidden" value="" name="productsId" class="products-id">
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper image-wrapper">
+                                        <div class="title image">
+                                            <i class="fa-solid fa-image"></i>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper name-wrapper">
+                                        <div class="title name">
+                                            <p>Nombre</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper SKU-wrapper">
+                                        <div class="title SKU">
+                                            <p>SKU</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper brand-wrapper">
+                                        <div class="title brand">
+                                            <p>Marca</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper category-wrapper">
+                                        <div class="title category">
+                                            <p>Categoría</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper subcategory-wrapper">
+                                        <div class="title subcategory">
+                                            <p>Subcategoría</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper date-wrapper">
+                                        <div class="title date">
+                                            <p>Fecha</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper important-wrapper">
+                                        <div class="title important">
+                                            <p>Destacados</p>
+                                        </div>
+                                    </div>
+                                    <div class="title-wrapper activity-wrapper">
+                                        <div class="title activity">
+                                            <p>Actividad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-bottom">
+                                    <div class="products-container">
+                                        <div class="products">
+                                            <% for( let i = 0; i < products.length; i++ ) { %>
+                                                <div class="product-wrapper">
+                                                    <!-- Checkbox -->
+                                                    <div class="content-wrapper checkbox-wrapper">
+                                                        <div class="content checkbox">
+                                                            <input type="checkbox" class="borrar-producto" onclick="checkOne(this.parentElement.children[1])">
+                                                            <input type="hidden" value="<%= products[i].id %>" name="id" class="product-id">
+                                                        </div>
+                                                    </div>
+                                                    <!-- Imagen -->
+                                                    <div class="content-wrapper image-wrapper">
+                                                        <div class="content image">
+                                                            <figure>
+                                                                <img src="/images/product/<%= products[i].image.filename %>" alt="">
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Nombre -->
+                                                    <div class="content-wrapper name-wrapper">
+                                                        <div class="content name">
+                                                            <p><%= products[i].name %></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- SKU | MGS -->
+                                                    <div class="content-wrapper SKU-wrapper">
+                                                        <div class="content SKU">
+                                                            <p>MGS<%= products[i].SKU %></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Marca -->
+                                                    <div class="content-wrapper brand-wrapper">
+                                                        <div class="content brand">
+                                                            <p><%= products[i].brand %></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Categoría -->
+                                                    <div class="content-wrapper category-wrapper">
+                                                        <div class="content category">
+                                                            <p><%= products[i].category %></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Subcategoría -->
+                                                    <div class="content-wrapper subcategory-wrapper">
+                                                        <div class="content subcategory">
+                                                            <p><%= products[i].subcategory %></p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Fecha -->
+                                                    <div class="content-wrapper date-wrapper">
+                                                        <div class="content date">
+                                                            <p>Fecha</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Destacado -->
+                                                    <% if (products[i].important == 'Sí') { %>
+                                                    <div class="content-wrapper important-wrapper">
+                                                        <div class="content important">
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                    <div class="content-wrapper important-wrapper">
+                                                        <div class="content not-important">
+                                                            <i class="fa-solid fa-star"></i>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                    
+                                                    <% if (products[i].activity == 1) { %>
+                                                    <!-- Actividad -->
+                                                    <div class="content-wrapper activity-wrapper">
+                                                        <div class="content activity">
+                                                            <i class="fa-solid fa-plug-circle-check"></i>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                    <div class="content-wrapper activity-wrapper">
+                                                        <div class="content inactivity">
+                                                            <i class="fa-solid fa-plug-circle-xmark"></i>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                    
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </main>
+    </div>
+    <script src="/js/productsTable.js"></script>
+    <script src="/js/adminProducts.js"></script>
+</body>
+</html>

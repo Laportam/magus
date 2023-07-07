@@ -27,8 +27,12 @@ const mainController = {
         let pedidoCategorias = await db.Productscategories.findAll();
         let pedidoImagenes = await db.Images.findAll();
         let pedidoMarcas = await db.Brands.findAll();
+        let pedidoClientes = await db.Clients.findAll();
+        let pedidoClientesImagenes = await db.ClientsImages.findAll();
+        let pedidoColores = await db.Colors.findAll();
+        let pedidoColoresProducto = await db.ProductsColors.findAll();
         
-        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas])
+        Promise.all([pedidoProducto, pedidoCategorias, pedidoImagenes, pedidoMarcas, pedidoClientes, pedidoClientesImagenes, pedidoColores, pedidoColoresProducto])
             .then( (all) => {
                 // Elimina objetos duplicados en el array. ESTUDIAR BIEN
                 let uniqueIds = [];
@@ -47,12 +51,16 @@ const mainController = {
                 
                 return res.render('index',{
                     title: 'Home Page | Welcome',
-                    style: ['mobile.css'],
+                    style: ['header.css', 'footer.css', 'index.css'],
                     links: 'happy.png',
                     products: all[0],
                     categories: all[1],
                     images: unique,
                     brands: all[3],
+                    clients: all[4],
+                    clientsImages: all[5],
+                    allColors: all[6],
+                    productColors: all[7]
                 })
             })
     },

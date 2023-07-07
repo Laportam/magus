@@ -1,9 +1,10 @@
 /* FOOTER */
+@import url('rootStyles.css');
 
 footer{
     height:fit-content;
     min-width:360px;
-    background-color: #ececec;
+    background-color: var(--m5);
     text-align: center;
 }
 
@@ -12,6 +13,7 @@ footer{
     flex-direction: column;
     align-items: center;
     padding:10px 20px;
+    margin:0;
 }
 
 .redes{
@@ -31,7 +33,7 @@ footer{
 }
 
 .copy p{
-    color:#a09e9e;
+    color:var(--m5b);
     margin:7px 5px;
 }
 
@@ -42,12 +44,8 @@ footer{
 }
 
 .redes i{
-    color: #8861db;
+    color:var(--m2a);
     transition: 0.5s color;
-}
-
-.redes i:hover{
-    color: #8861db;
 }
 
 .redes a{
@@ -58,8 +56,17 @@ footer{
     margin:5px 30px;
 }
 
+@media (min-width:445px){
+    main{
+        min-height:62vh;
+    }
+}
+
 @media (min-width:768px){
     /* FOOTER */
+    main{
+        min-height:70vh;
+    }
 
     .footer-container{
         display:flex;
@@ -71,10 +78,7 @@ footer{
     .redes a{
         margin:0 38.35px
     }
-
     /* --------------------------------- */
-
-
 }
 
 /* ------ */
@@ -86,7 +90,12 @@ footer{
 @media (min-width:1080px){
     /* FOOTER */
 
+    main{
+        min-height:76vh;
+    }
+
     footer{
+        width:100%;
         display:flex;
         justify-content: center;
         align-items: center;
@@ -101,87 +110,20 @@ footer{
         width:90%;
     }
 
+    .redes i{
+        color:var(--m5b);
+        transition: 0.5s color;
+    }
+    
+    .redes i:hover{
+        color: var(--m2a);
+    }
+
     .redes a{
         margin:0 38.35px
     }
-
     /* --------------------------------- */
-
-
 }
 
 /* ------ */
 /* --------------------------------- */
-
-/* --------------------------------- */
-
-/*
-footer{
-    background-color: #ececec;
-    text-align: center;
-    color:#a09e9e;
-}
-
-.footer-container{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top:30px;
-    padding-bottom: 20px;
-    margin: 0 70px;
-}
-
-.redes, .contacto{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.redes p, .contacto p{
-    margin-bottom:25px;
-    font-size: 19px;
-}
-
-.contacto li{
-    margin: 2px 0;
-}
-
-.redes figure{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.redes{
-    font-size:27px;
-    
-}
-
-.redes i{
-    color:#a09e9e;
-    transition: 0.5s color;
-}
-
-.redes i:hover{
-    color: #8861db;
-}
-
-.redes figure a:nth-child(1){
-    margin-left: 13px;
-    margin-right:25px;
-}
-
-.redes figure a:nth-child(2){
-    margin:0 25px;
-}
-
-.redes figure a:nth-child(3){
-    margin-left:25px;
-}
-
-.footer-container ul{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-*/

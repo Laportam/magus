@@ -5,137 +5,683 @@
     <%- include('partials/header') %>
     <main>
         <div class="main-container">
-
             <div class="top">
-
-                <!-- Cantidad de Páginas -->
-                <div class="pages-title">
-                    <h1>CATÁLOGO</h1>
-                    <% for( let b = 0; b < pages.length; b++ ) { %>
-                        <% if (actualPage == pages[b]) { %>
-                            <h3>Página <%= actualPage %> de <%= pages.length %></h2>
-                        <% } %>
-                    <% } %>
-                </div>
-
-                <div class="create-product">
-                    <% if (locals.isLogged == true) { %>
-                        <a href="/catalogo/create">
-                            Crear producto
-                        </a>
-                    <% } %>
-                </div>
+                <% if (catalogTitle) { %>
+                    <h3><%= catalogTitle %></h3>
+                <% } %>
             </div>
             <div class="middle">
                 <div class="products-container">
-
                     <!-- Catálogo -->
                     <div class="catalogue-section-wrapper">
                         <div class="articles-container">
-                            <% for( let i = 0; i < products.length; i++ ) { %>
-                                    <div class="product-wrapper">
-                                        <div class="product">
-                                            <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
-                                                <!-- PRODUCT INSIDE PART 1 -->
-                                                <div class="product-top-wrapper">
-                                                    <div class="product-image-wrapper">
-                                                        <div class="product-image">
-                                                            <figure>
-                                                                <% for( let a = 0; a < images.length; a++ ) { %>
-                                                                    <% if (images[a].id == products[i].id) { %>
-                                                                        <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                                    <% } %>
-                                                                <% } %> 
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- PRODUCT INSIDE PART 2 -->
-                                                <div class="product-bottom-wrapper">
-                                                    <div class="product-info-wrapper">
-                                                        <div class="product-info">
-                                                            <div class="info name">
-                                                                <p><%= products[i].name %></p>
-                                                            </div>
-                                                            <div class="info brand">
-                                                            <% for( let e = 0; e < brands.length; e++ ) { %>
-                                                            <% if (products[i].brand == brands[e].id) { %>
-                                                                <p><%= brands[e].name %></p>
-                                                            <% } %>
-                                                            <% } %>
-                                                            </div>
-                                                            <div class="hidden-info">
-                                                                <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                                <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <% if (locals.isLogged) { %>
-                                                    <!-- Absolutamente nada -->
-                                                    <% } else { %>
-                                                    <div class="product-budget-btn">
-                                                        <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
-                                                            <i class="fa-solid fa-dolly"></i>
-                                                        </button>
-                                                    </div>
-                                                    <% } %>
-                                                </div>
-                                            </a>
-                                        </div>
+                            <%- include('partials/productCard.ejs') %>
+                        </div>
+
+                        <!-- Botones de las Páginas -->
+                        
+                        <div class="pages-btns-container">
+                        <% if (catalogTitle == 'Catálogo') { %>
+                            <% if (pages.length == 0) { %>
+                            <!-- Nada -->
+                            <% } else if (pages.length == 1) { %>
+                            <div class="pages-btns">
+                                <div class="page-btn selected">
+                                    <a role="link" aria-disabled="true">
+                                        <%= 1 %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } else if (pages.length == 2) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
                                     </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length == 3) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 3) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length == 4) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 3) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 4) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 4 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length >= 5) { %>
+                            <div class="pages-btns">
+                                <% if (actualPage == 1) { %>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 2 %>">
+                                            <%= actualPage + 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == 2) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == (pages.length - 1)) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == pages.length) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 2 %>">
+                                            <%= actualPage - 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                <% } else { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } %>
+                            </div>
                             <% } %>
+                        <% } else { %>
+                            <% if (pages.length == 0) { %>
+                            <!-- Nada -->
+                            <% } else if (pages.length == 1) { %>
+                            <div class="pages-btns">
+                                <div class="page-btn selected">
+                                    <a role="link" aria-disabled="true">
+                                        <%= 1 %>
+                                    </a>
+                                </div>
+                            </div>
+                            <% } else if (pages.length == 2) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length == 3) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 3) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length == 4) { %>
+                                <% if (actualPage == 1) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/4">
+                                            <%= 4 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 2) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/4">
+                                            <%= 4 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 3) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/4">
+                                            <%= 4 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } else if (actualPage == 4) { %>
+                                <div class="pages-btns">
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/1">
+                                            <%= 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/2">
+                                            <%= 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= catalogTitle %>/3">
+                                            <%= 3 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= 4 %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                            <% } else if (pages.length >= 5) { %>
+                            <div class="pages-btns">
+                                <% if (actualPage == 1) { %>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 2 %>">
+                                            <%= actualPage + 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == 2) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == (pages.length - 1)) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } else if (actualPage == pages.length) { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 2 %>">
+                                            <%= actualPage - 2 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                <% } else { %>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/1">
+                                            1
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage - 1 %>">
+                                            <%= actualPage - 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn selected">
+                                        <a role="link" aria-disabled="true">
+                                            <%= actualPage %>
+                                        </a>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= actualPage + 1 %>">
+                                            <%= actualPage + 1 %>
+                                        </a>
+                                    </div>
+                                    <div class="dots">
+                                        <p>...</p>
+                                    </div>
+                                    <div class="page-btn">
+                                        <a href="/catalogo/<%= pages.length %>">
+                                            <%= pages.length %>
+                                        </a>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <% } %>
+                        <% } %>
+                            <div class="pages-btns-text">
+                                <% if (products.length == 0) { %>
+                                    <!-- Nada -->
+                                <% } else { %>
+                                    <p>Mostrando <%= products.length %> de <%= totalProducts %> resultados</p>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Categorías -->
                 <div class="categories-container">
                     <div class="other-container">
                         <div class="categories-wrapper">
                             <div class="categories">
-                                <% for( let a = 0; a < categories.length; a++ ) { %>
-                                    <a class="category" name="<%= categories[a].title %>" href="/catalogo/<%= categories[a].title %>/1">
-                                        <p>
-                                            <%= categories[a].title %>
-                                        </p>
-                                    </a>
+                                <% for( let c = 0; c < categories.length; c++ ) { %>
+                                    <div class="categoria">
+                                        <div class="text-container">
+                                            <div class="text ejemplo">
+                                                <a href="/catalogo/<%= categories[c].title %>/1">
+                                                    <%= categories[c].title %>
+                                                </a>
+                                                <ul class="mini" data-id="<%= c %>">
+                                                    <% for( let d = 0; d < subcategories.length; d++ ) { %>
+                                                        <% if (categories[c].id == subcategories[d].product_category) { %>
+                                                            <li>
+                                                                <a href="/catalogo/<%= categories[c].title %>/<%= subcategories[d].subtitle %>/1">
+                                                                    <%= subcategories[d].subtitle %>
+                                                                </a>
+                                                            </li>
+                                                        <% } %>
+                                                    <% } %>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <% if (categories[c].subcategories == 1) { %>
+                                        <div class="icon">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </div>
+                                        <% } %>
+                                    </div>
                                 <% } %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bottom">
-                <!-- Botones de las Páginas -->
-                <div class="pages-btns-container">
-                    <div class="pages-btns">
-                        <% for( let b = 0; b < pages.length; b++ ) { %>
-                            <% if (actualPage == pages[b]) { %>
-                                <div class="page-btn selected">
-                                    <a role="link" aria-disabled="true">
-                                        <%= pages[b] %>
-                                    </a>
-                                </div>
-                            <% } else { %>
-                                <div class="page-btn">
-                                    <a href="/catalogo/<%= pages[b] %>">
-                                        <%= pages[b] %>
-                                    </a>
-                                </div>
-                            <% } %>
-                        <% } %>
-                    </div>
-                </div>
-            </div>
-
-            <div class="second-half">
-                
-            </div>
-            
-            
         </div>
     </main>
+    <script src="/js/accordion.js"></script>
     <%- include('partials/footer')  %>
 </body>
 </html>

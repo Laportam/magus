@@ -1,7 +1,7 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": 'Rootpassword1',
+    "password": '',
     "database": "magus_db",
     "host": "127.0.0.1",
     "dialect": "mysql",

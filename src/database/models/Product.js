@@ -36,6 +36,16 @@ module.exports=(sequelize, dataTypes) => {
         minimum_required: {
             type: dataTypes.INTEGER,
             allowNull: false
+        },
+        subcategory_id: {
+            type: dataTypes.INTEGER
+        },
+        important: {
+            type: dataTypes.STRING
+        },
+        activity: {
+            type: dataTypes.INTEGER,
+            allowNull: false
         }
     }
     

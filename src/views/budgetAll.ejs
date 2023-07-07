@@ -2,32 +2,76 @@
 <html lang="en">
 <%- include('partials/head') %> 
 <body>
-    <%- include('partials/header') %> 
-    <main>
-        <div class="square-container">
-            <div class="square">
-                <% for( let i = 0; i < budgets.length; i++ ) { %>
-                    <div class="invoice">
-                        <a href="/presupuestador/presupuesto/<%= budgets[i].id %>">
-                            <input type="checkbox" name="checkbox" data-id="<%= budgets[i].id %>">
-                            <h4>Presupuesto #<%= budgets[i].id %></h4>
-                            <h4><%= budgets[i].client %></h4>
-                            <% if (!budgets[i].company) { %>
-                                <h4>No name</h4>
-                            <% }  else { %>
-                                <h4><%= budgets[i].company %></h4>
-                            <% } %>
-                            <% if (!budgets[i].received_at) { %>
-                                <h4>00 de Algoembre, 2022</h4>
-                            <% }  else { %>
-                                <h4><%= budgets[i].received_at %></h4>
-                            <% } %>
-                        </a>
+    <div class="main-container">
+        <main>
+            <%- include('./admin/partials/menu.ejs') %>
+            <div class="centre-container">
+                <% if (budgets == null) { %>
+                <div class="no-invoice-container">
+                    <div class="no-invoice-wrapper">
+                        <div class="no-invoice">
+                            <p>No hay ningún pedido de presupuesto</p>
+                        </div>
                     </div>
-                <% } %>
+                </div>
+                <% } else { %>
+                    <form action="/presupuestador/all" method="POST">
+                        <% for( let i = 0; i < budgets.length; i++ ) { %>
+                
+                            <div class="options-container">
+                                <div class="option-wrapper">
+                                    <div class="option check-all">
+                                        <input type="checkbox" id="option-all" onchange="checkAll(this)">
+                                    </div>
+                                    <div class="option delete">
+                                        <button type="submit">
+                                            <i class="fa-regular fa-trash-can" onclick="eliminarPresupuesto()"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="" name="budgetsId" class="budgets-id">
+                            <div class="invoices-container">
+                                <div class="invoices-wrappers-container">
+                                    <div class="invoice-wrapper">
+                                        <a href="/presupuestador/presupuesto/<%= budgets[i].id %>" class="invoice" data-id="<%= budgets[i].id %>">
+                                            <div class="invoice-data checkbox">
+                                                <input type="checkbox" class="borrar-presupuesto" onclick="checkOne(this.parentElement.children[1])">
+                                                <input type="hidden" value="<%= budgets[i].id %>" name="id" class="input-id">
+                                            </div>
+                                            <% if (budgets[i].company) { %>
+                                            <div class="invoice-data company">
+                                                <p><%= budgets[i].company %></p>
+                                            </div>
+                                            <% } else { %>
+                                            <div class="invoice-data client">
+                                                <p><%= budgets[i].client %></p>
+                                            </div>
+                                            <% } %>
+                                            <% if (budgets[i].comments) { %>
+                                                <div class="invoice-data comment">
+                                                    <p><%= budgets[i].comments %></p>
+                                                </div>
+                                            <% } else { %>
+                                                <div class="invoice-data noComment">
+                                                    <p>- no hay comentarios -</p>
+                                                </div>
+                                            <% } %>
+                                            
+                                            <div class="invoice-data received_at">
+                                                
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <% } %>
+                    </form>
+                
             </div>
-        </div>
-    </main>
-    <%- include('partials/footer') %> 
+        </main>
+    </div>
+    <script src="/js/checkAll.js"></script>
 </body>
 </html>

@@ -25,86 +25,52 @@
                     </figure>
                     <figure class="img-mobile">
                         <a href="/">
-                            <img src="/images/icons/Magus-logo.png" alt="">
+                            <img src="/images/Magus-logo.png" alt="">
                         </a>
                     </figure>
                 </div>
                 <div class="nav-right">
-                    <% if (locals.isLogged == true) { %>
-                        <div class="menu-mobile">
-                            <i class="fa-solid fa-bars"></i>
+                    <div class="menu-mobile">
+                        <i class="fa-solid fa-bars"></i>
+                        <div class="moveleft-box">
                             <ul>
-                                <li><a href="/catalogo/1">Catálogo</a></li>
-                                <li><a href="/presupuestador/all">Presupuestos</a></li>
-                                <li>
-                                    <div class="dropdown-container">
-                                        <span><i class="fa-solid fa-circle-user"> </i><%= locals.userLogged.name %></span>
-                                        <ul class="dropdown">
-                                            <li><a href="/admin/profile">Mi perfil</a></li>
-                                            <li><a href="/admin/logout">Cerrar sesión</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="menu-desktop">
-                            <ul>
-                                <li><a href="/catalogo/1">Catálogo</a></li>
-                                <li><a href="/presupuestador/all">Presupuestos</a></li>
-                                <li>
-                                    <div class="dropdown-container">
-                                        <span><i class="fa-solid fa-circle-user"> </i><%= locals.userLogged.name %></span>
-                                        <ul class="dropdown">
-                                            <li><a href="/admin/profile">Mi perfil</a></li>
-                                            <li><a href="/admin/logout">Cerrar sesión</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    <% } else if (locals.isLogged == false) { %>
-                        <div class="menu-mobile">
-                            <i class="fa-solid fa-bars"></i>
-                            <div class="moveleft-box">
-                                <ul>
-                                    <li class="catalog">Catálogo <i class="fa-solid fa-chevron-down"></i></li>
-                                    <li class="drop">
-                                        <div class="moveleft-container">
-                                            <ul class="moveleft">
-                                                <li><a href="/catalogo/1">Categorías</a></li>
-                                                <li><a href="/catalogo/brands">Marcas</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <a href="/presupuestador">Presupuestador</a>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                        </div>
-                        <div class="menu-desktop">
-                            <ul>
-                                <li>
-                                    <div class="dropdown-container">
-                                        <span>Catálogo</span>
-                                        <ul class="dropdown">
+                                <li class="catalog">Catálogo <i class="fa-solid fa-chevron-down"></i></li>
+                                <li class="drop">
+                                    <div class="moveleft-container">
+                                        <ul class="moveleft">
                                             <li><a href="/catalogo/1">Categorías</a></li>
                                             <li><a href="/catalogo/brands">Marcas</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="/presupuestador">Presupuestador</a></li>
+                                <li>
+                                    <span>
+                                        <a href="/presupuestador">Presupuestador</a>
+                                    </span>
+                                </li>
                             </ul>
                         </div>
-                    <% } %>
+                        
+                    </div>
+                    <div class="menu-desktop">
+                        <ul>
+                            <li>
+                                <div class="dropdown-container">
+                                    <span>Catálogo</span>
+                                    <ul class="dropdown">
+                                        <li><a href="/catalogo/1">Categorías</a></li>
+                                        <li><a href="/catalogo/brands">Marcas</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="/presupuestador">Presupuestador</a></li>
+                            <li><a href="/contacto">Contacto</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<hr>
 <script src="/js/headerSearchBar.js"></script>
 <script src="/js/menu.js"></script>

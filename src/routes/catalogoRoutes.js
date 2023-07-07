@@ -41,7 +41,7 @@ const upload = multer({
 router.get('/brands', productController.brands);
 
 //--Ruta para mostrar todos los productos de una marca
-router.get('/brand/:name', productController.brand);
+router.get('/brands/:name', productController.brand);
 
 //--Ruta para crear un producto GET
 router.get('/create', auth, productController.createGet);
@@ -79,6 +79,9 @@ router.get("/delete/:id", auth, productController.delete);
 
 //--Ruta para ver todos los productos de una categoría en particular.
 router.get('/:name/:id', productController.category);
+
+//--Ruta para ver todos los productos de una subcategoría en particular.
+router.get('/:name/:subname/:id', productController.subcategory);
 
 
 

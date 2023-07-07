@@ -2,102 +2,136 @@
 <html lang="en">
 <%- include('partials/head')  %> 
 <body>
+    <%- include('partials/header.ejs') %>
     <main>
-        <div class="main-container">
-            <div class="cotizador-container">
-                <div class="btns-container">
-                    <div class="form-container">
-                        <form action="/presupuestador" method="POST" id="clientForm">
-                            <div class="form-wrapper">
-                                <div class="first-half">
-                                    <div class="top">
-                                        <div class="top-box">
-                                            <h1>Datos del Consultante</h1>
+        <div class="budget-container">
+            <div class="form-container">
+                <form action="/presupuestador" method="POST" id="clientForm">
+                    <div class="form-title">
+                        <h2>Pedido de Presupuesto</h2>
+                    </div>
+                    <div class="budget">
+                        <div class="half first">
+                            <div class="top">
+                                <h3>Datos del Consultante</h3>
+                            </div>
+                            <div class="bottom">
+                                <div class="client name">
+                                    <!-- En caso de error -->
+                                    <% if (locals.errors && errors.client) { %>
+                                    <div class="text-danger-wrapper">
+                                        <div class="text-danger">
+                                            <p><%= errors.client.msg %></p>
                                         </div>
                                     </div>
-                                    <div class="bottom">
-                                        <div class="bottom-right">
-                                            <div class="bottom-right-box">
-                                                <div class="input client">
-                                                    <input class="form-info-input" type="text" name="client">
-                                                    <span class="label">Nombre</span>
-                                                    <% if(locals.errors && errors.client) { %> 
-                                                        <div class="text-danger">
-                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.client.msg %> 
-                                                        </div>
-                                                    <% } %> 
-                                                </div>
-                                                <div class="input company">
-                                                    <input class="form-info-input" type="text" name="company">
-                                                    <span class="label">Empresa</span>
-                                                </div>
-                                                <div class="input phone">
-                                                    <input class="form-info-input" type="phone" name="phone">
-                                                    <span class="label">Teléfono</span>
-                                                    <% if(locals.errors && errors.phone) { %> 
-                                                        <div class="text-danger">
-                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.phone.msg %> 
-                                                        </div>
-                                                    <% } %> 
-                                                </div>
-                                                <div class="input email">
-                                                    <input class="form-info-input" type="text" name="email">
-                                                    <span class="label">Email</span>
-                                                    <% if(locals.errors && errors.email) { %> 
-                                                        <div class="text-danger">
-                                                            <i class="fa-solid fa-triangle-exclamation"></i> <%= errors.email.msg %> 
-                                                        </div>
-                                                    <% } %> 
-                                                </div>
+                                    <% } %>
+                                    <!-- En caso de error -->
+                                    <div class="client-wrapper">
+                                        <div class="client-input-wrapper">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-user"></i>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="second-half">
-                                    <div class="titulo-principal">
-                                        <h1>Productos</h1>
-                                    </div>
-                                    <div class="titulos">
-                                        <div class="lil-box titles-box">
-                                            <h4>Código</h4>
-                                            <h4>Producto(s)</h4>
-                                            <h4>Logo</h4>
-                                            <h4>Cantidad</h4>
-                                            <h4><i class="fa-solid fa-trash"></i></h4>
-                                        </div>
-                                    </div>
-                                    <div class="contenido">
-                                        
-                                    </div>
-                                    <br>
-                                    <div class="comments-container">
-                                        <div class="comments">
-                                            <label for="comment">Escriba aquí su comentario (opcional):</label>
-                                            <textarea name="comment" id="clientForm" cols="140" rows="15"></textarea>
+                                            <div class="client-input">
+                                                <input class="form-info-input" type="text" name="client" placeholder="Nombre y Apellido">
+                                            </div>
                                         </div>
                                     </div>
                                     
                                 </div>
+                                <div class="client company">
+                                    <div class="client-wrapper">
+                                        <div class="client-input-wrapper">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-building"></i>
+                                            </div>
+                                            <div class="client-input">
+                                                <input class="form-info-input" type="text" name="company" placeholder="Empresa">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client phone">
+                                    <!-- En caso de error -->
+                                    <% if (locals.errors && errors.phone) { %>
+                                    <div class="text-danger-wrapper">
+                                        <div class="text-danger">
+                                            <p><%= errors.phone.msg %></p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <!-- En caso de error -->
+                                    <div class="client-wrapper">
+                                        <div class="client-input-wrapper">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-mobile"></i>
+                                            </div>
+                                            <div class="client-input">
+                                                <input class="form-info-input" type="phone" name="phone" placeholder="Teléfono">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="client email">
+                                    <!-- En caso de error -->
+                                    <% if (locals.errors && errors.email) { %>
+                                    <div class="text-danger-wrapper">
+                                        <div class="text-danger">
+                                            <p><%= errors.email.msg %></p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                    <!-- En caso de error -->
+                                    <div class="client-wrapper">
+                                        <div class="client-input-wrapper">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </div>
+                                            <div class="client-input">
+                                                <input class="form-info-input" type="text" name="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="home-btn-container">
-                                <button type="button" class="btn home-btn">
-                                    <a href="/">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </button>
-                                <button type="submit" class="btn pdf-btn">
-                                    <i class="fa-solid fa-file-import"></i>
-                                </button>
+                        </div>
+                        <div class="half second">
+                            <div class="titulo-principal">
+                                <h3>Información de los Productos</h3>
                             </div>
-                        </form>
+                            <div class="titulos">
+                                <div class="lil-box titles-box">
+                                    <h4>Producto(s)</h4>
+                                    <h4>Logo</h4>
+                                    <h4>Cantidad</h4>
+                                    <h4><i class="fa-solid fa-trash"></i></h4>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                            </div>
+                            <br>
+                            <div class="comments-container">
+                                <div class="comments">
+                                    <label for="comment">Escriba aquí su comentario (opcional):</label>
+                                    <textarea name="comment"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="btns-container">
+                        <button type="submit" class="btn pdf-btn">
+                            <p>Enviar</p>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
+    <%- include('partials/footer.ejs') %>
+    
     <script src="/js/presupuestador.js"></script>
     <script src="/js/carrito.js"></script>
     <script src="/js/compra.js"></script>
+    <script src="/js/budgetResize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

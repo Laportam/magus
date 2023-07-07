@@ -27,6 +27,15 @@ module.exports=(sequelize, dataTypes) => {
         },
         answered_at: {
             type: dataTypes.STRING
+        },
+        product: {
+            type: dataTypes.STRING
+        },
+        SKU: {
+            type: dataTypes.STRING
+        },
+        quantity: {
+            type: dataTypes.INTEGER
         }
     }
     

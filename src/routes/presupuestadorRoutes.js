@@ -27,4 +27,5 @@ router.post('/presupuesto/:id', lastValidations, presupuestadorController.presup
 
 router.get('/redirect', presupuestadorController.successConsultation);
 
+
 module.exports = router;

@@ -1,6 +1,6 @@
 const carrito = new Carrito();
 const products = document.getElementsByClassName('product-container'); 
-const btn = document.querySelector('.detail-budget-btn');           
+const btn = document.querySelector('.btn-budget')             
 
 cargarEventos();
 

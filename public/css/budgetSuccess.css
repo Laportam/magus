@@ -1,34 +1,82 @@
-body{
-    display:flex;
-    flex-direction: column;
-    min-height: 100vh;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+li{
+    list-style: none;
+}
+
+h1, h2, h3, h5, h6{
+    color:var(--m5);
+    text-transform: uppercase;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, input, textarea{
+    font-family: 'Dosis', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+    outline: 1px solid rgba(112, 128, 144, 0.466);
 }
 
 main{
-    flex:1;
+    margin-top:100px;
+    min-height:60vh;
+    min-width:360px;
+    width:100%;
+    max-width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:rgb(245, 245, 245)
+}
+
+.success-container{
+    width:100%;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-.main-text{
+.success-wrapper{
+    width:300px;
+    height:300px;
     display:flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    align-items: center;
+    border:1px solid rgba(0,0,0,0.1);
+    border-radius:5px;
+    background:var(--m1b);
+    box-shadow: 3px 4px 6px -1px rgba(0,0,0,0.4);
 }
 
-.main-text img{
-    height:70px;
-    width:70px;
+.success-img img{
+    opacity: 95%;
+    width:200px;
+    height:fit-content;
 }
 
-.sub-text{
-    display:flex;
+.success-text{
+    margin-top:10px;
+    display:Flex;
     justify-content: center;
     align-items: center;
 }
 
-.sub-text img{
-    height:50px;
-    width:50px;
+.success-text h3{
+    font-size:23px;
+    font-weight: 900;
+    color:#fafafa
 }

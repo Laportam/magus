@@ -1,11 +1,21 @@
 :root{
-    --main-color: #7D50B9;
-    --main-product-variant: #8e76ad;
-    --main-square-variant: #b58bec;
-    --second-color: #4FA4A5;
-    --second-product-variant: #b1caca;
-    --third-color: #FE6F9B;
-    --third-product-variant: #f3d9e1;
-    --fourth-color: #faa835;
-    --fourth-product-variant: #fac274;
+    --m1:#8d35ec;
+    --m1a:#d3bfe7;
+    --m1b:#a551ff;
+    --m1d:#e6dcf0;
+    --m2:#FEB129;
+    --m2a:#ffbe4d;
+    --m3:#66a6d9;
+    --m3a:#c9d8e4;
+    --m4:#e365c1;
+    --m4a:#ffdbf5;
+    --m5:#3b3c47;
+    --m5a:#4d5061;
+    --m5b:#dddee6;
+    --m5c:#6b6d7c;
+    --m5d:#abacb1;
+    --danger:#E30000;
+    --important:gold;
+    --activity:rgb(111, 249, 96);
+    --inactivity: rgb(249, 96, 96);
 }

@@ -1,4 +1,46 @@
+@import url('rootStyles.css');
 
+/* EVERYTHING */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+li{
+    list-style: none;
+}
+
+main{
+    margin-top:78px;
+    padding:20px 0;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height:100vh;
+    min-width:360px;
+    width:100%;
+    max-width:100%;
+    background:rgb(248, 248, 248)
+}
+
+h3{
+    color:var(--m5);
+    font-size:30px;
+    font-family: 'Dosis', sans-serif;
+    text-transform: uppercase;
+}
+
+p{
+    font-family: 'Dosis', sans-serif;
+}
 
 .brands-container{
     display:flex;
@@ -9,28 +51,52 @@
 
 .brand-container{
     margin:30px 20px;
-}
-
-.brand{
     position:relative;
-    border:1px solid rgba(0, 0, 0, 0.082);
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.568) 0px 5px 15px;
 }
 
-.brand-background{
-    
-    background:rgb(226, 226, 226);
-    
-    
-    -webkit-filter: blur(2px);
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width:350px;
-    height:180px;
+.brand-image{
+    width:220px;
+    height:220px;
     display:flex;
     justify-content: center;
     align-items: center;
+    overflow:hidden;
+    border:1px solid rgba(0, 0, 0, 0.082);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.568) 0px 5px 15px;
 }
 
+.brand-image figure, .brand-image figure img{
+    width:220px;
+    height:220px;
+}
+
+.brand-name{
+    z-index:2;
+    position:absolute;
+    left:0;
+    width:220px;
+    height:220px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:var(--m5);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0) 0px 5px 15px;
+    transition:0.8s;
+}
+
+.brand-container:hover .brand-name{
+    left:-220px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+}
+
+.brand-name h3{
+    color:var(--m5b);
+    transition:0.8s;
+}
+
+.brand-container:hover .brand-name h3{
+    color:var(--m2a);
+}

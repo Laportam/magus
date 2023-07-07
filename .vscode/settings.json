@@ -1,5 +1,6 @@
 {
     "marquee.widgets.npm-stats.packageNames": [
         "magus-promociones"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

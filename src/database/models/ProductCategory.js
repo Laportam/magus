@@ -11,6 +11,10 @@ title: {
     type: dataTypes.STRING,
     allowNull: false
 },
+subcategories: {
+    type: dataTypes.INTEGER,
+    allowNull: false
+}
 
     }
     let config = {

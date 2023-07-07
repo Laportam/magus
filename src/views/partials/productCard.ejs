@@ -1,0 +1,53 @@
+<div class="articles">
+    <% for( let i = 0; i < products.length; i++ ) { %>
+        <div class="product-wrapper">
+            <div class="product">
+                <a href="/catalogo/detail/<%= products[i].id %>">
+                    <div class="product-middle-wrapper">
+                        <!-- IMAGEN -->
+                        <div class="product-image-wrapper">
+                            <% for( let b = 0; b < images.length; b++ ) { %>
+                                <% if (images[b].id == products[i].id) { %>
+                                    <div class="product-image">
+                                        <figure>
+                                            <img src="/images/product/<%= images[b].filename %>" alt="">
+                                        </figure>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="product-bottom-wrapper">
+                        <div class="product-titles-wrapper">
+                            <div class="product-title header-text">
+                                <p><%= products[i].name %></p>
+                            </div>
+                            <div class="product-title secondary-text">
+                                <% for( let a = 0; a < brands.length; a++ ) { %>
+                                    <% if (brands[a].id == products[i].brand) { %>
+                                        <p> <%= brands[a].name %> </p>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="product-colors-container">
+                            <div class="product-colors">
+                                <% for( let g = 0; g < productColors.length; g++ ) { %>
+                                    <% if (productColors[g].id_product == products[i].id) { %>
+                                        <% for( let f = 0; f < allColors.length; f++ ) { %>
+                                            <% if (allColors[f].id_color == productColors[g].id_color) { %>
+                                                <div class="color">
+                                                    <figure width="25px" height="25px" style="background-color:<%= allColors[f].hex_color %>; margin-right:5px"></figure>
+                                                </div>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    <% } %>
+</div>

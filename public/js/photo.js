@@ -1,20 +1,37 @@
-const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
+const banners = document.querySelectorAll('.figure');
 
+let ind = 1;
 
-imgBtns.forEach( imgItem => {
-    imgItem.addEventListener('click', (e) => {
-        e.preventDefault();
-        imgId = imgItem.dataset.id;
-        slideImage();
-    });
-});
+const bannerBtns = document.querySelectorAll('.banner-btn-box');
 
-function slideImage(){
-    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+bannerBtns[1].addEventListener('click', slideRight);
+bannerBtns[0].addEventListener('click', slideLeft);
 
-    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+function slideRight(){
+        if(ind < 3){
+            bannerBtns[1].disabled = false;
+            const displayWidth = document.querySelector('.figure').clientWidth;
+
+            document.querySelectorAll('.figure').forEach( each => {
+                each.style.transform = `translateX(${-ind * displayWidth}px)`;
+            });
+            ind++;
+        } else {
+            bannerBtns[1].disabled = true
+        }
+    
 }
 
-window.addEventListener('resize', slideImage)
+function slideLeft(){
+        if(ind > 1){
+            bannerBtns[0].disabled = false;
+            const displayWidth = document.querySelector('.figure').clientWidth;
+            ind--;
+
+            document.querySelectorAll('.figure').forEach( each => {
+                each.style.transform = `translateX(${-(ind - 1) * displayWidth}px)`;
+            });
+        }  else {
+            bannerBtns[0].disabled = true
+        }
+}

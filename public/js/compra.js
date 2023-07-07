@@ -17,21 +17,4 @@ function cargarEventos(){
     };
 
     submitBtn.addEventListener('click', (e) => compra.confirmarPedido(e));
-    // for(let btn of coti){
-    //     btn.addEventListener('click', (e) => {
-    //         compra.sendPdf(e);
-    //     });
-    // }
-
-    // coti.addEventListener('click', (e) => {
-    //     compra.eliminarProducto(e);
-    // });
-
-    // coti.addEventListener('change', (e) => {
-    //     compra.obtenerEvento(e);
-    // });
-
-    // coti.addEventListener('keyup', (e) => {
-    //     compra.obtenerEvento(e);
-    // });
 }

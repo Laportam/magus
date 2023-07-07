@@ -1,70 +1,88 @@
 class Carrito{
+
     // Añadir el producto al carrito
     comprarProducto(e){
-        console.log(e.target)
-        if(e.target.parentElement.classList.contains('cotizar-button')){
-            e.preventDefault();
-            let producto = e.target.parentElement.parentElement.parentElement;
-            console.log(producto);
-            this.leerDatosProducto(producto);
-        } else if(e.target.parentElement.parentElement.classList.contains('cotizar-button')){
+        if(e.target.parentElement.classList.contains('btn-budget')){
             e.preventDefault();
             let producto = e.target.parentElement.parentElement.parentElement.parentElement;
-            console.log(producto);
             this.leerDatosProducto(producto);
-        } else if(e.target.classList.contains('cotizar-button')){
-            e.preventDefault();
-            let producto = e.target.parentElement.parentElement;
-            console.log(producto);
-            this.leerDatosProducto(producto);
-        } else if(e.target.classList.contains('detail-budget-btn')){
-            let producto = e.target.parentElement.parentElement.parentElement.parentElement;
-            this.leerDatosProducto(producto)
         }
     }
+
     // Leer los datos del producto
     leerDatosProducto(producto){
         let infoProducto = {
-            titulo: producto.querySelector('.title').textContent,
-            id: producto.querySelector('.budget-btn').getAttribute('data-id'),
-            cantidad: producto.querySelector('.minimum-required').value,
-            SKU: producto.querySelector('.SKU').value
-        }
-        let productsLocalStorage;
-        productsLocalStorage = this.obtenerProductosLocalStorage();
-        let productsInLS = [...productsLocalStorage].filter( product => product.id == infoProducto.id);
+            id: producto.querySelector('.product-id').dataset.id,
+            titulo: producto.querySelector('.title h2').textContent,
+            brand: producto.querySelector('.product-brand').dataset.id,
+            cantidadMinima: producto.querySelector('.product-quantity').dataset.id,
+            SKU: producto.querySelector('.product-sku').dataset.id
+        };
+
+        let productosLocalStorage;
+        productosLocalStorage = this.obtenerProductosLocalStorage();
         
-        if(productsInLS.length == 0){
-            this.insertarCarrito(infoProducto)
+        let productosEnLocalStorage = [...productosLocalStorage].filter( productoLocalStorage => 
+            productoLocalStorage.id == infoProducto.id
+        );
+        //
+        if (productosEnLocalStorage.length == 0) {
+            this.insertarCarrito(infoProducto);
+            
+            let alert = document.querySelector('.alert-wrapper');
+            alert.querySelector('p').innerHTML = "Producto agregado a la lista."
+            alert.style.right = "1vw";
+            setTimeout( () => {
+                alert.style.right = "-220vw";
+            }, 5000)
         } else {
-            alert('El producto ya se encuentra en el presupuesto')
+            let alert = document.querySelector('.alert-wrapper');
+            alert.querySelector('p').innerHTML = "Este producto ya se encuentra en la lista para presupuestar.";
+            alert.style.right = "1vw";
+            setTimeout( () => {
+                alert.style.right = "-220vw";
+            }, 5000)
         }
     }
+
     // Poner la información del producto dentro del carrito + mensaje
-    insertarCarrito(producto){
-        alert(`¡Felicidades! Has agregado ${producto.titulo} al carrito.`);
-        this.guardarProductosLocalStorage(producto);
+    insertarCarrito(infoProducto){
+        this.guardarProductosLocalStorage(infoProducto)
     }
+
     // Elimina el producto de la vista
     eliminarProducto(e){
-        let product, productID;
+        console.log(e.target);
+        let producto, productoID;
         if(e.target.classList.contains('borrar-producto')){
+            // Eliminar del HTML
             e.target.parentElement.parentElement.remove();
-            product = e.target.parentElement.parentElement;
-            productID = product.querySelector('.content-input').getAttribute('data-id');
+            producto = e.target.parentElement.parentElement;
+            productoID = producto.querySelector('.input-id').getAttribute('data-id');
         }
-        this.eliminarProductoLocalStorage(productID);
-        this.calcularTotal();
+        this.eliminarProductoLocalStorage(productoID);
     }
+
     // Guardar los datos en el Local Storage
-    guardarProductosLocalStorage(product){
-        let products;
-        products = this.obtenerProductosLocalStorage();
-        products.push(product);
-        localStorage.setItem('productos', JSON.stringify(products));
+    guardarProductosLocalStorage(producto){
+        let productos;
+        productos = this.obtenerProductosLocalStorage();
+        productos.push(producto);
+        localStorage.setItem('productos', JSON.stringify(productos));
     }
+
     // Comprobar si hay productos en el Local Storage
     obtenerProductosLocalStorage(){
+        let productosLocalStorage;
+
+        if (localStorage.getItem('productos') === null) {
+            productosLocalStorage = [];
+        } else {
+            productosLocalStorage = JSON.parse(localStorage.getItem('productos'));
+        }
+
+        return productosLocalStorage;
+        /*
         let productosLocalStorage;
         if(localStorage.getItem('productos') === null){
             productosLocalStorage = [];
@@ -72,9 +90,22 @@ class Carrito{
             productosLocalStorage = JSON.parse(localStorage.getItem('productos'));
         }
         return productosLocalStorage;
+        */
     }
+
     // Eliminar el producto del Local Storage
-    eliminarProductoLocalStorage(productID){
+    eliminarProductoLocalStorage(productoID){
+        let productosLocalStorage;
+        productosLocalStorage = this.obtenerProductosLocalStorage();
+        
+        productosLocalStorage.forEach( (productoLocalStorage, index) => {
+            if(productoLocalStorage.id === productoID){
+                productosLocalStorage.splice(index, 1);
+            }
+        });
+        localStorage.setItem('productos', JSON.stringify(productosLocalStorage));
+        
+        /*
         let productsLocalStorage;
         productsLocalStorage = this.obtenerProductosLocalStorage();
         productsLocalStorage.forEach( (productLocalStorage, index) => {
@@ -83,7 +114,9 @@ class Carrito{
             }
         });
         localStorage.setItem('productos', JSON.stringify(productsLocalStorage));
+        */
     }
+
     // Mostrar los productos guardados, dentro del Local Storage, en products/cart
     leerLocalStorageEnCarrito(){
         let productsLocalStorage;
@@ -100,32 +133,29 @@ class Carrito{
         } else {
             productsLocalStorage.forEach( (product) => {
                 let row = document.createElement('div');
+                row.classList.add('product-info-content')
                 row.innerHTML = `
-                <div class="product-info-content">
-                    <div class="content-input-container">
-                        <input class="content-input" name="product_id" type="text" value="${product.id}" data-id="${product.id}" hidden>
-                        <input class="content-input" type="text" value="MGS${product.SKU}" data-id="${product.id}" disabled>
+                <div class="content-input-container">
+                    <div class="product-detail-wrapper">
+                        <h1>${product.titulo}</h1>
+                        <h2>Marca: ${product.brand}</h2>
+                        <h3>MGS${product.SKU}</h3>
+                        <input class="input-id" name="product_id" value="${product.id}" type="hidden" data-id="${product.id}">
                     </div>
-                    <div class="content-input-container">
-                        <input class="content-input" type="text" value="${product.titulo}" disabled>
-                        <input class="content-input" name="title" type="text" value="${product.titulo}" hidden>
-                    </div>
-                    <div class="content-input-container">
-                        <select name="option" class="option" id="option">
-                            <option disabled selected value=""></option>
-                            <option>1C/1C</option>
-                            <option>Full</option>
-                            <option>GBR</option>
-                            <option>TD</option>
-                        </select>
-                    </div>
-                    <div class="content-input-container">
-                        <p>(Cantidad mínima: ${product.cantidad} unidades)</p>
-                        <input class="content-input qty-input" name="quantity" type="number" value="${product.cantidad}" min="${product.cantidad}">
-                    </div>
-                    <div class="content-input-container">
-                        <i class="fa-solid fa-square-xmark borrar-producto"></i>
-                    </div>
+                </div>
+                <div class="content-input-container">
+                    <select class="content-input logo-input" name="option" class="option" id="option">
+                        <option disabled selected value=""></option>
+                        <option value="Sí">Sí</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="content-input-container qty-container">
+                    <p>(Mínimo: ${product.cantidadMinima} unidades)</p>
+                    <input class="content-input qty-input" name="quantity" type="number" value="100" min="${product.cantidadMinima}">
+                </div>
+                <div class="content-input-container delete-container">
+                    <i class="fa-sharp fa-solid fa-xmark borrar-producto remove-input"></i>
                 </div>
                 `;
                 document.querySelector('.contenido').append(row);
@@ -170,7 +200,6 @@ class Carrito{
 
     confirmarPedido(e){
         e.preventDefault();
-        
         let logos = [...document.querySelectorAll('.option')];
         let noLogo = logos.filter( logo => logo.value == '').length;
         let qtyInputs = [...document.querySelectorAll('.qty-input')];
@@ -198,37 +227,10 @@ class Carrito{
         }  else {
             let form = document.getElementById('clientForm');
             form.submit()
-            // e.submit()
         }
     }
 
     eliminarLocalStorage(){
 
     }
-
-    // sendPdf(e){
-    //     e.preventDefault();
-    //     // let yesOrNo = confirm('¿Tu consulta está lista para ser enviada?');
-
-    //     if(e.target.classList.contains('pdf-btn')){
-    //         const pdf = e.target.parentElement.parentElement;
-    //         console.log(pdf);
-    //         this.leerPdf(pdf);
-    //     };
-        
-        
-    //     // if(yesOrNo == true){
-    //     //     alert('¡Gracias por enviar tu consulta!')
-    //     // };
-
-        
-    // }
-
-    // leerPdf(pdf){
-    //     const infoPdf = {
-    //         titulo: pdf.querySelector('a h4').textContent,
-    //         id: pdf.querySelector('.cotizar-button').getAttribute('data-id'),
-    //         cantidad: 0
-    //     }
-    // }
 }

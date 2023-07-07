@@ -32,10 +32,19 @@ router.get('/edit/:id', adminController.edit);
 // Procesar la Modificación de Admin
 router.post('/edit/:id', adminController.processEdit);
 
-// 
+// Entrar Al Perfil del Admin
 router.get('/profile', auth, adminController.adminDetail);
+
+// Dashboard
+router.get('/dashboard', adminController.dashboard);
 
 // Logout
 router.get('/logout', auth, adminController.logout);
+
+// Productos
+router.get('/dashboard/products', adminController.products);
+
+// Eliminar productos
+router.post('/dashboard/products', adminController.productsDelete);
 
 module.exports = router;

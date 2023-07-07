@@ -3,9 +3,11 @@
 <%- include('partials/head') %> 
 <body>
     <%- include('partials/header') %>
+    <hr>
     <main>
         <div class="main-container">
             <!-- Banner Principal -->
+            <!--
             <div class="banner-principal">
                 <section class="banner-principal-section">
                     <article class="banner-principal-article">
@@ -26,12 +28,12 @@
                             <div class="banner-btns-box">
                                 <div class="banner-btn-box first-btn">
                                     <button>
-                                        <i class="fa-solid fa-caret-left"></i>
+                                        <i class="fa-solid fa-angle-left"></i>
                                     </button>
                                 </div>
                                 <div class="banner-btn-box second-btn">
                                     <button>
-                                        <i class="fa-solid fa-caret-right"></i>
+                                        <i class="fa-solid fa-angle-right"></i>
                                     </button>
                                 </div>
                             </div>
@@ -39,134 +41,14 @@
                     </article>
                 </section>
             </div>
+            -->
             <section class="novedades-section">
                 <h3>Novedades</h3>
                 <div class="line"></div>
-                <!-- Botones de la lista | Inicio -->
-                <!--
-                <div class="novedades-btns">
-                    <figure class="f-i">
-                        <button type="button">
-                            <i class="fa-solid fa-caret-right"></i>
-                        </button>
-                    </figure>
-                    <figure class="s-i">
-                        <button type="button">
-                            <i class="fa-solid fa-caret-left"></i>
-                        </button>
-                    </figure>
-                </div>
-                -->
                 <!-- Botones de la lista | Fin -->
                 <div class="novedades-section-wrapper">
                     <div class="articles-container">
-                        <% for( let i = 0; i < products.length; i++ ) { %>
-                            <% if (i <= 4) { %>
-                                <div class="product-wrapper-first">
-                                    <div class="product first">
-                                        <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
-                                            <!-- PRODUCT INSIDE PART 1 -->
-                                            <div class="product-top-wrapper">
-                                                <div class="product-image-wrapper">
-                                                    <div class="product-image">
-                                                        <figure>
-                                                            <% for( let a = 0; a < images.length; a++ ) { %>
-                                                                <% if (images[a].id == products[i].id) { %>
-                                                                    <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                                <% } %>
-                                                            <% } %> 
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- PRODUCT INSIDE PART 2 -->
-                                            <div class="product-bottom-wrapper">
-                                                <div class="product-info-wrapper">
-                                                    <div class="product-info">
-                                                        <div class="info name">
-                                                            <p><%= products[i].name %></p>
-                                                        </div>
-                                                        <div class="info brand">
-                                                        <% for( let e = 0; e < brands.length; e++ ) { %>
-                                                        <% if (products[i].brand == brands[e].id) { %>
-                                                            <p><%= brands[e].name %></p>
-                                                        <% } %>
-                                                        <% } %>
-                                                        </div>
-                                                        <div class="hidden-info">
-                                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% if (locals.isLogged) { %>
-                                                <!-- Absolutamente nada -->
-                                                <% } else { %>
-                                                <div class="product-budget-btn">
-                                                    <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
-                                                        <i class="fa-solid fa-dolly"></i>
-                                                    </button>
-                                                </div>
-                                                <% } %>
-                                            </div>
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                            <% } else { %>
-                                <div class="product-wrapper-second">
-                                    <div class="product second">
-                                        <a class="product-info-container" href="/catalogo/detail/<%= products[i].id %>">
-                                            <!-- PRODUCT INSIDE PART 1 -->
-                                            <div class="product-top-wrapper">
-                                                <div class="product-image-wrapper">
-                                                    <div class="product-image">
-                                                        <figure>
-                                                            <% for( let a = 0; a < images.length; a++ ) { %>
-                                                                <% if (images[a].id == products[i].id) { %>
-                                                                    <img src="/images/product/<%= images[a].filename %>" alt="">
-                                                                <% } %>
-                                                            <% } %>  
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- PRODUCT INSIDE PART 2 -->
-                                            <div class="product-bottom-wrapper">
-                                                <div class="product-info-wrapper">
-                                                    <div class="product-info">
-                                                        <div class="info name">
-                                                            <p><%= products[i].name %></p>
-                                                        </div>
-                                                        <div class="info brand">
-                                                        <% for( let e = 0; e < brands.length; e++ ) { %>
-                                                        <% if (products[i].brand == brands[e].id) { %>
-                                                            <p><%= brands[e].name %></p>
-                                                        <% } %>
-                                                        <% } %>
-                                                        </div>
-                                                        <div class="hidden-info">
-                                                            <input class="minimum-required" type="number" value="<%= products[i].minimum_required %>" hidden>
-                                                            <input class="SKU" type="number" value="<%= products[i].SKU %>" hidden>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <% if (locals.isLogged) { %>
-                                                <!-- Absolutamente nada -->
-                                                <% } else { %>
-                                                <div class="product-budget-btn">
-                                                    <button class="cotizar-button budget-btn" data-id="<%= products[i].id %>">
-                                                        <i class="fa-solid fa-dolly"></i>
-                                                    </button>
-                                                </div>
-                                                <% } %>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            <% } %>
-                        <% } %>
+                        <%- include('partials/productCard.ejs') %>
                     </div>
                 </div>
             </section>
@@ -185,7 +67,7 @@
                                     <p>Somos una empresa líder en el mercado del merchandising, regalos empresariales y material para punto de venta P.O.P.</p>
                                 </div>
                                 <div class="icon-container">
-                                    <img src="/images/icons/Magus-logo.png" alt="">
+                                    <img src="./images/Magus-logo.png" alt="">
                                 </div>
                                 <div class="bright"></div>
                                 <div class="last-text">
@@ -205,14 +87,15 @@
                                 </div>
                             </div>
                             <div class="text-wrapper">
+                                <div class="text-icon">
+                                    <i class="fa-solid fa-chart-simple"></i>
+                                </div>
                                 <div class="text-container">
                                     <div class="text">
                                         <p>Utilizamos las más modernas y eficientes técnicas de aplicación, para que las marcas comuniquen, se destaquen y perduren en el tiempo en los mismos, como se merecen.</p>
                                     </div>
                                 </div>
-                                <div class="text-icon">
-                                    <i class="fa-solid fa-chart-simple"></i>
-                                </div>
+                                
                             </div>
                             <div class="text-wrapper">
                                 <div class="text-icon">
@@ -226,71 +109,101 @@
                             </div>
                         </div>
                     </div>
-                    <div class="custom-shape-divider-bottom-1669828692">
-                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-                        </svg>
+                </div>
+            </section>
+            <section class="brands-section">
+                <h3>Nuestras Marcas</h3>
+                <div class="brands-wrapper-container">
+                    <div class="brands-wrapper">
+                        <div class="brands-container">
+                            <% for( let i = 0; i < brands.length; i++ ) { %>
+                                <% if (brands[i].id == i + 1) { %>
+                                    <article class="brand-article">
+                                        <a href="/">
+                                            <figure>
+                                                <img src="/images/brands/Brand-<%= brands[i].name %>.jpg" alt="">
+                                            </figure>
+                                        </a>
+                                    </article>
+                                <% } %>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section class="clientes-section">
+            <section class="clients-section">
                 <h3>Nuestros Clientes</h3>
-                <div class="clientes-wrapper-container">
-                    <div class="clientes-wrapper">
-                        <div class="clientes-container">
-                            <article class="cliente-article">
+                <div class="clients-wrapper-container">
+                    <div class="clients-wrapper">
+                        <div class="clients-container">
+                            <article class="client-article">
+                                    <figure>
+                                        <img src="./Cliente-Agfa.jpg" alt="">
+                                    </figure>
+                            </article>
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
-                            <article class="cliente-article">
+                            <article class="client-article">
                                 <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
-                                </figure>
-                            </article>
-                            <article class="cliente-article">
-                                <figure>
-                                    <img src="/images/clients/Cliente-Agfa.jpg" alt="">
+                                    <img src="./Cliente-Agfa.jpg" alt="">
                                 </figure>
                             </article>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </section>
         </div>
     </main>
-    <%- include('partials/footer')  %>
-    <script src="/js/carrito.js"></script>
-    <script src="/js/pedido.js"></script>
-    <!-- <script src="/js/novedades.js"></script> -->
-    <script src="/js/cardFlip.js"></script>
-    <script src="/js/banners.js"></script>
+    <footer>
+        <div class="footer-container">
+            <div class="redes">
+                <figure>
+                    <a href="https://www.facebook.com/Magus-Promociones-346269575740830/">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/maguspromo/?hl=en">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/magus-promociones/?originalSubdomain=ar">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                </figure>
+            </div>
+            <div class="copy">
+                <p><em>© 2022 Magus Promociones S.A. Todos los derechos reservados.</em></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/menu.js"></script>
+    <script src="/js/photo.js"></script>
 </body>
 </html>

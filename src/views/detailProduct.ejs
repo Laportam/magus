@@ -5,6 +5,132 @@
     <%- include('partials/header')  %> 
     <main>
         <div class="main-container">
+            <div class="alert-container">
+                <div class="alert-wrapper">
+                    <div class="vertical-line"></div>
+                    <p></p>
+                </div>
+            </div>
+            <div class="product-container">
+                <div class="half first">
+                    <div class="images-container">
+                        <div class="image-wrapper">
+                            <div class="image">
+                                <% for( let c = 0; c < productImages.length; c++ ) { %>
+                                    <figure>
+                                        <img src="/images/product/<%= productImages[c].filename %>" alt="">>
+                                    </figure>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="subimages-container">
+                            <div class="subimages">
+                                <% for( let b = 0; b < productImages.length; b++ ) { %>
+                                    <div class="subimage-wrapper">
+                                        <div class="subimage">
+                                            <figure data-id="<%= b + 1 %>">
+                                                <img src="/images/product/<%= productImages[b].filename %>" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="half second">
+                    <div class="title-wrapper">
+                        <input class="product-id" type="hidden" data-id="<%= product.id %>">
+                        <div class="title">
+                            <h2><%= product.name %></h2>
+                        </div>
+                        <div class="brand">
+                            <% for( let i = 0; i < brands.length; i++ ) { %>
+                                <% if (brands[i].id == product.brand) { %>
+                                    <input class="product-brand" type="hidden" data-id="<%= brands[i].name %>">
+                                    <p><%= brands[i].name %></p>
+                                <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="details-container">
+                        <div class="detail-wrapper">
+                            <div class="detail sku">
+                                <input class="product-sku" type="hidden" data-id="<%= product.SKU %>">
+                                <p><b>SKU:</b></p>
+                                <p>MGS <%= product.SKU %></p>
+                            </div>
+                        </div>
+                        <div class="detail-wrapper">
+                            <div class="detail quantity">
+                                <input class="product-quantity" type="hidden" data-id="<%= product.minimum_required %>">
+                                <p><b>Cantidad mínima:</b></p>
+                                <p><%= product.minimum_required %> unidades</p>
+                            </div>
+                        </div>
+                        <div class="detail-wrapper">
+                            <div class="detail description">
+                                <p><%= product.description %></p>
+                            </div>
+                        </div>
+                        <div class="detail-wrapper">
+                            <div class="detail category">
+                                <p><b>Categoría(s):</b></p>
+                                <% for( let a = 0; a < categories.length; a++ ) { %>
+                                    <% if (product.category_id == categories[a].id) { %>
+                                        <a href=""><%= categories[a].title %></a>,&nbsp;
+                                    <% } %>
+                                <% } %>
+                                <% for( let d = 0; d < subcategories.length; d++ ) { %>
+                                    <% if (product.subcategory_id == subcategories[d].id) { %>
+                                        <a href=""><%= subcategories[d].subtitle %></a>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="detail-wrapper">
+                            <div class="detail colors">
+                                <p><b>Colores</b></p>
+                                <div class="colors-two">
+                                        <% for( let g = 0; g < productColors.length; g++ ) { %>
+                                            <% if (productColors[g].id_product == product.id) { %>
+                                                <% for( let f = 0; f < allColors.length; f++ ) { %>
+                                                    <% if (allColors[f].id_color == productColors[g].id_color) { %>
+                                                        <figure width="25px" height="25px" style="background-color:<%= allColors[f].hex_color %>; margin-right:5px"></figure>
+                                                    <% } %>
+                                                    
+                                                    <% } %>
+                                               <% } %>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrapper">
+                        <div class="btn btn-budget">
+                            <button>Presupuestar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="related-products-container">
+                <div class="related-products-title-wrapper">
+                    <div class="related-products-title">
+                        <h2>PRODUCTOS RELACIONADOS</h2>
+                    </div>
+                </div>
+                <div class="related-products">
+                    <div class="articles-container">
+                        <%- include('partials/productCard.ejs') %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--
+    <main>
+        <div class="main-container">
             <div class="product-container">
                 <div class="top">
                     <div class="top-first-half">
@@ -107,9 +233,10 @@
             </div>
         </div>
     </main>
+    -->
     <%- include('partials/footer')  %>
 </body>
 <script src="/js/carrito.js"></script>
 <script src="/js/pedidoDetail.js"></script>
-<script src="/js/photo.js"></script>
+<script src="/js/productSlider.js"></script>
 </html>

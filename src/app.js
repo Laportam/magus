@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 // app.set('port', process.env.PORT || 3000);
-app.listen(3000, () => console.log("El servidor está levantado en el puerto 3000"));
+app.listen(3001, () => console.log("Server started"));
 
 app.use('/', mainRoutes);
 app.use('/catalogo', catalogoRoutes);

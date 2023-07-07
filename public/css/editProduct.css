@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     width:100%;
-    
 }
 
 .form-container{
@@ -113,12 +112,9 @@
     margin-right:5px
 }
 
-
-
 .uploaded-area .content{
     display:flex;
     align-items: center;
-
 }
 
 .uploaded-area .content i{
